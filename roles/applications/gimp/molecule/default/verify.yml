@@ -1,0 +1,17 @@
+---
+- name: Verify
+  hosts: all
+  gather_facts: true
+  vars:
+    ansible_user: ansible
+  tasks:
+    - name: Check GIMP version
+      command: |
+        gimp --version
+      register: docker_version
+      changed_when: false
+      failed_when: false
+
+    - name: Assertion for GIMP
+      assert:
+        that: '"GNU Image Manipulation Program version" in docker_version.stdout'
