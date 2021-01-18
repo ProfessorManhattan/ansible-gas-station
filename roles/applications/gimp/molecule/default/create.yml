@@ -9,5 +9,7 @@
       docker_container:
         name: "{{ item.name }}"
         image: "{{ item.image }}"
-        command: "{{ item.command }}"
+        tmpfs: "{{ item.tmpfs }}"
+        volumes: "{{ item.volumes }}"
+        privileged: "{{ item.privileged }}"
       with_items: "{{ molecule_yml.platforms }}"
