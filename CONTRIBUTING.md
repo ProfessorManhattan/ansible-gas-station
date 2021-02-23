@@ -157,3 +157,38 @@ DRY stands for Do NOT Repeat Yourself. Whenever there is code that is duplicated
 - name: Run generic Linux tasks
   include_tasks: install-Linux.yml
 ```
+
+#### Handling dependencies
+
+Some software components need dependencies to be satisfied before they can be installed. A good example of such a case is installing packages from Archlinux's AUR repository. The package information page lists the dependencies. These packages need to be added to the _Archlinux.yml_ variable file as `<package>_dependencies` (replace `<package>` with the name of the package, e.g: `autokey_dependencies`), and install these in the Playbook. The format of this task is shown below:
+
+```
+- name: "Ensure {{ app_name }}'s dependencies are installed"
+  community.general.pacman:
+    name: "{{ <package>_dependencies }}"
+    state: present
+```
+
+If there are dependencies that are specific to a certain distribution in a OS family, then list the dependencies in the corresponding variable file. For example, to add dependencies for Fedora, add the variable `<package>_dependencies_fedora` to the _RedHat.yml_ variable file. Install these packages in the Playbook, using the below format:
+
+```
+- name: "Ensure {{ app_name }}'s dependencies are installed (Fedora)"
+  dnf:
+    name: "{{ <package>_dependencies_fedora }}"
+    state: present
+  when: ansible_distribution == 'Fedora'
+```
+
+#### Ordering lists
+
+Anywhere a list is used, ensure to order the list. An example is given below:
+
+```
+autokey_dependencies:
+  - binutils
+  - fakeroot
+  - gcc
+  - git
+  - make
+  - pkg-config
+```
