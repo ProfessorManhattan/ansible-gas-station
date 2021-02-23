@@ -27,13 +27,14 @@
 
 > Ansible role that installs Android Studio on nearly any OS
 
-## Requirements
+# Requirements
 
 None.
 
-#### Supported Operating Systems
+## Supported Operating Systems
 
 The following chart shows the operating systems that have been tested as working. This role might still work for operating systems that are not listed.
+
 
 | Operating System | Supported Versions      |
 | ---------------- | ----------------------- |
@@ -53,6 +54,7 @@ By default, the following roles will install at the beginning of the play:
 - [professormanhattan.snapd](https://gitlab.com/megabyte-space/ansible-roles/snapd) - Installs snap on Linux distributions
 
 If you are handling the installation of these dependencies with another role, you can bypass the installation of these dependencies by setting the `install_role_dependencies` variable to `false`.
+
 
 ## Example Playbook
 
