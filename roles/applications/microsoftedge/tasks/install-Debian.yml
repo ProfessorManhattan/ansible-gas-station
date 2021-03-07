@@ -2,16 +2,16 @@
 - name: "Add {{ app_name }}'s apt key"
   apt_key:
     state: present
-    url: "{{ microsoft_edge_apt_key_url }}"
+    url: '{{ microsoft_edge_apt_key_url }}'
 
 - name: "Add {{ app_name }}'s apt repository"
   apt_repository:
     filename: "{{ app_name | lower | replace(' ', '-') }}"
-    repo: "{{ microsoft_edge_apt_repository }}"
+    repo: '{{ microsoft_edge_apt_repository }}'
     state: present
     update_cache: true
 
-- name: "Ensure {{ app_name }} is installed"
+- name: 'Ensure {{ app_name }} is installed'
   apt:
     name: microsoft-edge-dev
     state: "{{ app_state | default('present') }}"

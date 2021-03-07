@@ -1,6 +1,6 @@
 ---
 - name: Include variables based on the operating system
-  include_vars: "{{ ansible_os_family }}.yml"
+  include_vars: '{{ ansible_os_family }}.yml'
 
 - name: Ensure old versions of Docker are not installed
   become: true
@@ -22,7 +22,7 @@
 - name: Include tasks based on the operating system
   become: true
   block:
-    - include_tasks: "install-{{ ansible_os_family }}.yml"
+    - include_tasks: 'install-{{ ansible_os_family }}.yml'
   when: not docker_snap_install
 
 - name: Install Docker via snap
@@ -39,13 +39,13 @@
 - name: Install Docker Compose (based on OS)
   become: true
   block:
-    - include_tasks: "compose-{{ ansible_os_family }}.yml"
+    - include_tasks: 'compose-{{ ansible_os_family }}.yml'
   when: docker_install_compose | bool
 
 - name: Add users to the "docker" group (based on OS)
   become: true
   block:
-    - include_tasks: "users-{{ ansible_os_family }}.yml"
+    - include_tasks: 'users-{{ ansible_os_family }}.yml'
   when: docker_users | length > 0
 
 - name: Determine whether TLS certificates need to be generated (non-Windows)
@@ -70,7 +70,7 @@
     - not docker_snap_install
 
 - name: Generate TLS certificates
-  include_tasks: "tls-{{ ansible_os_family }}.yml"
+  include_tasks: 'tls-{{ ansible_os_family }}.yml'
   when:
     - docker_tls | bool
     - ansible_os_family != 'Windows'

@@ -1,5 +1,5 @@
 ---
-- name: "Ensure {{ app_name }} is installed"
+- name: 'Ensure {{ app_name }} is installed'
   community.general.snap:
     name: starship
     state: present
@@ -7,7 +7,7 @@
 
 - name: Run generic Linux tasks
   include_tasks: config-Linux.yml
-  loop: "{{ user_configs }}"
+  loop: '{{ user_configs }}'
   loop_control:
-    label: "{{ user.username }}"
+    label: '{{ user.username }}'
     loop_var: user

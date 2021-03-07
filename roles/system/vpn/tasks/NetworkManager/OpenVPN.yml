@@ -2,7 +2,7 @@
 - name: Ensure temporary directory for OpenVPN files exists
   file:
     mode: 0600
-    path: "{{ openvpn_tmp_dir }}"
+    path: '{{ openvpn_tmp_dir }}'
     state: directory
   when:
     - vpn_connections | length
@@ -11,22 +11,22 @@
 - name: Ensure OpenVPN files are copied into temporary directory
   copy:
     mode: 0600
-    src: "files/vpn/{{ vpn_connection.file }}"
-    dest: "{{ openvpn_tmp_dir }}/{{ vpn_connection.file }}"
+    src: 'files/vpn/{{ vpn_connection.file }}'
+    dest: '{{ openvpn_tmp_dir }}/{{ vpn_connection.file }}'
 
-- name: "Import and configure OpenVPN connection ({{ vpn_connection.file }})"
+- name: 'Import and configure OpenVPN connection ({{ vpn_connection.file }})'
   shell: |
     nmcli connection import type openvpn file '{{ vpn_connection.file }}'
     nmcli connection modify '{{ ovpn_name }}' +vpn.data username={{ vpn_connection.username }}
     nmcli connection modify '{{ ovpn_name }}' vpn.secrets 'password={{ vpn_connection.password }}'
     nmcli connection modify '{{ ovpn_name }}' +vpn.data password-flags=0
   args:
-    chdir: "{{ openvpn_tmp_dir }}"
-    creates: "{{ system_connections_path }}/{{ ovpn_name }}.nmconnection"
+    chdir: '{{ openvpn_tmp_dir }}'
+    creates: '{{ system_connections_path }}/{{ ovpn_name }}.nmconnection'
   notify: restart networkmanager
 
 - name: Ensure temporary directory for OpenVPN files are removed
   file:
-    path: "{{ openvpn_tmp_dir }}"
+    path: '{{ openvpn_tmp_dir }}'
     state: absent
   when: vpn_connections | length

@@ -1,24 +1,24 @@
 ---
-- name: "Ensure NGINX is installed"
+- name: 'Ensure NGINX is installed'
   become_method: runas
-  become_user: "{{ ansible_user }}"
+  become_user: '{{ ansible_user }}'
   chocolatey.chocolatey.win_chocolatey:
     name: nginx
     state: "{{ app_state | default('present') }}"
     package_params:
-      - "/installLocation:{{ nginx_install_path }}"
+      - '/installLocation:{{ nginx_install_path }}'
 
 - name: Clone the error page repository
   git:
-    depth: "1"
-    dest: "{{ error_page_directory }}"
-    repo: "{{ error_page_repository }}"
+    depth: '1'
+    dest: '{{ error_page_directory }}'
+    repo: '{{ error_page_repository }}'
     version: master
     force: true
 
 - name: Register file information for dhparam.pem
   ansible.windows.win_stat:
-    path: "{{ dhparam_path }}"
+    path: '{{ dhparam_path }}'
   register: dhparam_pem
 
 - name: Generate dhparam.pem for improved SSL security (this can take awhile..)
@@ -39,7 +39,7 @@
 
 - name: Generate sites-available
   include_tasks: site-available.yml
-  loop: "{{ apps }}"
+  loop: '{{ apps }}'
   tags: nginx_configuration
 
 - name: Generate sites-available for proxy host
@@ -47,7 +47,7 @@
     nginx_proxy_host_override: true
   block:
     - include_tasks: site-available.yml
-  loop: "{{ hosts | list }}"
+  loop: '{{ hosts | list }}'
   when:
     - nginx_proxy_host
     - not (item in apps)

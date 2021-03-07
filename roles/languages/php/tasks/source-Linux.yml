@@ -1,7 +1,7 @@
 ---
 - name: Define php_fpm_daemon (if not defined already)
   set_fact:
-    php_fpm_daemon: "php-fpm"
+    php_fpm_daemon: 'php-fpm'
   when: php_fpm_daemon is not defined
 
 - name: Check if gmp.h is already in a location accessible to gcc
@@ -11,7 +11,7 @@
 
 - name: Ensure gmp.h is symlinked into a location accessible to gcc
   file:
-    src: "{{ php_source_install_gmp_path }}"
+    src: '{{ php_source_install_gmp_path }}'
     dest: /usr/include/gmp.h
     state: link
   when: not gmp_file.stat.exists
@@ -24,15 +24,15 @@
 
 - name: Clone the PHP repository
   git:
-    depth: "{{ php_source_clone_depth }}"
-    dest: "{{ php_source_clone_dir }}"
-    repo: "{{ php_source_repo }}"
-    version: "{{ php_source_version }}"
+    depth: '{{ php_source_clone_depth }}'
+    dest: '{{ php_source_clone_dir }}'
+    repo: '{{ php_source_repo }}'
+    version: '{{ php_source_version }}'
   when: php_installed.rc != 0
 
 - name: Ensure PHP installation path exists
   file:
-    path: "{{ php_source_install_path }}"
+    path: '{{ php_source_install_path }}'
     state: directory
     mode: 0755
   when: php_installed.rc != 0
@@ -54,34 +54,34 @@
     {{ item }}
     chdir={{ php_source_clone_dir }}
   loop:
-    - "{{ php_source_make_command }}"
+    - '{{ php_source_make_command }}'
     - make install
   when: php_installed.rc != 0
 
 - name: Ensure php executable is symlinked into a standard path
   file:
-    src: "{{ php_source_install_path }}/bin/php"
+    src: '{{ php_source_install_path }}/bin/php'
     dest: /usr/bin/php
     state: link
 
 - name: Ensure php-fpm executable is symlinked into a standard path
   file:
-    src: "{{ php_source_install_path }}/sbin/php-fpm"
-    dest: "/usr/sbin/{{ php_fpm_daemon }}"
+    src: '{{ php_source_install_path }}/sbin/php-fpm'
+    dest: '/usr/sbin/{{ php_fpm_daemon }}'
     state: link
   when: "'--enable-fpm' in php_source_configure_command"
 
 - name: Ensure php-fpm init script is installed
   template:
     src: fpm-init.j2
-    dest: "/etc/init.d/{{ php_fpm_daemon }}"
+    dest: '/etc/init.d/{{ php_fpm_daemon }}'
     mode: 0755
   when: "'--enable-fpm' in php_source_configure_command"
   notify: restart php-fpm
 
 - name: Ensure php-fpm config directory exists
   file:
-    path: "{{ php_fpm_conf_path }}"
+    path: '{{ php_fpm_conf_path }}'
     state: directory
     mode: 0755
   when: "'--enable-fpm' in php_source_configure_command"
@@ -89,7 +89,7 @@
 - name: Ensure php-fpm config file is installed
   template:
     src: php-fpm.conf.j2
-    dest: "{{ php_fpm_conf_path }}/php-fpm.conf"
+    dest: '{{ php_fpm_conf_path }}/php-fpm.conf'
     mode: 0644
   when: "'--enable-fpm' in php_source_configure_command"
   notify: restart php-fpm

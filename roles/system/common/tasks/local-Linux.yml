@@ -3,8 +3,8 @@
   git_config:
     name: remote.origin.url
     repo: ~/Playbooks
-    scope: "local"
-    value: "{{ playbooks_source_repository }}"
+    scope: 'local'
+    value: '{{ playbooks_source_repository }}'
 
 - name: Remove .vault_pass (if present)
   file:

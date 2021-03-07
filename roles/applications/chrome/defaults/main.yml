@@ -1,2 +1,2 @@
 ---
-default_browser: "none" # Set this to 'chrome' if you would like the Chromium browser to be set as default
+default_browser: 'none' # Set this to 'chrome' if you would like the Chromium browser to be set as default

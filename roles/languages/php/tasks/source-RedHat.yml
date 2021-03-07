@@ -1,7 +1,7 @@
 ---
 - name: Ensure dependencies for building from source are installed
   package:
-    name: "{{ redhat_source_deps }}"
+    name: '{{ redhat_source_deps }}'
     state: present
 
 - name: Run generic Linux tasks

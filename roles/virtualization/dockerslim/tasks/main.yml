@@ -1,7 +1,7 @@
 ---
 - name: Fetch the releases page of docker-slim to find the latest version
   ansible.builtin.uri:
-    url: "{{ github_repo_url }}/releases"
+    url: '{{ github_repo_url }}/releases'
     return_content: true
   register: docker_slim_releases
   when: ansible_os_family != 'Windows'
@@ -19,5 +19,5 @@
 - name: Include tasks based on the operating system
   become: true
   block:
-    - include_tasks: "install-{{ ansible_os_family }}.yml"
+    - include_tasks: 'install-{{ ansible_os_family }}.yml'
   when: ansible_os_family != 'Windows'

@@ -1,6 +1,6 @@
 ---
 - name: Include variables based on the operating system
-  include_vars: "{{ ansible_os_family }}.yml"
+  include_vars: '{{ ansible_os_family }}.yml'
 
 - name: Configure sudo priviledges
   become: true
@@ -11,5 +11,5 @@
 - name: Configure autoupdating
   become: true
   block:
-    - include_tasks: "autoupdate-{{ ansible_os_family }}.yml"
+    - include_tasks: 'autoupdate-{{ ansible_os_family }}.yml'
   when: security_autoupdate_enabled | bool

@@ -1,14 +1,14 @@
 ---
 - name: "Add {{ app_name }}'s yum repository"
   yum_repository:
-    baseurl: "{{ ripgrep_rpm_repository }}"
+    baseurl: '{{ ripgrep_rpm_repository }}'
     description: "{{ app_name }}'s repository"
     gpgcheck: true
-    gpgkey: "{{ ripgrep_rpm_key }}"
+    gpgkey: '{{ ripgrep_rpm_key }}'
     name: "{{ app_name | lower | replace(' ', '-') }}"
     repo_gpgcheck: true
 
-- name: "Ensure {{ app_name }} is installed"
+- name: 'Ensure {{ app_name }} is installed'
   yum:
     name: ripgrep
     state: "{{ app_state | default('present') }}"

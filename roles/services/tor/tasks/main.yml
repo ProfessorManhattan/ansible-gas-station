@@ -1,23 +1,23 @@
 ---
 - name: Include variables based on the operating system
-  include_vars: "{{ ansible_os_family }}.yml"
+  include_vars: '{{ ansible_os_family }}.yml'
 
 - name: Include tasks based on the operating system
   become: true
   block:
-    - include_tasks: "install-{{ ansible_os_family }}.yml"
+    - include_tasks: 'install-{{ ansible_os_family }}.yml'
 
 - name: Check if GNOME is installed
   stat:
-    path: "{{ gnome_shell_path }}"
+    path: '{{ gnome_shell_path }}'
   register: gnome_shell
   when: ansible_system == 'Linux'
 
 - name: Add GNOME settings
   include_tasks: settings-GNOME.yml
-  loop: "{{ user_configs }}"
+  loop: '{{ user_configs }}'
   loop_control:
-    label: "{{ user.username }}"
+    label: '{{ user.username }}'
     loop_var: user
   when:
     - ansible_system == 'Linux'

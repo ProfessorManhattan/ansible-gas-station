@@ -1,13 +1,13 @@
 ---
 - name: Add the Yarn repository GPG key
   apt_key:
-    url: "{{ yarn_deb_gpg }}"
+    url: '{{ yarn_deb_gpg }}'
     state: present
 
 - name: Add the Yarn apt repository
   apt_repository:
     filename: yarn
-    repo: "{{ yarn_deb_repo }}"
+    repo: '{{ yarn_deb_repo }}'
     state: present
     update_cache: true
 

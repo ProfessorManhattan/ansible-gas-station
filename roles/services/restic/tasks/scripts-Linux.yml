@@ -10,7 +10,7 @@
 - name: Ensure docker-compose-backup script is installed in /usr/local/bin
   template:
     src: docker-compose-backup.j2
-    dest: "/usr/local/bin/docker-compose-backup"
+    dest: '/usr/local/bin/docker-compose-backup'
     owner: root
     group: root
     mode: 0755

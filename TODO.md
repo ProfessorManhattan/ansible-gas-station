@@ -62,9 +62,9 @@ You are welcome to add your ideas to the TODO list. In fact, you are encouraged.
 - Kubernetes
 - Minio
 - Home Assistant
-- Resilio Sync
 - nmap
 - [watch](https://osxdaily.com/2010/08/22/install-watch-command-on-os-x/)
+- Resilio sync
 
 ## Windows TODOs
 

@@ -1,6 +1,6 @@
 ---
 - name: Include OS-specific variables for Fedora or FreeBSD
-  include_vars: "{{ ansible_distribution }}.yml"
+  include_vars: '{{ ansible_distribution }}.yml'
   when: ansible_distribution == 'FreeBSD' or ansible_distribution == 'Fedora'
 
 - name: Include version-specific variables for CentOS/RHEL
@@ -18,7 +18,7 @@
   when: ansible_os_family == 'Debian'
 
 - name: Include version-specific variables for Archlinux and MacOS
-  include_vars: "{{ ansible_os_family }}.yml"
+  include_vars: '{{ ansible_os_family }}.yml'
   when: ansible_os_family == 'Archlinux' or
     ansible_os_family == 'Darwin'
 
@@ -28,10 +28,10 @@
 
 - name: Define java_packages
   set_fact:
-    java_packages: "{{ _java_packages | list }}"
+    java_packages: '{{ _java_packages | list }}'
   when: java_packages is not defined
 
 - name: Include tasks based on the operating system
   become: true
   block:
-    - include_tasks: "install-{{ ansible_os_family }}.yml"
+    - include_tasks: 'install-{{ ansible_os_family }}.yml'

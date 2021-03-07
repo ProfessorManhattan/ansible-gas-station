@@ -10,18 +10,18 @@
   ufw:
     comment: Allow MAAS communications
     rule: allow
-    name: "MAAS"
-    src: "{{ item }}"
-  loop: "{{ maas_managed_ips }}"
+    name: 'MAAS'
+    src: '{{ item }}'
+  loop: '{{ maas_managed_ips }}'
 
 - name: Allow port 5248
   become: true
   ufw:
     comment: Required for MAAS
     rule: allow
-    port: "5240"
-    src: "{{ item }}"
-  loop: "{{ maas_managed_ips }}"
+    port: '5240'
+    src: '{{ item }}'
+  loop: '{{ maas_managed_ips }}'
 
 - name: Allow ports 5241-5247 (TCP)
   become: true
@@ -30,8 +30,8 @@
     rule: allow
     port: 5241:5247
     proto: tcp
-    src: "{{ item }}"
-  loop: "{{ maas_managed_ips }}"
+    src: '{{ item }}'
+  loop: '{{ maas_managed_ips }}'
 
 - name: Allow ports 5241-5247 (UDP)
   become: true
@@ -40,8 +40,8 @@
     rule: allow
     port: 5241:5247
     proto: udp
-    src: "{{ item }}"
-  loop: "{{ maas_managed_ips }}"
+    src: '{{ item }}'
+  loop: '{{ maas_managed_ips }}'
 
 - name: Allow ports 5250-5270 (TCP)
   become: true
@@ -50,8 +50,8 @@
     rule: allow
     port: 5250:5270
     proto: tcp
-    src: "{{ item }}"
-  loop: "{{ maas_managed_ips }}"
+    src: '{{ item }}'
+  loop: '{{ maas_managed_ips }}'
 
 - name: Allow ports 5250-5270 (UDP)
   become: true
@@ -60,5 +60,5 @@
     rule: allow
     port: 5250:5270
     proto: udp
-    src: "{{ item }}"
-  loop: "{{ maas_managed_ips }}"
+    src: '{{ item }}'
+  loop: '{{ maas_managed_ips }}'

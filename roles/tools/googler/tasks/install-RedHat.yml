@@ -1,5 +1,5 @@
 ---
-- name: "Ensure python is installed"
+- name: 'Ensure python is installed'
   yum:
     name: python3
     state: present

@@ -1,7 +1,7 @@
 ---
 - name: Loop through users
   include_tasks: pip-user.yml
-  loop: "{{ user_configs | default([]) }}"
+  loop: '{{ user_configs | default([]) }}'
   loop_control:
-    label: "{{ user.username }}"
+    label: '{{ user.username }}'
     loop_var: user

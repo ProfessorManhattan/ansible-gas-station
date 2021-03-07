@@ -2,6 +2,6 @@
 # TODO: Only run the command when the value needs to be changed
 - name: Apply extension settings # noqa 301
   become: true
-  become_user: "{{ user.username }}"
-  command: "{{ item }}"
-  loop: "{{ item.settings | default([]) }}"
+  become_user: '{{ user.username }}'
+  command: '{{ item }}'
+  loop: '{{ item.settings | default([]) }}'

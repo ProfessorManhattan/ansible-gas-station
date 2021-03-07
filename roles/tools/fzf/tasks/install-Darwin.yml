@@ -1,17 +1,17 @@
 ---
-- name: "Ensure {{ app_name }} is installed"
+- name: 'Ensure {{ app_name }} is installed'
   become: false
   community.general.homebrew:
     name: fzf
     state: "{{ app_state | default('present') }}"
 
-- name: "Ensure key bindings and fuzzy completion is enabled"
-  become_user: "{{ user.username }}"
+- name: 'Ensure key bindings and fuzzy completion is enabled'
+  become_user: '{{ user.username }}'
   shell: |
     set -o pipefail && echo 'y\ny' | $(/usr/local/bin/brew --prefix)/opt/fzf/install
   args:
     creates: ~/.fzf.bash
-  loop: "{{ user_configs }}"
+  loop: '{{ user_configs }}'
   loop_control:
-    label: "{{ user.username }}"
+    label: '{{ user.username }}'
     loop_var: user

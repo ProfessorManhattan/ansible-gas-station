@@ -1,5 +1,5 @@
 ---
-- name: "Ensure {{ app_name }} and privoxy are installed"
+- name: 'Ensure {{ app_name }} and privoxy are installed'
   community.general.pacman:
     name:
       - privoxy

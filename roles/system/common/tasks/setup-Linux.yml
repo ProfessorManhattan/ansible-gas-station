@@ -6,17 +6,17 @@
 
 - name: Set hostname
   hostname:
-    name: "{{ hostname }}"
+    name: '{{ hostname }}'
   when: hostname is defined
 
 - name: Set time zone
   timezone:
-    name: "{{ timezone }}"
+    name: '{{ timezone }}'
 
 - name: Set ANSIBLE_PLAYBOOK_USER name environment variable
   lineinfile:
     path: /etc/environment
-    regex: "^ANSIBLE_PLAYBOOK_USER="
+    regex: '^ANSIBLE_PLAYBOOK_USER='
     line: "ANSIBLE_PLAYBOOK_USER={{ ansible_user | default(lookup('env', 'USER')) }}"
 
 - name: Set MOTD

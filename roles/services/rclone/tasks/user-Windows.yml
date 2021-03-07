@@ -1,7 +1,7 @@
 ---
 - name: Ensure ~/.config/rclone is a directory
   ansible.windows.win_file:
-    path: "{{ item }}"
+    path: '{{ item }}'
     state: directory
   loop:
     - ~/.config
@@ -22,7 +22,7 @@
 
 - name: Mount the rclone drives
   include_tasks: mount-Windows.yml
-  loop: "{{ user.rclone | default([]) }}"
+  loop: '{{ user.rclone | default([]) }}'
   loop_control:
-    label: "{{ mount.name }}"
+    label: '{{ mount.name }}'
     loop_var: mount

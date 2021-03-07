@@ -1,7 +1,7 @@
 ---
 - name: "Ensure {{ app_name }}'s dependencies are installed"
   ansible.builtin.yum:
-    name: "{{ autokey_dependencies }}"
+    name: '{{ autokey_dependencies }}'
     state: "{{ app_state | default('present') }}"
 
 - name: "Ensure {{ app_name }}'s Python dependencies are installed"
@@ -9,7 +9,7 @@
     name: PyGObject
     state: present
 
-- name: "Ensure {{ app_name }} is installed"
+- name: 'Ensure {{ app_name }} is installed'
   ansible.builtin.pip:
     name: git+https://github.com/autokey/autokey
     state: "{{ app_state | default('present') }}"

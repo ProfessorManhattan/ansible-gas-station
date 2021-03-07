@@ -1,36 +1,36 @@
 ---
 - name: Delete existing application if configured to do so
   file:
-    path: "/Applications/{{ dmg.name }}.app"
+    path: '/Applications/{{ dmg.name }}.app'
     state: absent
   when: force_reinstall
 
 - name: Download the DMG file to a temporary directory
   get_url:
-    url: "{{ dmg.url }}"
-    dest: "{{ tmp_dir }}/{{ dmg.name }}.dmg"
+    url: '{{ dmg.url }}'
+    dest: '{{ tmp_dir }}/{{ dmg.name }}.dmg'
 
 - name: Mount the DMG file
-  command: "hdiutil attach {{ tmp_dir }}/{{ dmg.name }}.dmg -nobrowse -mountpoint {{ tmp_dir }}/{{ dmg.name }}"
+  command: 'hdiutil attach {{ tmp_dir }}/{{ dmg.name }}.dmg -nobrowse -mountpoint {{ tmp_dir }}/{{ dmg.name }}'
   args:
-    creates: "{{ tmp_dir }}/{{ dmg.name }}"
+    creates: '{{ tmp_dir }}/{{ dmg.name }}'
 
 - name: Copy the application to the Applications folder
   copy:
-    dest: "/Applications/"
+    dest: '/Applications/'
     group: wheel
     mode: preserve
     owner: root
-    src: "{{ item }}"
+    src: '{{ item }}'
   with_fileglob:
-    - "{{ tmp_dir }}/{{ dmg.name }}/*.app"
+    - '{{ tmp_dir }}/{{ dmg.name }}/*.app'
 
 - name: Unmount the DMG file
-  command: "hdiutil detach {{ tmp_dir }}/{{ dmg.name }}"
+  command: 'hdiutil detach {{ tmp_dir }}/{{ dmg.name }}'
   args:
-    removes: "{{ tmp_dir }}/{{ dmg.name }}"
+    removes: '{{ tmp_dir }}/{{ dmg.name }}'
 
 - name: Remove the source DMG file
   file:
-    path: "{{ tmp_dir }}/{{ dmg.name }}.dmg"
+    path: '{{ tmp_dir }}/{{ dmg.name }}.dmg'
     state: absent

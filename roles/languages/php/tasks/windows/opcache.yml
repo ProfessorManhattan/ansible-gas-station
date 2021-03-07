@@ -1,18 +1,18 @@
 ---
 - name: Check for existing OpCache config files
   ansible.windows.win_find:
-    paths: "{{ item }}"
+    paths: '{{ item }}'
     patterns: '^[\d]*opcache\.ini'
-  loop: "{{ php_extension_conf_paths }}"
+  loop: '{{ php_extension_conf_paths }}'
   register: php_installed_opcache_confs
 
 - name: Remove any non-role-supplied OpCache config files
   ansible.windows.win_file:
-    path: "{{ item.1.path }}"
+    path: '{{ item.1.path }}'
     state: absent
   when: php_opcache_conf_filename != (item.1.path.split('/') | last)
   with_subelements:
-    - "{{ php_installed_opcache_confs.results }}"
+    - '{{ php_installed_opcache_confs.results }}'
     - files
   notify: restart nginx windows
   loop_control:
@@ -21,16 +21,16 @@
 - name: Ensure OpCache config file is present # noqa 208
   template:
     src: opcache.ini.j2
-    dest: "{{ item }}/{{ php_opcache_conf_filename }}"
+    dest: '{{ item }}/{{ php_opcache_conf_filename }}'
     force: true
-  loop: "{{ php_extension_conf_paths }}"
+  loop: '{{ php_extension_conf_paths }}'
   notify: restart nginx windows
   when: php_opcache_enable | bool
 
 - name: Remove OpCache config file if OpCache is disabled
   file:
-    path: "{{ item }}/{{ php_opcache_conf_filename }}"
+    path: '{{ item }}/{{ php_opcache_conf_filename }}'
     state: absent
-  loop: "{{ php_extension_conf_paths }}"
+  loop: '{{ php_extension_conf_paths }}'
   notify: restart nginx windows
   when: not php_opcache_enable | bool

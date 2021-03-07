@@ -2,18 +2,18 @@
 - name: Ensure Megabyte Labs configuration directory exists
   file:
     mode: 0700
-    path: "{{ item }}"
+    path: '{{ item }}'
     state: directory
   loop:
     - ~/.config
     - ~/.config/megabytelabs
 
-- name: "Check if {{ app_name }} has configuration stored in /root/.config/megabytelabs/hyper"
+- name: 'Check if {{ app_name }} has configuration stored in /root/.config/megabytelabs/hyper'
   stat:
     path: ~/.config/megabytelabs/hyper
   register: hyper_config
 
-- name: "Detect previously installed {{ app_name }} version"
+- name: 'Detect previously installed {{ app_name }} version'
   command: cat hyper
   args:
     chdir: ~/.config/megabytelabs
@@ -21,7 +21,7 @@
   register: current_hyper_version
   when: hyper_config.stat.exists
 
-- name: "Detect the latest {{ app_name }} version"
+- name: 'Detect the latest {{ app_name }} version'
   uri:
     url: https://api.github.com/repos/vercel/hyper/releases/latest
   register: hyper_latest_release_tag
@@ -31,24 +31,24 @@
     install_hyper: "{{ (current_hyper_version.skipped) or \
       ((not current_hyper_version.skipped) and (current_hyper_version.stdout != hyper_latest_release_tag.json.tag_name)) }}"
 
-- name: "Acquire the latest {{ app_name }} AppImage"
+- name: 'Acquire the latest {{ app_name }} AppImage'
   get_url:
     url: "https://github.com/vercel/hyper/releases/download/{{ hyper_latest_release_tag.json.tag_name }}/\
       hyper-{{ hyper_latest_release_tag.json.tag_name }}-x86_64.AppImage"
-    dest: "{{ hyper_src_path }}"
+    dest: '{{ hyper_src_path }}'
   when: install_hyper
 
 - name: "Ensure the {{ app_name }} AppImage is available in all non-system user's Applications folders"
   include_tasks: install-AppImage.yml
-  loop: "{{ user_configs }}"
+  loop: '{{ user_configs }}'
   loop_control:
-    label: "{{ user.username }}"
+    label: '{{ user.username }}'
     loop_var: user
   when:
     - install_hyper
     - (user.system is not defined) or ((user.system is defined) and (not user.system))
 
-- name: "Save meta information about the version of {{ app_name }} that was installed"
+- name: 'Save meta information about the version of {{ app_name }} that was installed'
   copy:
     dest: ~/.config/megabytelabs/hyper
     mode: 0600

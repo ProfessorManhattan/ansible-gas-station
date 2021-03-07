@@ -1,7 +1,7 @@
 ---
 - name: Ensure git-docker dependencies are met
   apt:
-    name: "{{ git_docker_dependencies }}"
+    name: '{{ git_docker_dependencies }}'
     state: present
 
 - name: Run generic Linux tasks

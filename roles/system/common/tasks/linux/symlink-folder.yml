@@ -3,43 +3,43 @@
   become: true
   become_user: root
   file:
-    group: "{{ user.group | default(user.username) }}"
+    group: '{{ user.group | default(user.username) }}'
     mode: 0750
-    owner: "{{ user.username }}"
-    path: "{{ folder.create }}"
+    owner: '{{ user.username }}'
+    path: '{{ folder.create }}'
     recurse: true
     state: directory
   when: folder.create is defined
 
-- name: "Ensure {{ folder.path }} is a directory"
+- name: 'Ensure {{ folder.path }} is a directory'
   file:
     mode: 0750
-    path: "{{ folder.path }}"
+    path: '{{ folder.path }}'
     recurse: true
     state: directory
 
 - name: Check if symbolic link already exists
   stat:
-    path: "{{ folder.link }}"
+    path: '{{ folder.link }}'
   register: sym_link
 
 - name: Remove directory if it is not a symbolic link
   file:
-    path: "{{ folder.link }}"
+    path: '{{ folder.link }}'
     state: absent
   when: sym_link.stat.islnk is not defined or (sym_link.stat.islnk is defined and not sym_link.stat.islnk)
 
 - name: Ensure symbolic link's parent directory exists
   file:
     mode: 0750
-    path: "{{ folder.link | dirname }}"
+    path: '{{ folder.link | dirname }}'
     recurse: true
     state: directory
   when: (folder.link | dirname) != '~'
 
 - name: Add symbolic link
   file:
-    dest: "{{ folder.link }}"
+    dest: '{{ folder.link }}'
     mode: 0750
-    src: "{{ folder.path }}"
+    src: '{{ folder.path }}'
     state: link

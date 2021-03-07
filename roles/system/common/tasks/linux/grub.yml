@@ -1,16 +1,16 @@
 ---
 - name: Optimize the GRUB resolution
   lineinfile:
-    path: "{{ grub_path }}"
-    regex: "GRUB_GFXMODE="
-    line: "GRUB_GFXMODE={{ grub_gfxmode }},auto"
+    path: '{{ grub_path }}'
+    regex: 'GRUB_GFXMODE='
+    line: 'GRUB_GFXMODE={{ grub_gfxmode }},auto'
   notify: update grub
 
 - name: Set GRUB timeout
   lineinfile:
-    path: "{{ grub_path }}"
-    regex: "GRUB_TIMEOUT="
-    line: "GRUB_TIMEOUT={{ grub_timeout }}"
+    path: '{{ grub_path }}'
+    regex: 'GRUB_TIMEOUT='
+    line: 'GRUB_TIMEOUT={{ grub_timeout }}'
   notify: update grub
 
 - name: Check if GRUB theme is already present
@@ -20,7 +20,7 @@
 
 - name: Copy and unarchive GRUB theme
   git:
-    depth: "1"
+    depth: '1'
     dest: /root/.grub-theme
     repo: https://github.com/vinceliuice/grub2-themes.git
     update: true
@@ -28,7 +28,7 @@
   when: not grub_theme.stat.exists or grub_force_install
 
 - name: Install GRUB theme
-  command: "bash install.sh {{ grub_theme_options }}"
+  command: 'bash install.sh {{ grub_theme_options }}'
   args:
     chdir: /root/.grub-theme
   notify: update grub

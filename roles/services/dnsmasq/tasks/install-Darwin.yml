@@ -1,5 +1,5 @@
 ---
-- name: "Ensure {{ app_name }} is installed"
+- name: 'Ensure {{ app_name }} is installed'
   become: false
   community.general.homebrew:
     name: dnsmasq
@@ -11,24 +11,24 @@
 #     sudo launchctl unload /System/Library/LaunchDaemons/com.apple.mDNSResponderHelper.plist
 #   when: use_dnsmasq_for_dns
 
-- name: "Prevent {{ app_name }} from forwarding non-domain queries upstream"
+- name: 'Prevent {{ app_name }} from forwarding non-domain queries upstream'
   lineinfile:
-    path: "{{ dnsmasq_conf_path }}"
-    regexp: "#domain-needed"
-    line: "domain-needed"
+    path: '{{ dnsmasq_conf_path }}'
+    regexp: '#domain-needed'
+    line: 'domain-needed'
   notify: restart dnsmasq darwin
 
-- name: "Prevent {{ app_name }} from forwarding reverse-lookup queries upstream"
+- name: 'Prevent {{ app_name }} from forwarding reverse-lookup queries upstream'
   lineinfile:
-    path: "{{ dnsmasq_conf_path }}"
-    regexp: "#bogus-priv"
-    line: "bogus-priv"
+    path: '{{ dnsmasq_conf_path }}'
+    regexp: '#bogus-priv'
+    line: 'bogus-priv'
   notify: restart dnsmasq darwin
 
 - name: "Configure {{ app_name }}'s DHCP server if a dnsmasq_dhcp_interface is defined"
   blockinfile:
-    path: "{{ dnsmasq_conf_path }}"
-    marker: "# {mark} ANSIBLE MANAGED CONFIGURATION BLOCK FOR DHCP"
+    path: '{{ dnsmasq_conf_path }}'
+    marker: '# {mark} ANSIBLE MANAGED CONFIGURATION BLOCK FOR DHCP'
     block: |
       dhcp-range={{ dhcp_interface }},192.168.168.50,192.168.168.150,12h
       dhcp-option=option:router,192.168.168.1

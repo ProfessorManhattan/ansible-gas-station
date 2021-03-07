@@ -7,16 +7,16 @@
 
 - name: Clear the default DNS server settings
   replace:
-    path: "{{ stubby_config_path }}"
-    after: "[# ]*DEFAULT UPSTREAMS[ #]*"
-    before: "[# ]*OPTIONAL UPSTREAMS[ #]*"
+    path: '{{ stubby_config_path }}'
+    after: '[# ]*DEFAULT UPSTREAMS[ #]*'
+    before: '[# ]*OPTIONAL UPSTREAMS[ #]*'
     replace: '\n'
     regexp: '[\s\S]*'
 
 - name: Add custom DNS settings
   blockinfile:
-    path: "{{ stubby_config_path }}"
-    insertafter: "[# ]*DEFAULT UPSTREAMS[ #]*"
+    path: '{{ stubby_config_path }}'
+    insertafter: '[# ]*DEFAULT UPSTREAMS[ #]*'
     block: |
       {{ dns_setting | to_nice_yaml(indent=2) }}
 

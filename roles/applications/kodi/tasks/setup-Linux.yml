@@ -1,21 +1,21 @@
 ---
 - name: Ensure ~/.kodi/userdata/ directory exists
-  become_user: "{{ user.username }}"
+  become_user: '{{ user.username }}'
   file:
-    path: "{{ item }}"
+    path: '{{ item }}'
     state: directory
-    owner: "{{ user.username }}"
+    owner: '{{ user.username }}'
     mode: 0755
   with_items:
-    - "{{ kodi_conf_dir }}"
-    - "{{ kodi_conf_dir }}/userdata/"
+    - '{{ kodi_conf_dir }}'
+    - '{{ kodi_conf_dir }}/userdata/'
 
 - name: Create configuration files
-  become_user: "{{ user.username }}"
+  become_user: '{{ user.username }}'
   template:
-    src: "{{ item }}.j2"
-    dest: "{{ kodi_conf_dir }}/userdata/{{ item }}"
-    owner: "{{ user.username }}"
+    src: '{{ item }}.j2'
+    dest: '{{ kodi_conf_dir }}/userdata/{{ item }}'
+    owner: '{{ user.username }}'
     mode: 0755
   with_items:
     - sources.xml
@@ -24,11 +24,11 @@
 - name: Download Texture Cache Maintenance Utility
   get_url:
     url: https://raw.github.com/MilhouseVH/texturecache.py/master/texturecache.py
-    dest: "{{ kodi_conf_dir }}/texturecache.py"
+    dest: '{{ kodi_conf_dir }}/texturecache.py'
     mode: 0755
 
 - name: Execute Texture Cache Maintenance Utility # noqa 301
   command: ./texturecache.py c
   args:
-    chdir: "{{ kodi_conf_dir }}"
+    chdir: '{{ kodi_conf_dir }}'
   when: refresh_texture_cache

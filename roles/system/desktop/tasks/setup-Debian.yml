@@ -23,19 +23,19 @@
 
 - name: Install custom desktop apt software
   apt:
-    name: "{{ debian_desktop_apt_packages }}"
+    name: '{{ debian_desktop_apt_packages }}'
     state: present
 
 - name: Remove undesirable .desktop links
   file:
-    path: "{{ desktop_links_path }}/{{ item }}"
+    path: '{{ desktop_links_path }}/{{ item }}'
     state: absent
-  loop: "{{ gnome_shortcuts_to_delete }}"
+  loop: '{{ gnome_shortcuts_to_delete }}'
 
 - name: Run user-specific tasks
   include_tasks: user-Debian.yml
-  loop: "{{ user_configs | default([]) }}"
+  loop: '{{ user_configs | default([]) }}'
   loop_control:
-    label: "{{ user.username }}"
+    label: '{{ user.username }}'
     loop_var: user
   when: not (user.system | default(false))

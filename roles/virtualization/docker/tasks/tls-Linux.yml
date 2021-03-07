@@ -6,7 +6,7 @@
   become: true
   copy:
     src: "/home/{{ ansible_user | default(lookup('env', 'USER')) }}/.docker/certs.d/{{ item.src | default(item) }}"
-    dest: "/etc/ssl/private/{{ item.dest | default(item) }}"
+    dest: '/etc/ssl/private/{{ item.dest | default(item) }}'
     owner: root
     group: root
     mode: 0400
@@ -20,7 +20,7 @@
 
 - name: Remove server keys from ~/.docker
   file:
-    path: "~/.docker/certs.d/{{ item }}"
+    path: '~/.docker/certs.d/{{ item }}'
     state: absent
   loop:
     - docker-server-cert.pem
@@ -29,8 +29,8 @@
 
 - name: Copy certificates to the ~/.docker folder on the machine running Ansible
   fetch:
-    src: "~/.docker/certs.d/{{ item }}"
-    dest: "~/.docker/certs.d/{{ ansible_host | lower }}-{{ item }}"
+    src: '~/.docker/certs.d/{{ item }}'
+    dest: '~/.docker/certs.d/{{ ansible_host | lower }}-{{ item }}'
     mode: 0400
     flat: true
   loop:
@@ -44,7 +44,7 @@
   become: true
   lineinfile:
     path: /etc/systemd/system/multi-user.target.wants/docker.service
-    regex: "ExecStart="
+    regex: 'ExecStart='
     line: "ExecStart=/usr/bin/dockerd -H fd:// --containerd=/run/containerd/containerd.sock --tlsverify \
       --tlscacert=/etc/ssl/private/docker-ca.pem --tlscert=/etc/ssl/private/docker-server-cert.pem \
       --tlskey=/etc/ssl/private/docker-server-key.pem -H=0.0.0.0:2424"

@@ -1,14 +1,14 @@
 ---
 - name: "Download and extract {{ app_name }}'s source files"
   unarchive:
-    creates: "{{ teamviewer_src_dir }}" # TODO: This might need to be something inside the src_dir
-    dest: "{{ teamviewer_src_dir }}" # TODO: This dir might need to be created first
+    creates: '{{ teamviewer_src_dir }}' # TODO: This might need to be something inside the src_dir
+    dest: '{{ teamviewer_src_dir }}' # TODO: This dir might need to be created first
     extra_opts: [--strip-components=1]
     remote_src: true
-    src: "{{ teamviewer_url }}"
+    src: '{{ teamviewer_url }}'
 
-- name: "Ensure {{ app_name }} is installed"
+- name: 'Ensure {{ app_name }} is installed'
   command: ./tv-setup install force
   args:
-    chdir: "{{ teamviewer_src_dir }}"
+    chdir: '{{ teamviewer_src_dir }}'
     creates: /usr/bin/teamviewer

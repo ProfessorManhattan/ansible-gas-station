@@ -9,22 +9,22 @@
 
 - name: Stop services to allow certbot to generate a certificate
   service:
-    name: "{{ item }}"
+    name: '{{ item }}'
     state: stopped
-  loop: "{{ certbot_create_standalone_stop_services }}"
+  loop: '{{ certbot_create_standalone_stop_services }}'
   when:
     - not letsencrypt_cert.stat.exists
     - "('{{ item }}' in services) or ('{{ item }}.service' in services)"
 
 - name: Generate new certificate if one doesn't exist.
-  command: "{{ certbot_create_command }}"
+  command: '{{ certbot_create_command }}'
   when: not letsencrypt_cert.stat.exists
 
 - name: Start services after cert has been generated
   service:
-    name: "{{ item }}"
+    name: '{{ item }}'
     state: started
-  loop: "{{ certbot_create_standalone_stop_services }}"
+  loop: '{{ certbot_create_standalone_stop_services }}'
   when:
     - not letsencrypt_cert.stat.exists
     - "('{{ item }}' in services) or ('{{ item }}.service' in services)"

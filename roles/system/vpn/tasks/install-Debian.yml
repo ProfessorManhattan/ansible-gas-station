@@ -1,7 +1,7 @@
 ---
 - name: Ensure VPN dependencies are installed
   apt:
-    name: "{{ vpn_dependencies }}"
+    name: '{{ vpn_dependencies }}'
     state: present
 
 - name: Run generic Linux tasks

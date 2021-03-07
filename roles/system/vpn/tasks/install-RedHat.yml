@@ -1,7 +1,7 @@
 ---
-- name: "Ensure {{ app_name }} is installed"
+- name: 'Ensure {{ app_name }} is installed'
   yum:
-    name: "{{ vpn_dependencies }}"
+    name: '{{ vpn_dependencies }}'
     state: "{{ app_state | default('present') }}"
     enablerepo: epel
 

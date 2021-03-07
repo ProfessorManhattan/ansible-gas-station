@@ -3,8 +3,8 @@
   yum_repository:
     name: Yarn
     description: Repository for Yarn, a NodeJS package manager
-    baseurl: "{{ yarn_yum_repo }}"
-    gpgkey: "{{ yarn_gpgkey_url }}"
+    baseurl: '{{ yarn_yum_repo }}'
+    gpgkey: '{{ yarn_gpgkey_url }}'
     gpgcheck: true
 
 - name: Install Yarn

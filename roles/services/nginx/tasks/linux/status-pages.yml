@@ -1,18 +1,18 @@
 ---
 - name: Ensure error_page_directory is absent
   file:
-    path: "{{ error_page_directory }}"
+    path: '{{ error_page_directory }}'
     state: absent
 
 - name: Clone the error page repository
   git:
-    depth: "1"
-    dest: "{{ error_page_directory }}"
-    repo: "{{ error_page_repository }}"
+    depth: '1'
+    dest: '{{ error_page_directory }}'
+    repo: '{{ error_page_repository }}'
     version: master
 
 - name: Ensure appropriate permissions are set
   file:
-    dest: "{{ error_page_directory }}"
+    dest: '{{ error_page_directory }}'
     mode: u=rwX,g=rX,o=rX # TODO Make sure this is not a security vulnerability... files should be 644 (or 640 maybe) and directories should be 755
     recurse: true

@@ -10,7 +10,7 @@
   become: true
   become_user: postgres
   postgresql_db:
-    name: "{{ maas_database_name }}"
+    name: '{{ maas_database_name }}'
     state: absent
   when: reinstall_maas_database
 
@@ -18,15 +18,15 @@
   become: true
   become_user: postgres
   postgresql_db:
-    name: "{{ maas_database_name }}"
+    name: '{{ maas_database_name }}'
 
 - name: Create the MAAS database user
   become: true
   become_user: postgres
   postgresql_user:
-    db: "{{ maas_database_name }}"
-    name: "{{ maas_database_username }}"
-    password: "{{ maas_database_password }}"
+    db: '{{ maas_database_name }}'
+    name: '{{ maas_database_username }}'
+    password: '{{ maas_database_password }}'
   no_log: true
 
 - name: Re-install MAAS

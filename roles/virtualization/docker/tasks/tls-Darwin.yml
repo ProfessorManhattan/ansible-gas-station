@@ -11,17 +11,17 @@
 - name: Create daemon.json
   template:
     dest: "/Users/{{ ansible_user | default(lookup('env', 'USER')) }}/.docker/daemon.json"
-    group: "{{ user.group | default(user.username) }}"
+    group: '{{ user.group | default(user.username) }}'
     mode: 0600
-    owner: "{{ user.username }}"
+    owner: '{{ user.username }}'
     src: daemon.json.j2 # TODO: This JSON file is not formatted like regular JSON - is this on purpose?
 
 - name: Copy certificates to the ~/.docker folder on the machine running Ansible
   fetch:
-    dest: "~/.docker/certs.d/{{ ansible_host }}-{{ item }}"
+    dest: '~/.docker/certs.d/{{ ansible_host }}-{{ item }}'
     flat: true
     mode: 0400
-    src: "~/.docker/certs.d/{{ item }}"
+    src: '~/.docker/certs.d/{{ item }}'
   loop:
     - ca.pem
     - cert.pem

@@ -4,8 +4,8 @@ all:
     desktop:
       hosts:
         workstation:
-          ansible_host: "{{ hosts[host_id].hostname }}"
-          ansible_port: "{{ ssh_port }}"
-          ansible_password: "{{ admin_password }}"
-          ansible_sudo_pass: "{{ admin_password }}"
-          ansible_user: "{{ admin_username }}"
+          ansible_host: '{{ hosts[host_id].hostname }}'
+          ansible_port: '{{ ssh_port }}'
+          ansible_password: '{{ admin_password }}'
+          ansible_sudo_pass: '{{ admin_password }}'
+          ansible_user: '{{ admin_username }}'

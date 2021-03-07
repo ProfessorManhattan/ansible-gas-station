@@ -5,9 +5,9 @@ apps:
   - statuscheck
 
 certbot_certs:
-  - email: "{{ cloudflare_email }}"
+  - email: '{{ cloudflare_email }}'
     domains:
-      - "*.megabyte.space"
+      - '*.megabyte.space'
 
 enable_amplify: false
 

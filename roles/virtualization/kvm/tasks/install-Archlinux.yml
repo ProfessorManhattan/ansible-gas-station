@@ -1,7 +1,7 @@
 ---
 - name: Install KVM and its dependencies
   community.general.pacman:
-    name: "{{ kvm_packages }}"
+    name: '{{ kvm_packages }}'
     state: present
     update_cache: true
 

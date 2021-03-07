@@ -1,15 +1,15 @@
 ---
 - name: Include variables based on the operating system
-  include_vars: "{{ ansible_os_family }}.yml"
+  include_vars: '{{ ansible_os_family }}.yml'
 
 - name: Include tasks based on the operating system
   become: true
   block:
-    - include_tasks: "install-{{ ansible_os_family }}.yml"
+    - include_tasks: 'install-{{ ansible_os_family }}.yml'
 
-- name: "Install missing {{ app_name }} extensions"
+- name: 'Install missing {{ app_name }} extensions'
   include_tasks: user.yml
-  loop: "{{ user_configs | default([]) }}"
+  loop: '{{ user_configs | default([]) }}'
   loop_control:
-    label: "{{ user.username }}"
+    label: '{{ user.username }}'
     loop_var: user

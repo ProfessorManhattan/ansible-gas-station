@@ -1,10 +1,10 @@
 ---
 - name: Add static dotfiles
   copy:
-    src: "{{ item }}"
-    dest: "~/{{ item }}"
-    owner: "{{ user.username }}"
-    group: "{{ user.group | default(omit) }}"
+    src: '{{ item }}'
+    dest: '~/{{ item }}'
+    owner: '{{ user.username }}'
+    group: '{{ user.group | default(omit) }}'
     mode: 0600
   loop:
     - .localrc
@@ -12,10 +12,10 @@
 
 - name: Add dynamic dotfiles
   template:
-    src: "{{ item }}.j2"
-    dest: "~/{{ item }}"
-    owner: "{{ user.username }}"
-    group: "{{ user.group | default(omit) }}"
+    src: '{{ item }}.j2'
+    dest: '~/{{ item }}'
+    owner: '{{ user.username }}'
+    group: '{{ user.group | default(omit) }}'
     mode: 0600
   loop:
     - .gitconfig
@@ -43,8 +43,8 @@
 - name: Set .bashrc PATH variable
   lineinfile:
     path: ~/.bashrc
-    regex: "# PATH modified by Ansible"
-    line: "export PATH=$PATH:~/.local/bin # PATH modified by Ansible"
+    regex: '# PATH modified by Ansible'
+    line: 'export PATH=$PATH:~/.local/bin # PATH modified by Ansible'
 
 - name: Attempt to run starship and register the response
   command: starship --help
@@ -53,8 +53,8 @@
 
 - name: Remove starship references if starship command is unavailable
   lineinfile:
-    path: "~/{{ item.file }}"
-    regex: "starship init {{ item.exe }}"
+    path: '~/{{ item.file }}'
+    regex: 'starship init {{ item.exe }}'
     line: "#eval '$(starship init {{ item.exe }})'"
   loop:
     - file: .localrc

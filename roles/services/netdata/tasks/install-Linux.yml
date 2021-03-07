@@ -2,7 +2,7 @@
 - name: Ensure Megabyte Labs configuration directory exists
   file:
     mode: 0700
-    path: "{{ item }}"
+    path: '{{ item }}'
     state: directory
   loop:
     - ~/.config
@@ -14,7 +14,7 @@
     dest: ~/.config/megabytelabs/netdata-kickstart.sh
   register: kickstart_file
 
-- name: "Ensure {{ app_name }} is installed and up-to-date" # noqa 301 503
+- name: 'Ensure {{ app_name }} is installed and up-to-date' # noqa 301 503
   command: bash ~/.config/megabytelabs/netdata-kickstart.sh --dont-wait --stable-channel --disable-telemetry
   register: netdata_install
   when: kickstart_file.changed
@@ -24,25 +24,25 @@
     kernel_deduper: "{{ (netdata_install is defined) and (netdata_install.stdout is defined) \
       and ('You have a kernel memory de-duper' in netdata_install.stdout) }}"
 
-- name: "Add optimization for kernel memory de-duper (/sys/kernel/mm/ksm/run)"
+- name: 'Add optimization for kernel memory de-duper (/sys/kernel/mm/ksm/run)'
   command: echo 1 >/sys/kernel/mm/ksm/run
   when: kernel_deduper
 
-- name: "Add optimization for kernel memory de-duper (/sys/kernel/mm/ksm/sleep_millisecs)"
+- name: 'Add optimization for kernel memory de-duper (/sys/kernel/mm/ksm/sleep_millisecs)'
   command: echo 1000 >/sys/kernel/mm/ksm/sleep_millisecs
   when: kernel_deduper
 
 - name: Ensure JOBS section is enabled in the config file
   lineinfile:
     path: /etc/netdata/go.d/wmi.conf
-    regex: "^ [JOBS]"
-    line: " [JOBS]"
+    regex: '^ [JOBS]'
+    line: ' [JOBS]'
   when: monitor_windows
 
 - name: Configure WMI to add Windows servers to monitoring
   blockinfile:
     path: /etc/netdata/go.d/wmi.conf
-    insertafter: "^ [ JOBS ]"
+    insertafter: '^ [ JOBS ]'
     block: |
       jobs:
       {% for item in netdata_win_setting %}
@@ -71,7 +71,7 @@
     - netdata_token is defined
 
 - name: Add instance to netdata cloud
-  command: "netdata-claim.sh -token={{ netdata_token }} -rooms={{ netdata_room }} -url={{ netdata_claim_url }}"
+  command: 'netdata-claim.sh -token={{ netdata_token }} -rooms={{ netdata_room }} -url={{ netdata_claim_url }}'
   args:
     creates: ~/.config/megabytelabs/netdata-claimed
   ignore_errors: true

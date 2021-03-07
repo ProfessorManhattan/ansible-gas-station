@@ -1,30 +1,30 @@
 ---
 - name: "Ensure {{ app_name }}'s dependencies are installed"
   community.general.pacman:
-    name: "{{ autokey_dependencies }}"
+    name: '{{ autokey_dependencies }}'
     state: "{{ app_state | default('present') }}"
     update_cache: true
 
 - name: "Ensure {{ app_name }}'s source directory is present"
   ansible.builtin.file:
     mode: 0755
-    path: "{{ autokey_src_dir }}"
+    path: '{{ autokey_src_dir }}'
     state: directory
 
 - name: "Ensure {{ app_name }}'s source is cloned and up-to-date"
   ansible.builtin.git:
-    dest: "{{ autokey_src_dir }}"
-    repo: "{{ autokey_aur_git_repository }}"
+    dest: '{{ autokey_src_dir }}'
+    repo: '{{ autokey_aur_git_repository }}'
   register: autokey_git
 
-- name: "Remove /usr/sbin/autokey-gtk if the source files have changed" # noqa 503
+- name: 'Remove /usr/sbin/autokey-gtk if the source files have changed' # noqa 503
   file:
     path: /usr/sbin/autokey-gtk
     state: absent
   when: autokey_git.changed
 
-- name: "Ensure {{ app_name }} is installed"
+- name: 'Ensure {{ app_name }} is installed'
   command: makepkg -sic --noconfirm
   args:
-    chdir: "{{ autokey_src_dir }}"
+    chdir: '{{ autokey_src_dir }}'
     creates: /usr/sbin/autokey-gtk

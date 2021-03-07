@@ -1,7 +1,7 @@
 ---
 - name: Set the appropriate apt proxy URL for integration with AptCacherNG
   copy: # TODO: Use https://{{ apt_cacher_endpoint }} - tried but was unable to get this working
-    dest: "{{ apt_path }}/apt.conf.d/00apt-cacher-ng"
+    dest: '{{ apt_path }}/apt.conf.d/00apt-cacher-ng'
     mode: 0600
     content: |
       Acquire::http { Proxy "http://{{ apt_cacher_endpoint }}:3142"; };
@@ -9,20 +9,20 @@
 - name: Acquire a list of sources from /etc/apt/sources.list.d
   find:
     paths:
-      - "{{ apt_path }}/sources.list.d"
+      - '{{ apt_path }}/sources.list.d'
   register: sources_files
 
 - name: Configure /etc/apt/sources.list.d/* to use AptCacherNG
   replace:
-    path: "{{ item.path }}"
+    path: '{{ item.path }}'
     regexp: " https:\/\/"
-    replace: " http://HTTPS///"
-  loop: "{{ sources_files.files }}"
+    replace: ' http://HTTPS///'
+  loop: '{{ sources_files.files }}'
   loop_control:
-    label: "{{ item.path }}"
+    label: '{{ item.path }}'
 
 - name: Configure /etc/apt/sources.list to use AptCacherNG
   replace:
-    path: "{{ apt_path }}/sources.list"
+    path: '{{ apt_path }}/sources.list'
     regexp: " https:\/\/"
-    replace: " http://HTTPS///"
+    replace: ' http://HTTPS///'

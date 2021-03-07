@@ -1,5 +1,5 @@
 ---
-- name: "Ensure Prometheus windows-exporter is installed"
+- name: 'Ensure Prometheus windows-exporter is installed'
   chocolatey.chocolatey.win_chocolatey:
     name: prometheus-windows-exporter.install
     state: "{{ app_state | default('present') }}"

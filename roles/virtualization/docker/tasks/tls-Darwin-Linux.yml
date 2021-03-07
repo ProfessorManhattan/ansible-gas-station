@@ -2,7 +2,7 @@
 - name: Ensure ~/.docker/certs.d folder exists
   file:
     mode: 0740
-    path: "{{ item }}"
+    path: '{{ item }}'
     state: directory
   loop:
     - ~/.docker

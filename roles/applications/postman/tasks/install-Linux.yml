@@ -1,5 +1,5 @@
 ---
-- name: "Acquire {{ app_name }} source files"
+- name: 'Acquire {{ app_name }} source files'
   unarchive:
     src: https://dl.pstmn.io/download/latest/linux
     dest: /usr/local/src
@@ -7,14 +7,14 @@
     group: root
     remote_src: true
 
-- name: "Add {{ app_name }} symlink to /usr/local/bin"
+- name: 'Add {{ app_name }} symlink to /usr/local/bin'
   file:
     src: /usr/local/src/Postman/Postman # TODO: Is this the proper place to store the src files or should it be in /opt?
     dest: /usr/local/bin/postman
     state: link
 
-- name: "Add {{ app_name }} desktop shortcut"
+- name: 'Add {{ app_name }} desktop shortcut'
   copy:
     src: files/postman.desktop
-    dest: "{{ postman_desktop_link_dir }}/postman.desktop"
+    dest: '{{ postman_desktop_link_dir }}/postman.desktop'
     mode: 0644

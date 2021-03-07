@@ -1,17 +1,17 @@
 ---
 - name: Clone Certbot into configured directory
   git:
-    dest: "{{ certbot_dir }}"
+    dest: '{{ certbot_dir }}'
     force: true
-    repo: "{{ certbot_repo }}"
-    update: "{{ certbot_keep_updated | bool }}"
-    version: "{{ certbot_version }}"
+    repo: '{{ certbot_repo }}'
+    update: '{{ certbot_keep_updated | bool }}'
+    version: '{{ certbot_version }}'
 
 - name: Install certbot
   command: python3 setup.py install
   args:
-    chdir: "{{ certbot_dir }}/certbot"
-    creates: "{{ certbot_path }}"
+    chdir: '{{ certbot_dir }}/certbot'
+    creates: '{{ certbot_path }}'
 
 - name: Ensure letsencrypt folder exists
   file:
@@ -28,27 +28,27 @@
 - name: Install certbot-dns-cloudflare
   command: python3 setup.py install
   args:
-    chdir: "{{ certbot_dir }}/certbot-dns-cloudflare"
+    chdir: '{{ certbot_dir }}/certbot-dns-cloudflare'
     creates: /etc/letsencrypt/dnscloudflare.ini
 
 - name: Ensure certbot templates are available
   template:
-    dest: "{{ item.dest }}"
+    dest: '{{ item.dest }}'
     group: root
     mode: 0600
     owner: root
-    src: "{{ item.src }}"
+    src: '{{ item.src }}'
   loop:
-    - src: "templates/dnscloudflare.ini.j2"
-      dest: "/etc/letsencrypt/dnscloudflare.ini"
-    - src: "templates/letsencryptcli.ini.j2"
-      dest: "/etc/letsencrypt/cli.ini"
+    - src: 'templates/dnscloudflare.ini.j2'
+      dest: '/etc/letsencrypt/dnscloudflare.ini'
+    - src: 'templates/letsencryptcli.ini.j2'
+      dest: '/etc/letsencrypt/cli.ini'
   notify: restart certbot
   when: cloudflare_api_token is defined
 
 - name: Generate Let's Encrypt certificates
   include_tasks: certificate-Linux.yml
-  loop: "{{ certbot_certs }}"
+  loop: '{{ certbot_certs }}'
   loop_control:
     loop_var: certificate
   when:
@@ -59,10 +59,10 @@
 - name: Add cron job for certbot renewal (if configured)
   cron:
     name: Certbot automatic renewal
-    job: "{{ certbot_path }} renew {{ certbot_auto_renew_options }}"
-    minute: "{{ certbot_auto_renew_minute }}"
-    hour: "{{ certbot_auto_renew_hour }}"
-    user: "{{ certbot_auto_renew_user }}"
+    job: '{{ certbot_path }} renew {{ certbot_auto_renew_options }}'
+    minute: '{{ certbot_auto_renew_minute }}'
+    hour: '{{ certbot_auto_renew_hour }}'
+    user: '{{ certbot_auto_renew_user }}'
   when:
     - certbot_auto_renew
     - cloudflare_api_token is defined

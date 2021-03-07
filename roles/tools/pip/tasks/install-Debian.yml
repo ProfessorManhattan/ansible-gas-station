@@ -1,10 +1,10 @@
 ---
-- name: "Ensure Python is installed"
+- name: 'Ensure Python is installed'
   apt:
-    name: "{{ python_package }}"
+    name: '{{ python_package }}'
     state: present
 
-- name: "Ensure {{ app_name }} is installed"
+- name: 'Ensure {{ app_name }} is installed'
   apt:
-    name: "{{ pip_package }}"
+    name: '{{ pip_package }}'
     state: "{{ app_state | default('present') }}"

@@ -1,6 +1,6 @@
 ---
-- name: "Add SSH configurations for {{ user.username }}"
+- name: 'Add SSH configurations for {{ user.username }}'
   become: true
-  become_user: "{{ user.username }}"
+  become_user: '{{ user.username }}'
   block:
-    - include_tasks: "user-{{ ansible_os_family }}.yml"
+    - include_tasks: 'user-{{ ansible_os_family }}.yml'

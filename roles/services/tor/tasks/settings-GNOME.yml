@@ -1,7 +1,7 @@
 ---
 - name: Ensure Tor proxy settings are configured # noqa 301
   become: true
-  become_user: "{{ user.username }}"
+  become_user: '{{ user.username }}'
   shell: |
     gsettings set org.gnome.system.proxy.http host 'localhost'
     gsettings set org.gnome.system.proxy.http port 8118

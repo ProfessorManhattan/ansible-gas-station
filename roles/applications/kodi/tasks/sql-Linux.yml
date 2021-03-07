@@ -23,7 +23,7 @@
     path: /etc/my.cnf
     backup: true
     regexp: "^port = \\d*"
-    replace: "port = {{ kodi_mysql_port }}"
+    replace: 'port = {{ kodi_mysql_port }}'
   when: not kodi_mysql_docker
 
 - name: Ensure directory to save the docker-compose.yml file exists

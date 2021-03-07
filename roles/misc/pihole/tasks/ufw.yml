@@ -6,9 +6,9 @@
 - name: Allow DNS traffic (TCP port 53)
   ufw:
     rule: allow
-    port: "53"
+    port: '53'
     proto: tcp
-    src: "{{ item }}"
+    src: '{{ item }}'
     comment: Allow local DNS lookups (TCP)
   loop:
     - 10.0.0.0/8
@@ -17,9 +17,9 @@
 - name: Allow DNS traffic (UDP port 53)
   ufw:
     rule: allow
-    port: "53"
+    port: '53'
     proto: udp
-    src: "{{ item }}"
+    src: '{{ item }}'
     comment: Allow local DNS lookups (UDP)
   loop:
     - 10.0.0.0/8
@@ -28,9 +28,9 @@
 - name: Allow all access to TCP port 80 from local networks
   ufw:
     rule: allow
-    port: "80"
+    port: '80'
     proto: tcp
-    src: "{{ item }}"
+    src: '{{ item }}'
     comment: Allow HTTP from local networks
   loop:
     - 10.0.0.0/8

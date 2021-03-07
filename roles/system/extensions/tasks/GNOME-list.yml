@@ -2,11 +2,11 @@
 - name: Populate the list of extensions to be installed
   lineinfile:
     create: true
-    group: "{{ user.group | default(user.username) }}"
-    line: "{{ item.url }}"
+    group: '{{ user.group | default(user.username) }}'
+    line: '{{ item.url }}'
     mode: 0644
-    owner: "{{ user.username }}"
+    owner: '{{ user.username }}'
     path: /tmp/install-gnome-extensions.txt
-    regexp: "{{ item.regex }}"
+    regexp: '{{ item.regex }}'
     state: present
   when: item.regex not in user_gnome_extensions.stdout

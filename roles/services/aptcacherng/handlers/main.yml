@@ -6,8 +6,8 @@
 
 - name: clear apt cache
   file:
-    state: "{{ item.state }}"
-    path: "{{ item.path }}"
+    state: '{{ item.state }}'
+    path: '{{ item.path }}'
     owner: root
     group: root
     mode: 0755

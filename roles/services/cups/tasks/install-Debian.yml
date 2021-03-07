@@ -9,7 +9,7 @@
 - name: Copy CUPS configuration
   copy:
     src: cupsd.conf
-    dest: "{{ cups_conf_path }}"
+    dest: '{{ cups_conf_path }}'
     owner: root
     group: root
     mode: 0644

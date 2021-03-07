@@ -1,42 +1,42 @@
 ---
-- name: "Ensure {{ app_name }} is installed"
+- name: 'Ensure {{ app_name }} is installed'
   become: false
   homebrew_cask:
     name: vagrant
     state: "{{ app_state | default('present') }}"
-    sudo_password: "{{ ansible_password }}"
+    sudo_password: '{{ ansible_password }}'
 
-- name: "Ensure {{ app_name }} VMWare Utility is installed"
+- name: 'Ensure {{ app_name }} VMWare Utility is installed'
   become: false
   homebrew_cask:
     name: vagrant-vmware-utility
     state: "{{ app_state | default('present') }}"
-    sudo_password: "{{ ansible_password }}"
+    sudo_password: '{{ ansible_password }}'
   when: vagrant_vmware_support
 
-- name: "Check if the license file for {{ app_name }} VMWare desktop plugin is available on the controller"
+- name: 'Check if the license file for {{ app_name }} VMWare desktop plugin is available on the controller'
   stat:
-    path: "{{ vmware_license_local_path }}"
+    path: '{{ vmware_license_local_path }}'
   register: license_local_file
   delegate_to: localhost
 
-- name: "Ensure to add a license for {{ app_name }} VMWare desktop plugin"
+- name: 'Ensure to add a license for {{ app_name }} VMWare desktop plugin'
   block:
-    - name: "Copy the license file for {{ app_name }} VMWare desktop plugin to the target"
+    - name: 'Copy the license file for {{ app_name }} VMWare desktop plugin to the target'
       copy:
-        dest: "{{ vmware_license_remote_path }}"
+        dest: '{{ vmware_license_remote_path }}'
         mode: 0444
-        src: "{{ vmware_license_local_path }}"
+        src: '{{ vmware_license_local_path }}'
 
-    - name: "Ensure {{ app_name }} VMWare Utility desktop plugin is installed"
+    - name: 'Ensure {{ app_name }} VMWare Utility desktop plugin is installed'
       command: vagrant plugin install vagrant-vmware-desktop
 
-    - name: "Ensure to add a license for {{ app_name }} VMWare desktop plugin"
-      command: "vagrant plugin license vagrant-vmware-desktop {{ vmware_license_remote_path }}"
+    - name: 'Ensure to add a license for {{ app_name }} VMWare desktop plugin'
+      command: 'vagrant plugin license vagrant-vmware-desktop {{ vmware_license_remote_path }}'
   always:
-    - name: "Remove the license file for {{ app_name }} VMWare desktop plugin from the target"
+    - name: 'Remove the license file for {{ app_name }} VMWare desktop plugin from the target'
       file:
-        path: "{{ vmware_license_remote_path }}"
+        path: '{{ vmware_license_remote_path }}'
         state: absent
   when:
     - license_local_file.stat.exists

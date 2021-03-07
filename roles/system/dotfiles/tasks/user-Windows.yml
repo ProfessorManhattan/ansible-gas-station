@@ -1,7 +1,7 @@
 ---
 - name: Add static dotfiles
   win_copy:
-    src: "{{ item }}"
+    src: '{{ item }}'
     dest: "{{ user_profile }}\\{{ item }}"
   loop:
     - .localrc
@@ -9,7 +9,7 @@
 
 - name: Add dynamic dotfiles
   win_template:
-    src: "{{ item }}.j2"
+    src: '{{ item }}.j2'
     dest: "{{ user_profile }}\\{{ item }}"
   loop:
     - .gitconfig

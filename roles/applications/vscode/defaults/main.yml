@@ -32,4 +32,4 @@ vscode_extensions:
 
 user_configs:
   - username: "{{ ansible_user | default(lookup('env', 'USER')) }}"
-    vscode_extensions: "{{ vscode_extensions }}"
+    vscode_extensions: '{{ vscode_extensions }}'

@@ -4,7 +4,7 @@
 
 - name: Mount the rclone drives
   include_tasks: mount-Linux.yml
-  loop: "{{ user.rclone | default([]) }}"
+  loop: '{{ user.rclone | default([]) }}'
   loop_control:
-    label: "{{ mount.name }}"
+    label: '{{ mount.name }}'
     loop_var: mount

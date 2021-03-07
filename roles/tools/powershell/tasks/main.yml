@@ -1,15 +1,15 @@
 ---
 - name: Include variables based on the operating system
-  include_vars: "{{ ansible_os_family }}.yml"
+  include_vars: '{{ ansible_os_family }}.yml'
 
 - name: Include tasks based on the operating system
   become: true
   block:
-    - include_tasks: "install-{{ ansible_os_family }}.yml"
+    - include_tasks: 'install-{{ ansible_os_family }}.yml'
 
 - name: Configure PowerShell for users (based on OS family)
-  include_tasks: "user-{{ ansible_os_family }}.yml"
-  loop: "{{ user_configs }}"
+  include_tasks: 'user-{{ ansible_os_family }}.yml'
+  loop: '{{ user_configs }}'
   loop_control:
-    label: "{{ user.username }}"
+    label: '{{ user.username }}'
     loop_var: user

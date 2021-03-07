@@ -1,16 +1,16 @@
 ---
-- name: "Ensure {{ app_name }} is installed"
+- name: 'Ensure {{ app_name }} is installed'
   community.windows.win_scoop:
     name: starship
     state: "{{ app_state | default('present') }}"
 
 - name: Setup Initialization script for powershell
-  become_user: "{{ user.username }}"
+  become_user: '{{ user.username }}'
   community.windows.win_lineinfile:
     path: '~\Documents\PowerShell\Microsoft.PowerShell_profile.ps1'
-    regex: "Invoke-Expression (&starship init powershell)"
-    line: "Invoke-Expression (&starship init powershell)"
-  loop: "{{ user_configs }}"
+    regex: 'Invoke-Expression (&starship init powershell)'
+    line: 'Invoke-Expression (&starship init powershell)'
+  loop: '{{ user_configs }}'
   loop_control:
-    label: "{{ user.username }}"
+    label: '{{ user.username }}'
     loop_var: user

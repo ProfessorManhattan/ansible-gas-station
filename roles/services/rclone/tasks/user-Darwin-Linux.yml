@@ -1,9 +1,9 @@
 ---
 - name: Ensure ~/.config/rclone is a directory
   file:
-    path: "{{ item }}"
-    owner: "{{ user.username }}"
-    group: "{{ user.group | default(user.username) }}"
+    path: '{{ item }}'
+    owner: '{{ user.username }}'
+    group: '{{ user.group | default(user.username) }}'
     state: directory
     mode: 0755
   loop:
@@ -15,16 +15,16 @@
   template:
     src: rclone.conf.j2
     dest: ~/.config/rclone/rclone.conf
-    owner: "{{ user.username }}"
-    group: "{{ user.group | default(user.username) }}"
+    owner: '{{ user.username }}'
+    group: '{{ user.group | default(user.username) }}'
     mode: 0600
   when: user.rclone is defined
 
 - name: Ensure ~/Documents folder exists
   file:
     path: ~/Documents
-    owner: "{{ user.username }}"
-    group: "{{ user.group | default(user.username) }}"
+    owner: '{{ user.username }}'
+    group: '{{ user.group | default(user.username) }}'
     state: directory
     mode: 0755
   when: user.rclone is defined

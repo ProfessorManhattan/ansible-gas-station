@@ -1,7 +1,7 @@
 ---
 - name: Ensure NetworkManager's system-connections are removed if configured to do so
   file:
-    path: "{{ system_connections_path }}/"
+    path: '{{ system_connections_path }}/'
     state: absent
   when: remove_vpn_connections | bool
   notify: restart networkmanager
@@ -17,9 +17,9 @@
 
 - name: Create list of profile files that exist
   find:
-    paths: "{{ system_connections_path }}"
-    patterns: "{{ item.file }}"
-  with_items: "{{ vpn_connections }}"
+    paths: '{{ system_connections_path }}'
+    patterns: '{{ item.file }}'
+  with_items: '{{ vpn_connections }}'
   register: profile_file_list
 
 - name: Acquire a list the current VPN connections
@@ -29,8 +29,8 @@
   when: vpn_connections | length
 
 - name: Ensure VPN configuration files are installed
-  include_tasks: "profile-Linux.yml"
-  loop: "{{ vpn_connections | default([]) }}"
+  include_tasks: 'profile-Linux.yml'
+  loop: '{{ vpn_connections | default([]) }}'
   loop_control:
-    label: "{{ vpn_connection.file }}"
+    label: '{{ vpn_connection.file }}'
     loop_var: vpn_connection

@@ -14,7 +14,7 @@
 - name: Set auto login user for LightDM
   blockinfile:
     path: /etc/lightdm/lightdm.conf
-    marker: "# {mark} ANSIBLE MANAGED BLOCK FOR AUTOLOGIN"
+    marker: '# {mark} ANSIBLE MANAGED BLOCK FOR AUTOLOGIN'
     block: |
       [Seat:*]
       autologin-user={{ autologin_user }}
@@ -25,7 +25,7 @@
   blockinfile:
     path: /etc/gdm3/custom.conf
     insertafter: "\\[daemon]"
-    marker: "# {mark} ANSIBLE MANAGED BLOCK FOR AUTOLOGIN"
+    marker: '# {mark} ANSIBLE MANAGED BLOCK FOR AUTOLOGIN'
     block: |
       AutomaticLoginEnable = true
       AutomaticLogin = {{ autologin_user }}
@@ -35,7 +35,7 @@
   blockinfile:
     path: /etc/gdm/custom.conf
     insertafter: "\\[daemon]"
-    marker: "# {mark} ANSIBLE MANAGED BLOCK FOR AUTOLOGIN"
+    marker: '# {mark} ANSIBLE MANAGED BLOCK FOR AUTOLOGIN'
     block: |
       AutomaticLoginEnable = true
       AutomaticLogin = {{ autologin_user }}
@@ -44,7 +44,7 @@
 - name: Set auto-login user for SDDM
   blockinfile:
     path: /etc/sddm.conf.d/autologin.conf
-    marker: "# {mark} ANSIBLE MANAGED BLOCK FOR AUTOLOGIN"
+    marker: '# {mark} ANSIBLE MANAGED BLOCK FOR AUTOLOGIN'
     block: |
       [Autologin]
       User={{ autologin_user }}

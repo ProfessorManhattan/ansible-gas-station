@@ -6,6 +6,6 @@
     use_regex: true
   register: fonts_result
 
-- name: "Ensure {{ font }} is installed"
-  ansible.windows.win_command: "gfi install {{ font }}"
+- name: 'Ensure {{ font }} is installed'
+  ansible.windows.win_command: 'gfi install {{ font }}'
   when: fonts_result.matched > 0

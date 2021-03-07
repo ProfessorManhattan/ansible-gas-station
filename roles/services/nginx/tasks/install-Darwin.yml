@@ -1,5 +1,5 @@
 ---
-- name: "Ensure {{ app_name }} is installed"
+- name: 'Ensure {{ app_name }} is installed'
   become: false
   community.general.homebrew:
     name: nginx
@@ -15,14 +15,14 @@
 - name: Ensure Brotli's dependencies are installed
   become: false
   community.general.homebrew_cask:
-    name: "{{ brotli_dependencies }}"
+    name: '{{ brotli_dependencies }}'
     state: present
   when: enable_nginx_brotli
 
 - name: Ensure ModSecurity's dependencies are installed
   become: false
   community.general.homebrew_cask:
-    name: "{{ modsec_dependencies }}"
+    name: '{{ modsec_dependencies }}'
     state: present
   when: enable_nginx_modsecurity_waf
 
@@ -32,7 +32,7 @@
 - name: Deploy NGINX job definition
   template:
     src: homebrew.nginx.plist.j2
-    dest: "{{ nginx_service_path }}"
+    dest: '{{ nginx_service_path }}'
     owner: root
     group: wheel
     mode: 0644

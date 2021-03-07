@@ -5,9 +5,9 @@ add_known_hosts: true
 default_browser: brave
 
 nodejs_npm_global_packages:
-  - name: "@angular/cli"
+  - name: '@angular/cli'
   # - name: "@ionic/cli"
-  - name: "@nestjs/cli"
+  - name: '@nestjs/cli'
   - name: add-gitignore
   - name: auto-install
   - name: bitly-cli-client

@@ -1,5 +1,5 @@
 ---
-- name: "Ensure {{ app_name }} is installed"
+- name: 'Ensure {{ app_name }} is installed'
   yum:
     name: wget
     state: "{{ app_state | default('present') }}"

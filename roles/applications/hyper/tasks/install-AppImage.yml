@@ -1,7 +1,7 @@
 ---
 - name: "Ensure {{ user.username }}'s ~/Applications folder exists"
   become: true
-  become_user: "{{ user.username }}"
+  become_user: '{{ user.username }}'
   file:
     mode: 0700
     path: ~/Applications
@@ -9,9 +9,9 @@
 
 - name: "Copy the {{ app_name }} AppImage from the source location to {{ user.username }}'s Applications folder"
   become: true
-  become_user: "{{ user.username }}"
+  become_user: '{{ user.username }}'
   copy:
-    dest: "{{ hyper_user_path }}"
+    dest: '{{ hyper_user_path }}'
     mode: 0700
     remote_src: true
-    src: "{{ hyper_src_path }}"
+    src: '{{ hyper_src_path }}'

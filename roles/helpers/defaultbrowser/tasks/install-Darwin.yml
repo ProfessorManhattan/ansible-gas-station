@@ -6,7 +6,7 @@
 
 - name: Update the Default Browser setting
   include_tasks: plist-Darwin.yml
-  loop: "{{ user_configs }}"
+  loop: '{{ user_configs }}'
   loop_control:
-    label: "{{ user.username }}"
+    label: '{{ user.username }}'
     loop_var: user

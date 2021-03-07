@@ -6,7 +6,7 @@
 
 - name: Determine whether or not MAAS should be re-initialized
   set_fact:
-    maas_should_init: "{{ not maas_admin_status.stat.exists or reinstall_maas_database }}"
+    maas_should_init: '{{ not maas_admin_status.stat.exists or reinstall_maas_database }}'
 
 - name: Initialize the MAAS region+rack
   become: true
@@ -14,14 +14,14 @@
     command: '{{ maas_binary }} init region+rack --database-uri "postgres://{{ maas_database_username }}\
       :{{ maas_database_password }}@{{ maas_database_host }}/{{ maas_database_name }}"'
     responses:
-      (.*)MAAS URL(.*): ""
-      (.*)Are you sure you want to initialize again(.*): "Y"
+      (.*)MAAS URL(.*): ''
+      (.*)Are you sure you want to initialize again(.*): 'Y'
     timeout: 300
   when: maas_should_init | bool
 
 - name: Create the MAAS admin user
   become: true
-  command: "{{ maas_binary }} createadmin --username={{ maas_admin_username }} --password={{ maas_admin_password }} --email={{ maas_admin_email }}"
+  command: '{{ maas_binary }} createadmin --username={{ maas_admin_username }} --password={{ maas_admin_password }} --email={{ maas_admin_email }}'
   when: maas_should_init | bool
 
 - name: Touch a file in ~/.config that will prevent the admin from being created again

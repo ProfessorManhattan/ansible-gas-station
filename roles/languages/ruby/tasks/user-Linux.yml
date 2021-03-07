@@ -1,6 +1,6 @@
 ---
 - name: "Install {{ user.username }}'s gems"
   gem:
-    name: "{{ item.name }}"
+    name: '{{ item.name }}'
     state: present
-  loop: "{{ user.gems | default([]) }}"
+  loop: '{{ user.gems | default([]) }}'

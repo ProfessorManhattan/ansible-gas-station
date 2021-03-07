@@ -1,5 +1,5 @@
 ---
 - name: Install KVM and its dependencies
   apt:
-    name: "{{ kvm_packages }}"
+    name: '{{ kvm_packages }}'
     state: present

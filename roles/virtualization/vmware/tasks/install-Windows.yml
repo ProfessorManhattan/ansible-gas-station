@@ -1,7 +1,7 @@
 ---
 - name: Create temporary directory
   ansible.windows.win_file:
-    path: "{{ workstation_tempdir }}"
+    path: '{{ workstation_tempdir }}'
     state: directory
 
 - name: Check for pre-downloaded binary
@@ -11,7 +11,7 @@
 
 - name: Download workstation
   ansible.windows.win_get_url:
-    url: "{{ workstation_download_url }}"
+    url: '{{ workstation_download_url }}'
     dest: "{{ workstation_tempdir }}\tryworkstation-win-64.exe"
   when: not file_stats.stat.exists
 
@@ -25,7 +25,7 @@
 
 - name: Fetch the releases page of Unlocker to find the latest version
   ansible.builtin.uri:
-    url: "{{ unlocker_github_url }}/releases"
+    url: '{{ unlocker_github_url }}/releases'
     return_content: true
   register: unlocker_releases
 
@@ -50,7 +50,7 @@
 
     - name: Download Unlocker archive (for running Mac OS X on VMWare)
       ansible.windows.win_get_url:
-        url: "{{ latest_release_url }}"
+        url: '{{ latest_release_url }}'
         dest: "{{ workstation_tempdir }}\\unlocker-{{ unlocker_version }}.zip"
 
     - name: Extract the Unlocker archive

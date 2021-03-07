@@ -2,28 +2,28 @@
 - name: "Add {{ app_name }}'s apt key"
   apt_key:
     state: present
-    url: "{{ amplify_apt_key_url }}"
+    url: '{{ amplify_apt_key_url }}'
   when: ansible_os_family == 'Debian'
 
 - name: Add NGINX Amplify Agent apt repository
   apt_repository:
-    filename: "nginx-amplify"
-    repo: "{{ amplify_apt_repository }}"
+    filename: 'nginx-amplify'
+    repo: '{{ amplify_apt_repository }}'
     state: present
   when: ansible_os_family == 'Debian'
 
 - name: "Add {{ app_name }}'s rpm key"
   rpm_key:
-    key: "{{ amplify_rpm_key }}"
+    key: '{{ amplify_rpm_key }}'
   when: ansible_os_family == 'RedHat'
 
 - name: Add NGINX Amplify Agent yum repository
   yum_repository:
-    baseurl: "{{ amplify_baseurl }}"
+    baseurl: '{{ amplify_baseurl }}'
     description: "NGINX Amplify Agent's repository"
     gpgcheck: true
-    gpgkey: "{{ amplify_rpm_key }}"
-    name: "nginx-amplify"
+    gpgkey: '{{ amplify_rpm_key }}'
+    name: 'nginx-amplify'
     repo_gpgcheck: true
   when: ansible_os_family == 'RedHat'
 
@@ -45,7 +45,7 @@
   lineinfile:
     dest: /etc/amplify-agent/agent.conf
     regexp: api_key =.*
-    line: "api_key = {{ nginx_amplify_api_key }}"
+    line: 'api_key = {{ nginx_amplify_api_key }}'
 
 - name: Start the NGINX Amplify agent
   service:

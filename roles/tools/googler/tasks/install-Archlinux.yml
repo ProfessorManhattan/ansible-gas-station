@@ -1,5 +1,5 @@
 ---
-- name: "Ensure python is installed"
+- name: 'Ensure python is installed'
   community.general.pacman:
     name: python
     state: present

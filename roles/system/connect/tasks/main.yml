@@ -1,8 +1,8 @@
 ---
 - name: Attempt to connect on non-standard port first
   wait_for:
-    host: "{{ ansible_host }}"
-    port: "{{ ansible_port }}"
+    host: '{{ ansible_host }}'
+    port: '{{ ansible_port }}'
     timeout: 3
   ignore_errors: true
   register: ssh_check_test
@@ -11,18 +11,18 @@
 
 - name: Revert to standard port 22 for SSH if the "secure" port has not been configured yet
   set_fact:
-    ansible_port: "22"
+    ansible_port: '22'
   when:
     - ansible_connection != 'local'
     - ssh_check_test.failed
 
 - name: Determine facts based on the host's ID
   set_fact:
-    fqdn: "{{ hosts[host_id].hosts.split()[-1] }}"
-    hostname: "{{ hosts[host_id].hostname }}"
-    host_list: "{{ hosts | list }}"
-    ip_address: "{{ hosts[host_id].ip_address }}"
-    nginx_sites: "{{ apps }}"
+    fqdn: '{{ hosts[host_id].hosts.split()[-1] }}'
+    hostname: '{{ hosts[host_id].hostname }}'
+    host_list: '{{ hosts | list }}'
+    ip_address: '{{ hosts[host_id].ip_address }}'
+    nginx_sites: '{{ apps }}'
 
 - name: Ensure python-netaddr is installed on Ansible controller host
   become: false
@@ -32,7 +32,7 @@
 
 - name: Determine the VLAN (set to cloud if none match)
   vars:
-    netmask: "24"
+    netmask: '24'
   block:
     - name: Set value for the variable vlan_ip
       set_fact:
@@ -62,12 +62,12 @@
 - name: Set miscellaneous facts
   set_fact:
     authelia_on_localhost: "{{ 'authelia' in apps }}"
-    docker_tls_fqdn: "{{ fqdn }}"
+    docker_tls_fqdn: '{{ fqdn }}'
     #   kibana_enrollment_id: "{{ vlan }}"
 
 - name: Set the appropriate netdata room
   set_fact:
-    netdata_room: "{{ netdata_rooms[vlan] }}" # TODO: Improve this method so that we can segment different cloud providers
+    netdata_room: '{{ netdata_rooms[vlan] }}' # TODO: Improve this method so that we can segment different cloud providers
   when:
     - netdata_rooms is defined
 

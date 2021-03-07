@@ -1,10 +1,10 @@
 ---
 - name: Ensure the hostname is correct
-  win_command: "Rename-Computer -NewName {{ hostname }}"
+  win_command: 'Rename-Computer -NewName {{ hostname }}'
   when: hostname is defined
 
 - name: Activate Windows 10
-  win_command: "cscript slmgr.vbs /ipk {{ windows_enterprise_key }}"
+  win_command: 'cscript slmgr.vbs /ipk {{ windows_enterprise_key }}'
   args:
     chdir: C:\Windows\System32\
   when: windows_activation_key is defined
@@ -29,9 +29,9 @@
 - name: Configure Windows optional features
   win_optional_feature:
     include_parent: true
-    name: "{{ item.name | default(item) }}"
+    name: '{{ item.name | default(item) }}'
     state: "{{ item.state | default('present') }}"
-  loop: "{{ windows_features | default([]) }}"
+  loop: '{{ windows_features | default([]) }}'
   register: optional_features
 
 - name: Determine whether or not a reboot is required
@@ -48,12 +48,12 @@
     'Get-AppxPackage -AllUsers -Name "{{ item }}" | Remove-AppxPackage -AllUsers -ErrorAction SilentlyContinue; \
     Get-AppxProvisionedPackage -Online | where {$_.PackageName -like "{{ item }}"} | Remove-AppxProvisionedPackage \
     -AllUsers -Online -ErrorAction SilentlyContinue;'
-  loop: "{{ windows_appx_removals | default([]) }}"
+  loop: '{{ windows_appx_removals | default([]) }}'
 
 - name: Install APPX packages
   debug:
-    msg: "TODO: Figure out how to install APPX packages from the Microsoft Store"
-  loop: "{{ windows_appx_installs }}"
+    msg: 'TODO: Figure out how to install APPX packages from the Microsoft Store'
+  loop: '{{ windows_appx_installs }}'
 
 - name: Install git
   chocolatey.chocolatey.win_chocolatey:
@@ -106,7 +106,7 @@
       win_command: scoop update
     - name: Install Scoops
       community.windows.win_scoop:
-        name: "{{ windows_scoop_packages }}"
+        name: '{{ windows_scoop_packages }}'
   rescue:
     - name: Remove scoop folder from user directory
       ansible.windows.win_file:

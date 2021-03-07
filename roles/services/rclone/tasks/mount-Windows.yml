@@ -13,6 +13,6 @@
 
 - name: Start the rclone services
   ansible.windows.win_service:
-    name: "rclone-{{ mount.provider }}"
+    name: 'rclone-{{ mount.provider }}'
     state: started
   when: ansible_system == "Win32NT"

@@ -5,7 +5,7 @@ galaxy_info:
   description: Installs apps from the Mac OS X app store via CLI
   company: Megabyte Labs
   # issue_tracker_url: http://example.com/issue/tracker
-  license: "license (BSD, MIT)"
+  license: 'license (BSD, MIT)'
 
   min_ansible_version: 2.4
 

@@ -8,33 +8,33 @@
 - name: Ensure ClamAV config file is created
   copy:
     src: "{{ clamav_daemon_config_path + '.sample' }}"
-    dest: "{{ clamav_daemon_config_path }}"
+    dest: '{{ clamav_daemon_config_path }}'
     remote_src: true
     mode: preserve
     force: false
 
 - name: Ensure configuration for ClamAV daemon is updated
   lineinfile:
-    path: "{{ clamav_daemon_config_path }}"
-    regexp: "{{ item.regexp }}"
+    path: '{{ clamav_daemon_config_path }}'
+    regexp: '{{ item.regexp }}'
     line: "{{ item.line | default('') }}"
     mode: 0644
     state: "{{ item.state | default('present') }}"
-  loop: "{{ clamav_daemon_configuration_changes }}"
+  loop: '{{ clamav_daemon_configuration_changes }}'
 
 - name: Ensure freshclam config file is created
   copy:
     src: "{{ clamav_freshclam_config_path + '.sample' }}"
-    dest: "{{ clamav_freshclam_config_path }}"
+    dest: '{{ clamav_freshclam_config_path }}'
     remote_src: true
     mode: preserve
     force: false
 
 - name: Ensure configuration for freshclam is updated
   lineinfile:
-    path: "{{ clamav_freshclam_config_path }}"
-    regexp: "^.*NotifyClamd .*$"
-    line: "NotifyClamd {{ clamav_daemon_config_path }}"
+    path: '{{ clamav_freshclam_config_path }}'
+    regexp: '^.*NotifyClamd .*$'
+    line: 'NotifyClamd {{ clamav_daemon_config_path }}'
     mode: 0644
     state: present
 

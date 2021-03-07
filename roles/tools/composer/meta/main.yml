@@ -4,7 +4,7 @@ galaxy_info:
   author: ProfessorManhattan (upstream:geerlingguy)
   description: Installs Composer PHP Dependency Manager
   company: Megabyte Labs
-  license: "license (BSD, MIT)"
+  license: 'license (BSD, MIT)'
 
   min_ansible_version: 2.4
 

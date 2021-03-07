@@ -5,7 +5,7 @@
     name: miserlou/loop
     url: https://github.com/Miserlou/Loop.git
 
-- name: "Ensure {{ app_name }} is installed"
+- name: 'Ensure {{ app_name }} is installed'
   become: false
   community.general.homebrew:
     name: loop

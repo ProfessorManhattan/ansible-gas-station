@@ -1,21 +1,21 @@
 ---
 - name: Install Brotli dependencies
   package:
-    name: "{{ brotli_dependencies }}"
+    name: '{{ brotli_dependencies }}'
     state: present
   when: ansible_os_family != 'Darwin'
 
-- name: "Download and unarchive NGINX source code of version {{ nginx_version }}"
+- name: 'Download and unarchive NGINX source code of version {{ nginx_version }}'
   unarchive:
-    src: "https://nginx.org/download/nginx-{{ nginx_version }}.tar.gz"
-    dest: "{{ nginx_src_directory }}"
+    src: 'https://nginx.org/download/nginx-{{ nginx_version }}.tar.gz'
+    dest: '{{ nginx_src_directory }}'
     remote_src: true
   register: nginx_archive
 
 - name: Ensure Brotli module source is cloned and updated
   git:
-    dest: "{{ brotli_src_directory }}"
-    repo: "{{ brotli_git_repository }}"
+    dest: '{{ brotli_src_directory }}'
+    repo: '{{ brotli_git_repository }}'
     version: master
   register: clone_brotli
 
@@ -31,17 +31,17 @@
     target: modules
   when: clone_brotli.changed or nginx_archive.changed
 
-- name: "Copy compiled Brotli module to {{ nginx_module_link }}" # noqa 503
+- name: 'Copy compiled Brotli module to {{ nginx_module_link }}' # noqa 503
   copy:
     remote_src: true
-    src: "{{ item.src }}"
-    dest: "{{ item.dest }}"
+    src: '{{ item.src }}'
+    dest: '{{ item.dest }}'
     owner: root
     group: root
     mode: 0644
   loop:
     - src: "{{ nginx_src_directory + '/nginx-' + nginx_version + '/objs/ngx_http_brotli_filter_module.so' }}"
-      dest: "{{ nginx_module_link }}"
+      dest: '{{ nginx_module_link }}'
     - src: "{{ nginx_src_directory + '/nginx-' + nginx_version + '/objs/ngx_http_brotli_static_module.so' }}"
-      dest: "{{ nginx_module_link }}"
+      dest: '{{ nginx_module_link }}'
   when: clone_brotli.changed or nginx_archive.changed

@@ -1,31 +1,31 @@
 ---
 - name: Setup VMware Workstation facts
   set_fact:
-    workstation_extra_packages: "{{ os_workstation_extra_packages }}"
+    workstation_extra_packages: '{{ os_workstation_extra_packages }}'
   when:
     - workstation_extra_packages is undefined
     - os_workstation_extra_packages is defined
 
 - name: Create temporary directory
   file:
-    path: "{{ workstation_tempdir }}"
+    path: '{{ workstation_tempdir }}'
     state: directory
     mode: 0755
 
 - name: Check for pre-downloaded binary
   stat:
-    path: "{{ workstation_tempdir }}/tryworkstation-linux-64.sh"
+    path: '{{ workstation_tempdir }}/tryworkstation-linux-64.sh'
   register: file_stats
 
 - name: Download workstation
   get_url:
-    url: "{{ workstation_download_url }}"
-    dest: "{{ workstation_tempdir }}/tryworkstation-linux-64.sh"
+    url: '{{ workstation_download_url }}'
+    dest: '{{ workstation_tempdir }}/tryworkstation-linux-64.sh'
   when: not file_stats.stat.exists
 
 - name: Mark script executable
   file:
-    path: "{{ workstation_tempdir }}/tryworkstation-linux-64.sh"
+    path: '{{ workstation_tempdir }}/tryworkstation-linux-64.sh'
     state: file
     mode: 0755
 
@@ -43,9 +43,9 @@
 - name: Install packages needed by VMWare Packer build
   become: true
   package:
-    name: "{{ item }}"
+    name: '{{ item }}'
     state: present
-  loop: "{{ workstation_extra_packages }}"
+  loop: '{{ workstation_extra_packages }}'
   when: workstation_extra_packages is defined
 
 - name: Stat for systemd
@@ -55,7 +55,7 @@
 
 - name: Install systemd services
   copy:
-    src: "{{ item }}"
+    src: '{{ item }}'
     dest: /etc/systemd/system/
     owner: root
     group: root
@@ -69,25 +69,25 @@
 
 - name: Clone Unlocker (for running Mac OS X on VMWare)
   git:
-    depth: "1"
-    dest: "{{ unlocker_temp_dir }}"
+    depth: '1'
+    dest: '{{ unlocker_temp_dir }}'
     force: true
-    repo: "{{ unlocker_git }}"
+    repo: '{{ unlocker_git }}'
     version: master
 
 - name: Update python to python3 in lnx-install.sh
   lineinfile:
-    path: "{{ unlocker_temp_dir }}/lnx-install.sh"
-    regex: "python gettools.py"
+    path: '{{ unlocker_temp_dir }}/lnx-install.sh'
+    regex: 'python gettools.py'
     line: python3 gettools.py
 
 - name: Patch VMWare for Mac OS X
   command: bash lnx-install.sh
   args:
-    chdir: "{{ unlocker_temp_dir }}"
+    chdir: '{{ unlocker_temp_dir }}'
     creates: /usr/lib/vmware/isoimages/darwin.iso
 
 - name: Remove the temporary Unlocker directory
   file:
-    path: "{{ unlocker_temp_dir }}"
+    path: '{{ unlocker_temp_dir }}'
     state: absent

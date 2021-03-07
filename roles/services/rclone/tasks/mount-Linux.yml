@@ -7,7 +7,7 @@
   become_user: root
   template:
     src: rclone.service.j2
-    dest: "{{ service_path }}/{{ mount.provider }}-rclone.service"
+    dest: '{{ service_path }}/{{ mount.provider }}-rclone.service'
     owner: root
     group: root
     mode: 0644
@@ -17,7 +17,7 @@
   become: true
   become_user: root
   systemd:
-    name: "{{ mount.provider }}-rclone.service"
+    name: '{{ mount.provider }}-rclone.service'
     state: started
     enabled: true
   when: ansible_system == "Linux"

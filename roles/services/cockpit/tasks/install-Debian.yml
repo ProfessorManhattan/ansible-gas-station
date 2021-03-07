@@ -15,7 +15,7 @@
 
 - name: Install Cockpit Docker
   apt:
-    deb: "{{ cockpit_docker_deb_url }}"
+    deb: '{{ cockpit_docker_deb_url }}'
 
 - name: Install Cockpit 389 DS
   apt:
@@ -28,11 +28,11 @@
 - name: Add Cockpit machine profiles
   template:
     src: cockpit-machine.json.j2
-    dest: "{{ cockpit_machines_path }}/{{ item.name }}.json"
+    dest: '{{ cockpit_machines_path }}/{{ item.name }}.json'
     owner: root
     group: root
     mode: 0644
-  loop: "{{ cockpit_instances }}"
+  loop: '{{ cockpit_instances }}'
   when: cockpit_instances is defined
 
 - name: Add libvirt user to libvirtdbus group

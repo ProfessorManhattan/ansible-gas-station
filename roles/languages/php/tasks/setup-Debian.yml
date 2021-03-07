@@ -6,7 +6,7 @@
 
 - name: Ensure PHP packages are installed
   apt:
-    name: "{{ php_packages + php_packages_extra }}"
+    name: '{{ php_packages + php_packages_extra }}'
     state: present
     install_recommends: true
   register: php_package_install
@@ -14,9 +14,9 @@
 
 - name: Delete APCu configuration file if this role will provide one
   file:
-    path: "{{ item }}/{{ php_apc_conf_filename }}"
+    path: '{{ item }}/{{ php_apc_conf_filename }}'
     state: absent
-  loop: "{{ php_extension_conf_paths }}"
+  loop: '{{ php_extension_conf_paths }}'
   when:
     - php_enable_apc
     - php_package_install.changed
@@ -24,9 +24,9 @@
 
 - name: Delete OpCache configuration file if this role will provide one
   file:
-    path: "{{ item }}/{{ php_opcache_conf_filename }}"
+    path: '{{ item }}/{{ php_opcache_conf_filename }}'
     state: absent
-  loop: "{{ php_extension_conf_paths }}"
+  loop: '{{ php_extension_conf_paths }}'
   when:
     - php_opcache_enable | bool
     - php_package_install.changed

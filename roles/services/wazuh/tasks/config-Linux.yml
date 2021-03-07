@@ -6,6 +6,6 @@
 
 - name: Enable communication with Wazuh manager
   lineinfile:
-    path: "{{ wazuh_conf_file }}"
+    path: '{{ wazuh_conf_file }}'
     regex: "\\<address\\>"
-    line: "      <address>{{ wazuh_manager_ip }}</address>"
+    line: '      <address>{{ wazuh_manager_ip }}</address>'

@@ -1,8 +1,8 @@
 ---
-- name: "Ensure {{ app_name }} tools are installed"
+- name: 'Ensure {{ app_name }} tools are installed'
   become: false
   community.general.homebrew:
-    name: "{{ item }}"
+    name: '{{ item }}'
     state: present
   loop:
     - helm
@@ -10,13 +10,13 @@
     - kompose
     - kubectl
 
-- name: "Ensure Minikube is installed"
+- name: 'Ensure Minikube is installed'
   become: false
   community.general.homebrew:
     name: minikube
     state: present
   register: minikube_install
 
-- name: "Ensure Minikube driver is configured" # noqa 503
-  command: "minikube config set driver {{ kubernetes_mac_driver }}"
+- name: 'Ensure Minikube driver is configured' # noqa 503
+  command: 'minikube config set driver {{ kubernetes_mac_driver }}'
   when: minikube_install.changed

@@ -34,7 +34,7 @@ galaxy_info:
   galaxy_tags:
     - nodejs
     - nvm
-    - "n"
+    - 'n'
     - version
     - manager
 

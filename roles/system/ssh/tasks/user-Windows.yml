@@ -1,14 +1,14 @@
 ---
 - name: Ensure .ssh folder exists
   ansible.windows.win_file:
-    path: "{{ ssh_folder }}"
+    path: '{{ ssh_folder }}'
     state: directory
 
 - name: Copy SSH private keys
   ansible.windows.win_copy:
-    src: "{{ item }}"
+    src: '{{ item }}'
     dest: "{{ ssh_folder }}\\{{ item }}"
-  loop: "{{ user.keys }}"
+  loop: '{{ user.keys }}'
 
 - name: Copy SSH known hosts
   ansible.windows.win_copy:
@@ -25,4 +25,4 @@
     Cmd /c Icacls {{ ssh_folder }}\\{{ item }} /c /t /Inheritance:d
     Cmd /c Icacls {{ ssh_folder }}\\{{ item }} /c /t /Grant %UserName%:F
     Cmd /c Icacls {{ ssh_folder }}\\{{ item }} /c /t /Remove Administrator BUILTIN\Administrators BUILTIN Everyone System Users
-  loop: "{{ user.keys }}"
+  loop: '{{ user.keys }}'

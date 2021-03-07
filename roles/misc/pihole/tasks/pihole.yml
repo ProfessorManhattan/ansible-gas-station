@@ -25,13 +25,13 @@
 
 - name: Determine whether PiHole is installed or not
   set_fact:
-    pihole_installed: "{{ pihole_binary.stat.exists | default(false) }}"
+    pihole_installed: '{{ pihole_binary.stat.exists | default(false) }}'
 
 - name: Download PiHole installation script
   get_url:
     dest: /tmp/pihole-install.sh
     mode: u+rw
-    url: "{{ pihole_install_url }}"
+    url: '{{ pihole_install_url }}'
   when: not pihole_installed
 
 - name: Run the PiHole installation script

@@ -2,7 +2,7 @@
 - name: Ensure Megabyte Labs configuration directory exists
   file:
     mode: 0700
-    path: "{{ item }}"
+    path: '{{ item }}'
     state: directory
   loop:
     - ~/.config
@@ -26,19 +26,19 @@
     install_plymouth_theme: "{{ (current_plymouth_theme.stdout | default('no_theme')) != plymouth_theme }}"
 
 - debug:
-    msg: "{{ install_plymouth_theme }}"
+    msg: '{{ install_plymouth_theme }}'
 
 - name: Copy and unarchive the Plymouth theme
   unarchive:
-    src: "files/plymouth-themes/{{ plymouth_theme }}.tar.gz"
-    dest: "{{ plymouth_themes_dir }}"
+    src: 'files/plymouth-themes/{{ plymouth_theme }}.tar.gz'
+    dest: '{{ plymouth_themes_dir }}'
   when: install_plymouth_theme
 
 - name: Register the Plymouth theme
   alternatives:
     name: default.plymouth
-    link: "{{ plymouth_themes_dir }}/default.plymouth"
-    path: "{{ plymouth_themes_dir }}/{{ plymouth_theme }}/{{ plymouth_theme }}.plymouth"
+    link: '{{ plymouth_themes_dir }}/default.plymouth'
+    path: '{{ plymouth_themes_dir }}/{{ plymouth_theme }}/{{ plymouth_theme }}.plymouth'
     priority: 100
   when: install_plymouth_theme
 

@@ -8,17 +8,17 @@
 
 - name: "Add {{ app_name }}'s apt key"
   apt_key:
-    url: "{{ wazuh_apt_key_url }}"
+    url: '{{ wazuh_apt_key_url }}'
     state: present
 
 - name: "Add {{ app_name }}'s apt repository"
   apt_repository:
     filename: "{{ app_name | lower | replace(' ', '-') }}"
-    repo: "{{ wazuh_apt_repository }}"
+    repo: '{{ wazuh_apt_repository }}'
     state: present
     update_cache: true
 
-- name: "Ensure {{ app_name }} is installed"
+- name: 'Ensure {{ app_name }} is installed'
   apt:
     name: "{% if wazuh_version %}{{ 'wazuh-agent=' + wazuh_version }}{% else %}wazuh-agent{% endif %}"
     state: "{{ app_state | default('present') }}"

@@ -1,7 +1,7 @@
 ---
-- name: "Ensure VMware Fusion is installed"
+- name: 'Ensure VMware Fusion is installed'
   become: false
   community.general.homebrew_cask:
     name: vmware-fusion
     state: "{{ app_state | default('present') }}"
-    sudo_password: "{{ ansible_password }}"
+    sudo_password: '{{ ansible_password }}'

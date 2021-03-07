@@ -1,18 +1,18 @@
 ---
 - name: Ensure git-secret's dependencies are installed
   community.general.pacman:
-    name: "{{ git_secret_dependencies }}"
+    name: '{{ git_secret_dependencies }}'
     state: present
     update_cache: true
 
 - name: Ensure the latest git-secret repository is cloned and up-to-date
   ansible.builtin.git:
-    dest: "{{ git_secret_src_dir }}"
-    repo: "{{ git_secret_repo }}"
+    dest: '{{ git_secret_src_dir }}'
+    repo: '{{ git_secret_repo }}'
   register: git_secret_src
 
 - name: Ensure git-secret is installed with latest code # noqa 503
   command: makepkg -sic --noconfirm
   args:
-    chdir: "{{ git_secret_src_dir }}"
+    chdir: '{{ git_secret_src_dir }}'
   when: git_secret_src.changed

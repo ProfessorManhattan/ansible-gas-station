@@ -2,7 +2,7 @@
 - name: Add youtube-dl apt repository
   apt_repository:
     filename: youtubedl
-    repo: "{{ youtube_dl_apt_repository }}"
+    repo: '{{ youtube_dl_apt_repository }}'
     state: present
     update_cache: true
 

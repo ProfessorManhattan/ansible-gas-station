@@ -1,7 +1,7 @@
 ---
 - name: Delete unnecessary folders
   win_file:
-    path: "{{ item }}"
+    path: '{{ item }}'
     state: absent
   loop:
     - C:\PerfLogs

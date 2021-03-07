@@ -9,17 +9,17 @@
     append: true
     groups:
       - sambausers
-    name: "{{ user.username }}"
-  loop: "{{ user_configs }}"
+    name: '{{ user.username }}'
+  loop: '{{ user_configs }}'
   loop_control:
-    label: "{{ user.username }}"
+    label: '{{ user.username }}'
     loop_var: user
   when: user.samba_user | default(false)
 
 - name: Configure Samba file/printer sharing
   blockinfile:
-    path: "{{ samba_config }}"
-    marker: "# {mark} ANSIBLE MANAGED BLOCK FOR PRINTER/FILE SHARING"
+    path: '{{ samba_config }}'
+    marker: '# {mark} ANSIBLE MANAGED BLOCK FOR PRINTER/FILE SHARING'
     block: |
       [global]
         allow hosts = {{ samba_allowed_hosts }}

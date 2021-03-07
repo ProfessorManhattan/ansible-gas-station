@@ -1,13 +1,13 @@
 ---
-- name: "Ensure pip is installed"
+- name: 'Ensure pip is installed'
   community.general.homebrew:
-    name: "{{ python_package }}"
+    name: '{{ python_package }}'
     state: present
   when: ansible_system == 'Darwin'
 
-- name: "Ensure pip is installed"
+- name: 'Ensure pip is installed'
   package:
-    name: "{{ pip_package }}"
+    name: '{{ pip_package }}'
     state: present
   when: ansible_system == 'Linux'
 
@@ -16,7 +16,7 @@
     name: docker
     state: present
 
-- name: "Ensure {{ app_name }} container image is pulled"
+- name: 'Ensure {{ app_name }} container image is pulled'
   community.general.docker_image:
     name: netdata/netdata
     source: pull
@@ -33,7 +33,7 @@
     dest: /opt/netdata
     mode: 0755
 
-- name: "Ensure {{ app_name }} docker container is running"
+- name: 'Ensure {{ app_name }} docker container is running'
   community.general.docker_compose:
     project_src: /opt/netdata
     state: present
@@ -41,7 +41,7 @@
 - name: Ensure Megabyte Labs configuration directory exists
   file:
     mode: 0700
-    path: "{{ item }}"
+    path: '{{ item }}'
     state: directory
   loop:
     - ~/.config
@@ -61,7 +61,7 @@
     - netdata_token is defined
 
 - name: Add instance to netdata cloud
-  command: "docker exec -t netdata netdata-claim.sh -token={{ netdata_token }} -rooms={{ netdata_room }} -url={{ netdata_claim_url }}"
+  command: 'docker exec -t netdata netdata-claim.sh -token={{ netdata_token }} -rooms={{ netdata_room }} -url={{ netdata_claim_url }}'
   args:
     creates: ~/.config/megabytelabs/netdata-claimed
   ignore_errors: true

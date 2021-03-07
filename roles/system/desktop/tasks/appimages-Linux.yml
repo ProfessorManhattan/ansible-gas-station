@@ -1,16 +1,16 @@
 ---
 - name: Clone AppImages from repository
   git:
-    repo: "{{ app_images_repository }}"
+    repo: '{{ app_images_repository }}'
     dest: ~/Applications
-    depth: "1"
+    depth: '1'
     force: true
     version: master
 
 - name: Make Applications executable # TODO: This is being marked as changed even after the initial run
   file:
     path: ~/Applications
-    owner: "{{ user.username }}"
-    group: "{{ user.group | default(user.username) }}"
+    owner: '{{ user.username }}'
+    group: '{{ user.group | default(user.username) }}'
     mode: 0700
     recurse: true

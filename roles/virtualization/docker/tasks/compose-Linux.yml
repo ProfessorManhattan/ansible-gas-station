@@ -8,7 +8,7 @@
       failed_when: false
     - name: Delete existing docker-compose version if it's different.
       file:
-        path: "{{ docker_compose_path }}"
+        path: '{{ docker_compose_path }}'
         state: absent
       when:
         - docker_compose_current_version.stdout is defined
@@ -17,7 +17,7 @@
       become: true
       get_url:
         url: https://github.com/docker/compose/releases/download/{{ docker_compose_version }}/docker-compose-Linux-x86_64
-        dest: "{{ docker_compose_path }}"
+        dest: '{{ docker_compose_path }}'
         mode: 0755
   when: ansible_architecture == 'x86_64'
 

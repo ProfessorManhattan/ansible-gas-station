@@ -1,5 +1,5 @@
 ---
-- name: "Ensure {{ app_name }} is installed"
+- name: 'Ensure {{ app_name }} is installed'
   chocolatey.chocolatey.win_chocolatey:
     name: kodi
     state: "{{ app_state | default('present') }}"
@@ -12,10 +12,10 @@
     - kodi_mysql_ishost
     - not kodi_mysql_docker
 
-- name: "Firewall rule to allow MySQL TCP port {{ kodi_mysql_port }}"
+- name: 'Firewall rule to allow MySQL TCP port {{ kodi_mysql_port }}'
   community.windows.win_firewall_rule:
     name: MySQL
-    localport: "{{ kodi_mysql_port }}"
+    localport: '{{ kodi_mysql_port }}'
     action: allow
     direction: in
     protocol: tcp
@@ -38,28 +38,28 @@
     path: '%MYSQL_HOME%\my.cnf'
     backup: true
     regexp: "^port = \\d*"
-    replace: "port = {{ kodi_mysql_port }}"
+    replace: 'port = {{ kodi_mysql_port }}'
   when:
     - kodi_mysql_ishost
     - not kodi_mysql_docker
 
 - name: Ensure '%APPDATA%\Kodi\userdata\' directory exists
-  become_user: "{{ user.username }}"
+  become_user: '{{ user.username }}'
   ansible.windows.win_file:
-    path: "{{ item }}"
+    path: '{{ item }}'
     state: directory
-    owner: "{{ user.username }}"
+    owner: '{{ user.username }}'
     mode: 0755
   with_items:
-    - "{{ kodi_conf_dir }}"
+    - '{{ kodi_conf_dir }}'
     - "{{ kodi_conf_dir }}\\userdata\\"
 
 - name: Create configuration files
-  become_user: "{{ user.username }}"
+  become_user: '{{ user.username }}'
   ansible.windows.win_template:
-    src: "{{ item }}.j2"
+    src: '{{ item }}.j2'
     dest: "{{ kodi_conf_dir }}\\userdata\\{{ item }}"
-    owner: "{{ user.username }}"
+    owner: '{{ user.username }}'
     mode: 0755
   with_items:
     - sources.xml
@@ -74,7 +74,7 @@
 - name: Execute Texture Cache Maintenance Utility
   ansible.windows.win_command: ./texturecache.py c
   args:
-    chdir: "{{ kodi_conf_dir }}"
+    chdir: '{{ kodi_conf_dir }}'
   when: refresh_texture_cache
 
 - name: Ensure directory to save the docker-compose.yml file exists

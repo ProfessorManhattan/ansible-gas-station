@@ -1,5 +1,5 @@
 ---
-- name: "Ensure {{ app_name }} is installed"
+- name: 'Ensure {{ app_name }} is installed'
   chocolatey.chocolatey.win_chocolatey:
     name: windows-admin-center
     state: "{{ app_state | default('present') }}"
@@ -15,4 +15,4 @@
     Import-Module "$env:ProgramFiles\windows admin center\PowerShell\Modules\ExtensionTools"
     Install-Extension -GatewayEndpoint "{{ gateway_url }}" "{{ item }}" -Feed "{{ feed_url }}"
   when: import_extensions
-  loop: "{{ wac_extensions }}"
+  loop: '{{ wac_extensions }}'

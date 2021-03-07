@@ -1,6 +1,6 @@
 ---
 - name: Include variables based on the operating system
-  include_vars: "{{ ansible_os_family }}.yml"
+  include_vars: '{{ ansible_os_family }}.yml'
 
 - name: Find the latest version of Vagrant VMware Utility from the release page
   uri:
@@ -25,10 +25,10 @@
 - name: Include tasks based on the operating system
   become: true
   block:
-    - include_tasks: "install-{{ ansible_os_family }}.yml"
+    - include_tasks: 'install-{{ ansible_os_family }}.yml'
 
-- name: "Ensure user-specified {{ app_name }} plugins are installed" # noqa 301
-  command: "vagrant plugin install {{ plugin }}"
-  loop: "{{ vagrant_plugins }}"
+- name: 'Ensure user-specified {{ app_name }} plugins are installed' # noqa 301
+  command: 'vagrant plugin install {{ plugin }}'
+  loop: '{{ vagrant_plugins }}'
   loop_control:
     loop_var: plugin

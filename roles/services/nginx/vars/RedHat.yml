@@ -1,7 +1,7 @@
 ---
 # Amplify
 amplify_rpm_key: https://nginx.org/keys/nginx_signing.key
-amplify_baseurl: "http://packages.amplify.nginx.com/centos/7/$basearch"
+amplify_baseurl: 'http://packages.amplify.nginx.com/centos/7/$basearch'
 
 # Brotli
 brotli_dependencies:

@@ -1,25 +1,25 @@
 ---
 - name: "Ensure {{ app_name }}'s dependencies are installed"
   community.general.pacman:
-    name: "{{ wazuh_dependencies }}"
+    name: '{{ wazuh_dependencies }}'
     state: present
     update_cache: true
 
 - name: Ensure Megabyte Labs configuration directory exists
   file:
     mode: 0700
-    path: "{{ item }}"
+    path: '{{ item }}'
     state: directory
   loop:
     - ~/.config
     - ~/.config/megabytelabs
 
-- name: "Check if {{ app_name }} has configuration stored in ~/.config/megabytelabs/wazuh"
+- name: 'Check if {{ app_name }} has configuration stored in ~/.config/megabytelabs/wazuh'
   stat:
-    path: "~/.config/megabytelabs/wazuh"
+    path: '~/.config/megabytelabs/wazuh'
   register: wazuh_config
 
-- name: "Detect previously installed {{ app_name }} version"
+- name: 'Detect previously installed {{ app_name }} version'
   command: cat wazuh
   args:
     chdir: ~/.config/megabytelabs
@@ -27,12 +27,12 @@
   register: current_wazuh_version
   when: wazuh_config.stat.exists
 
-- name: "Detect the latest {{ app_name }} version"
+- name: 'Detect the latest {{ app_name }} version'
   uri:
     url: https://api.github.com/repos/wazuh/wazuh/releases/latest
   register: wazuh_latest_release_tag
 
-- name: "Determine whether or not the latest version of {{ app_name }} is already installed"
+- name: 'Determine whether or not the latest version of {{ app_name }} is already installed'
   set_fact:
     install_wazuh: "{{ (current_wazuh_version.skipped) or \
       ((not current_wazuh_version.skipped) and (current_wazuh_version.stdout != wazuh_latest_release_tag.json.tag_name | replace('v','')) }}"
@@ -40,19 +40,19 @@
 - name: "Ensure {{ app_name }}'s source directory is present"
   ansible.builtin.file:
     mode: 0755
-    path: "{{ wazuh_src_dir }}"
+    path: '{{ wazuh_src_dir }}'
     state: directory
 
-- name: "Ensure older version of {{ app_name }} is uninstalled"
+- name: 'Ensure older version of {{ app_name }} is uninstalled'
   file:
-    path: "{{ wazuh_src_dir }}"
+    path: '{{ wazuh_src_dir }}'
     state: absent
   when: install_wazuh
 
 - name: "Ensure {{ app_name }}'s source is cloned and up-to-date"
   unarchive:
     url: "{{ 'https://github.com/wazuh/wazuh/archive/' + wazuh_latest_release_tag.json.tag_name + '.tar.gz' }}"
-    dest: "{{ wazuh_src_dir }}"
+    dest: '{{ wazuh_src_dir }}'
     mode: 0755
     remote_src: true
   when: install_wazuh
@@ -71,13 +71,13 @@
       USER_ENABLE_ACTIVE_RESPONSE="y"
   when: install_wazuh
 
-- name: "Ensure {{ app_name }} is installed" # noqa 301 # TODO: Find and add `creates` and remove noqa
+- name: 'Ensure {{ app_name }} is installed' # noqa 301 # TODO: Find and add `creates` and remove noqa
   command: ./install.sh
   args:
-    chdir: "{{ wazuh_src_dir }}"
+    chdir: '{{ wazuh_src_dir }}'
   when: install_wazuh
 
-- name: "Save meta information about the version of {{ app_name }} that was installed"
+- name: 'Save meta information about the version of {{ app_name }} that was installed'
   copy:
     dest: ~/.config/megabytelabs/wazuh
     mode: 0600

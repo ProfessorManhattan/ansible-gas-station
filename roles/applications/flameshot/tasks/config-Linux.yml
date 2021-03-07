@@ -1,16 +1,16 @@
 ---
 - name: Detect presence of the user home directory
   stat:
-    path: "/home/{{ user.username }}"
+    path: '/home/{{ user.username }}'
   register: user_home_directory
 
 - name: Ensure Flameshot configuration folder exists
   become: true
-  become_user: "{{ user.username }}"
+  become_user: '{{ user.username }}'
   file:
-    path: "{{ item }}"
-    owner: "{{ user.username }}"
-    group: "{{ user.group | default(user.username) }}"
+    path: '{{ item }}'
+    owner: '{{ user.username }}'
+    group: '{{ user.group | default(user.username) }}'
     mode: 0700
     state: directory
   loop:
@@ -20,11 +20,11 @@
 
 - name: Copy Flameshot configuration
   become: true
-  become_user: "{{ user.username }}"
+  become_user: '{{ user.username }}'
   template:
     src: flameshot.ini.j2
     dest: ~/.config/Dharkael/flameshot.ini
-    owner: "{{ user.username }}"
-    group: "{{ user.group | default(user.username) }}"
+    owner: '{{ user.username }}'
+    group: '{{ user.group | default(user.username) }}'
     mode: 0664
   when: user_home_directory.stat.exists

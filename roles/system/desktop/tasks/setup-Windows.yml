@@ -1,7 +1,7 @@
 ---
 - name: Install custom desktop Chocolatey software
   chocolatey.chocolatey.win_chocolatey:
-    name: "{{ windows_desktop_choco_packages }}"
+    name: '{{ windows_desktop_choco_packages }}'
     state: present
 
 - name: Check if Logitech has a start menu shortcut
@@ -33,7 +33,7 @@
 
 - name: Hide the dotfiles in user directory
   win_command: "attrib +h $env:USERPROFILE\\{{ item }}"
-  loop: "{{ windows_user_files_hidden }}"
+  loop: '{{ windows_user_files_hidden }}'
 
 - name: Remove "source" directory from user folder
   win_file:

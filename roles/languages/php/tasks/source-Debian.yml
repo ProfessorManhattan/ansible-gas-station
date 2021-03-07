@@ -1,7 +1,7 @@
 ---
 - name: Ensure dependencies for building from source are installed
   apt:
-    name: "{{ debian_source_deps }}"
+    name: '{{ debian_source_deps }}'
     state: present
     update_cache: true
 

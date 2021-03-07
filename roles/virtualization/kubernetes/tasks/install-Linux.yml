@@ -1,8 +1,8 @@
 ---
-- name: "Ensure {{ app_name }} tools are installed"
+- name: 'Ensure {{ app_name }} tools are installed'
   snap:
-    classic: "{{ item.classic | default(false) }}"
-    name: "{{ item.name | default(item) }}"
+    classic: '{{ item.classic | default(false) }}'
+    name: '{{ item.name | default(item) }}'
     state: present
   loop:
     - name: kubectl
@@ -12,21 +12,21 @@
     - name: kompose
       classic: false
 
-- name: "Ensure Megabyte Labs configuration directory exists"
+- name: 'Ensure Megabyte Labs configuration directory exists'
   file:
     mode: 0700
-    path: "{{ item }}"
+    path: '{{ item }}'
     state: directory
   loop:
     - ~/.config
     - ~/.config/megabytelabs
 
-- name: "Check if Minikube has configuration stored in /root/.config/megabytelabs/minikube"
+- name: 'Check if Minikube has configuration stored in /root/.config/megabytelabs/minikube'
   stat:
     path: ~/.config/megabytelabs/minikube
   register: minikube_config
 
-- name: "Detect previously installed Minikube version"
+- name: 'Detect previously installed Minikube version'
   command: cat minikube
   args:
     chdir: ~/.config/megabytelabs
@@ -34,41 +34,41 @@
   register: current_minikube_version
   when: minikube_config.stat.exists
 
-- name: "Detect the latest Minikube version"
+- name: 'Detect the latest Minikube version'
   uri:
     url: https://api.github.com/repos/kubernetes/minikube/releases/latest
   register: minikube_latest_release_tag
 
-- name: "Determine whether or not the latest version of Minikube is already installed"
+- name: 'Determine whether or not the latest version of Minikube is already installed'
   set_fact:
     install_minikube: "{{ (current_minikube_version.skipped | default(false)) or \
       ((not (current_minikube_version.skipped | default(false))) and \
       (current_minikube_version.stdout != minikube_latest_release_tag.json.tag_name | replace('v',''))) }}"
 
-- name: "Ensure existing Minikube version is uninstalled"
+- name: 'Ensure existing Minikube version is uninstalled'
   file:
     path: /usr/local/bin/minikube
     state: absent
   when: install_minikube
 
-- name: "Acquire the latest Minikube release"
+- name: 'Acquire the latest Minikube release'
   get_url:
-    url: "{{ minikube_url }}"
-    dest: "{{ minikube_folder }}"
+    url: '{{ minikube_url }}'
+    dest: '{{ minikube_folder }}'
   when: install_minikube
 
-- name: "Ensure Minikube is installed"
+- name: 'Ensure Minikube is installed'
   command: install minikube /usr/local/bin/minikube
   args:
     chdir: /usr/local/src
     creates: /usr/local/bin/minikube
   when: install_minikube
 
-- name: "Ensure Minikube driver is configured"
-  command: "minikube config set driver {{ kubernetes_linux_driver }}"
+- name: 'Ensure Minikube driver is configured'
+  command: 'minikube config set driver {{ kubernetes_linux_driver }}'
   when: install_minikube
 
-- name: "Save meta information about the version of Minikube that was installed"
+- name: 'Save meta information about the version of Minikube that was installed'
   copy:
     dest: ~/.config/megabytelabs/minikube
     mode: 0600
