@@ -62,7 +62,6 @@ You are welcome to add your ideas to the TODO list. In fact, you are encouraged.
 - Kubernetes
 - Minio
 - Home Assistant
-- nmap
 - [watch](https://osxdaily.com/2010/08/22/install-watch-command-on-os-x/)
 - Resilio sync
 
@@ -75,20 +74,3 @@ You are welcome to add your ideas to the TODO list. In fact, you are encouraged.
 
 - Ubuntu NetworkManager VPN plugin for WireGuard (currently compiling it from source)
 - WireGuard for pfSense
-
-## ERRORS
-
-Wireshark already installed on Mac OS X:
-
-```
-TASK [roles/applications/wireshark : Include variables based on the operating system] **********************************************************
-ok: [workstation]
-
-TASK [roles/applications/wireshark : include_tasks] ********************************************************************************************
-included: /Users/bzalewski/Playbooks/roles/applications/wireshark/tasks/install-Darwin.yml for workstation
-
-TASK [roles/applications/wireshark : Ensure Wireshark is installed] ****************************************************************************
-fatal: [workstation]: FAILED! => {"changed": false, "msg": "Error: It seems there is already a Binary at '/usr/local/bin/editcap'."}
-[WARNING]: Failure using method (v2_runner_on_failed) in callback plugin
-(<ansible_collections.community.general.plugins.callback.mail.CallbackModule object at 0x10f158bb0>): [Errno 61] Connection refused
-```
