@@ -1,8 +1,20 @@
 ---
+# @var do_api_token: {{ digitalocean_personal_access_token }}
+# Variable for adding the DigitalOcean API Personal Access Token
 do_api_token: "{{ digitalocean_personal_access_token }}"
 
+# @var do_wait_timeout: 240
+# Variable for setting the timeout for the wait for DigitalOcean's response
 do_wait_timeout: 240
 
+# @var admin_username: megabyte
+# Variable for setting the admin username for the DigitalOcean server
 admin_username: megabyte
+
+# @var ssh_authorized_key_file: files/ssh/id_rsa_do.pub
+# Variable for setting the location for the SSH authorized key file for the servers
 ssh_authorized_key_file: files/ssh/id_rsa_do.pub
+
+# @var ssh_port: 22
+# Variable for setting the SSH port for the DO servers
 ssh_port: 22
