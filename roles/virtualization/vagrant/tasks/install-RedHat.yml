@@ -9,6 +9,7 @@
   yum:
     name: "{{ vagrant_vmware_utility_rpm_url }}"
     state: "{{ app_state | default('present') }}"
+    disable_gpg_check: true
   when: vagrant_vmware_support
 
 - name: Run generic Linux tasks
