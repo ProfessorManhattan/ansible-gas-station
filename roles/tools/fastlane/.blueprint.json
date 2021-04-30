@@ -1,0 +1,13 @@
+{
+    "compatibility": [
+      ["OS Family", "OS Version", "Status", "Idempotent"],
+      ["Fedora", "33", "❌", "❌"],
+      ["Ubuntu", "focal", "✅", "❌"]
+    ],
+    "role_dependencies": [],
+    "role_description": "An Ansible role that installs fastlane on nearly any platform",
+    "role_description_full_overview": "This repository contains an Ansible role that installs fastlane on nearly any platform. fastlane is the easiest way to automate beta deployments and releases for your iOS and Android apps. It handles all tedious tasks, like generating screenshots, dealing with code signing, and releasing your application",
+    "role_name": "fastlane",
+    "role_pretty_name": "fastlane",
+    "version": "0.0.1"
+  }
