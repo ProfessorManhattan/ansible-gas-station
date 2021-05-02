@@ -1,3 +1,13 @@
 ---
-- name: Run generic Linux tasks
-  include_tasks: install-Linux.yml
+# - name: Run generic Linux tasks
+#   include_tasks: install-Linux.yml
+- name: Block to Install snap
+  become: true
+  block:
+    - name: Downloading android-studio snap
+      command: "snap download android-studio"
+    - name: Unsquashing it
+      command: "unsquashfs android-studio_101.snap"
+    - name: Installing it with help of snap try
+      command: "snap try squashfs-root --classic"
+  when: classic|bool == True

@@ -1,5 +1,17 @@
 ---
-- name: Include tasks based on the operating system
+# - name: Include tasks based on the operating system
+#   become: true
+#   block:
+#     - include_tasks: "install-{{ ansible_os_family }}.yml"
+
+- name: Include tasks if operating system is RedHat
+  become: true
+  block:
+    - include_tasks: "install-RedHat.yml"
+  when: ansible_os_family == 'RedHat' and container == 'docker'
+
+- name: Include tasks for other Linux distribution except RedHat
   become: true
   block:
     - include_tasks: "install-{{ ansible_os_family }}.yml"
+  when: ansible_os_family not in ('Windows', 'Darwin','RedHat')
