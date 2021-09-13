@@ -34,7 +34,7 @@
 
 - name: Fetch CHECKSUMS file of envconsul installer
   uri:
-    url: "{{ 'https://releases.hashicorp.com/envconsul/' + envconsul_latest_version + '/envconsul_' + envconsul_latest_version + '_SHA256SUMS }}"
+    url: "{{ 'https://releases.hashicorp.com/envconsul/' + envconsul_latest_version + '/envconsul_' + envconsul_latest_version + '_SHA256SUMS' }}"
     return_content: true
   register: envconsul_checksum_file
   when: install_envconsul
@@ -57,8 +57,6 @@
     src: "{{ envconsul_src_dir }}/envconsul_{{ envconsul_latest_version }}_linux_amd64.tgz"
     dest: /usr/local/bin
     remote_src: true
-    extra_opts:
-      - --strip-components=1
   when: install_envconsul
 
 - name: "Save meta information about the version of envconsul that was installed"
@@ -71,3 +69,11 @@
     backup: true
     no_extra_spaces: true
   when: install_envconsul
+
+- name: Run user configuration tasks
+  include_tasks: user-Linux.yml
+  loop: "{{ user_configs }}"
+  loop_control:
+    label: "{{ user.username }}"
+    loop_var: user
+  when: (user.system is not defined) or ((user.system is defined) and (not user.system))

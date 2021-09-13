@@ -1,0 +1,26 @@
+---
+- name: Ensure envconsul config file is created
+  become_user: "{{ user.username }}"
+  template:
+    src: config.hcl.j2
+    dest: ~/.envconsul_config.hcl
+    mode: 0700
+    backup: true
+
+- name: Ensure envconsul command is added to .bashrc
+  become_user: "{{ user.username }}"
+  lineinfile:
+    path: ~/.bashrc
+    line: 'for tkn in $(envconsul -pristine -once -config=".envconsul_config.hcl" env); do export $tkn; done'
+    mode: 0700
+    create: true
+    backup: true
+
+- name: Ensure envconsul command is added to .zshrc
+  become_user: "{{ user.username }}"
+  lineinfile:
+    path: ~/.zshrc
+    line: 'for tkn in $(envconsul -pristine -once -config=".envconsul_config.hcl" env); do export $tkn; done'
+    mode: 0700
+    create: true
+    backup: true
