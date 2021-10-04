@@ -28,6 +28,14 @@ software_package:
     npm: dat@next
   dat-desktop:
     github: github.com/datproject/dat-desktop
+  delta:
+    brew: git-delta
+    cargo: git-delta
+    choco: git-delta
+    dnf: git-delta
+    github: github.com/dandavison/delta
+    pkg: git-delta
+    scoop: git-delta
   dive:
     brew: dive
     github: github.com/wagoodman/dive
@@ -38,8 +46,29 @@ software_package:
     dnf: desed # dnf package for Fedora
     github: github.com/SoptikHa2/desed # GitHub link - populate if the repository has releases
     pkg: desed # FreeBSD pkg name for future FreeBSD support
+  docker-slim:
+    brew: docker-slim
+    dnf: golang-github-docker-slim
+    github: github.com/docker-slim/docker-slim
+    yay: docker-slim
+  dockle:
+    brew: goodwithtech/r/dockle
+    github: github.com/goodwithtech/dockle
+    yay: dockle-bin
   envconsul:
     github: github.com/hashicorp/envconsul
+  glab:
+    apk: glab
+    brew: glab
+    github: github.com/profclems/glab
+    scoop: glab
+    snap: glab
+    yay: gitlab-glab-bin
+  gitleaks:
+    brew: gitleaks
+    github: github.com/zricethezav/gitleaks
+    pkg: gitleaks
+    yay: gitleaks
   glow:
     brew: glow
     github: github.com/charmbracelet/glow
@@ -71,6 +100,14 @@ software_package:
     apt: jo
     snap: jo
     github: github.com/jpmens/jo
+  jq:
+    brew: jq
+    choco: jq
+    apk: jq
+    apt: jq
+    dnf: jq
+    github: github.com/stedolan/jq
+    pkg: jq
   kdash:
     brew: kdash
     brew_tap: kdash-rs/kdash
@@ -79,6 +116,11 @@ software_package:
     github: github.com/kdash-rs/kdash
   linuxkit:
     github: github.com/linuxkit/linuxkit
+  mark-text:
+    brew: mark-text
+    choco: marktext
+    github: github.com/marktext/marktext
+    yay: marktext
   mc:
     brew: minio/stable/mc
     binary: https://dl.min.io/client/mc/release/linux-amd64/mc
@@ -86,6 +128,12 @@ software_package:
     go: github.com/minio/mc
   mjml-app:
     github: github.com/mjmlio/mjml-app
+  motrix:
+    brew: motrix
+    choco: motrix
+    github: github.com/agalwood/Motrix
+    scoop: motrix
+    yay: motrix-bin
   mkcert:
     brew: mkcert
     choco: mkcert
@@ -140,6 +188,34 @@ software_package:
     github: github.com/TimothyYe/skm
   ssl-proxy:
     github: github.com/suyashkumar/ssl-proxy
+  sysbench:
+    apk: sysbench
+    apt: sysbench
+    brew: sysbench
+    dnf: sysbench
+    pacman: sysbench
+    pkg: sysbench
+  task:
+    brew: go-task/tap/go-task
+    go: github.com/go-task/task/v3/cmd/task@latest
+    github: github.com/go-task/task
+    scoop: task
+    snap: task
+    yay: taskfile-git
+  teleport:
+    brew: teleport
+    pkg: teleport
+    yay: teleport-bin
+  trivy:
+    github: github.com/aquasecurity/trivy
+    yay: trivy-bin
   xurls:
     go: mvdan.cc/xurls/v2/cmd/xurls
     github: github.com/mvdan/xurls
+  yq:
+    brew: yq
+    choco: yq
+    apk: yq
+    github: github.com/stedolan/jq
+    go: github.com/mikefarah/yq/v4
+    snap: yq

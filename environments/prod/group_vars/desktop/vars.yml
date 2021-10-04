@@ -11,9 +11,14 @@ software:
   - ctop
   - dat
   - dat-desktop
+  - delta
   - desed
   - dive
+  - docker-slim
+  - dockle
   - envconsul
+  - glab
+  - gitleaks
   - glow
   - go-chromecast
   - grex
@@ -21,10 +26,13 @@ software:
   - hostctl
   - htmlq
   - jo
+  - jq
   - kdash # TODO - replace with k9s
   - linuxkit
+  - mark-text
   - mc
   - mkcert
+  - motrix
   - nomino
   - osquery
   - ots
@@ -37,7 +45,11 @@ software:
   - sd
   - skm
   - ssl-proxy
+  - sysbench
+  - task
+  - trivy
   - xurls
+  - yq
 
 chromium_extensions:
   - name: 30 Seconds of Knowledge
