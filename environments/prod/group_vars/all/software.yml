@@ -1,14 +1,31 @@
 ---
 software_package:
+  altair:
+    brew: altair-graphql-client
+    choco: altair-graphql
+    github: github.com/altair-graphql/altair
+    snap: altair
+    yay: altair
   askgit:
     brew: askgit
     brew_tap: askgitdev/askgit
     github: github.com/askgitdev/askgit
   betwixt:
     github: github.com/kdzwinel/betwixt
+  bitwarden:
+    brew: bitwarden
+    choco: bitwarden
+    github: github.com/bitwarden/desktop
+    snap: bitwarden
+    yay: bitwarden-git
   boilr:
     github: github.com/tmrts/boilr
     go: github.com/tmrts/boilr
+  cerebro:
+    brew: cerebro
+    choco: cerebro
+    github: github.com/cerebroapp/cerebro
+    yay: cerebro
   consul-cli:
     github: github.com/mantl/consul-cli
   croc:
@@ -57,6 +74,13 @@ software_package:
     yay: dockle-bin
   envconsul:
     github: github.com/hashicorp/envconsul
+  felony:
+    github: github.com/henryboldi/felony
+  g-assist:
+    github: github.com/Melvin-Abraham/Google-Assistant-Unofficial-Desktop-Client
+  ganache:
+    github: github.com/trufflesuite/ganache-ui
+    npm: ganache
   glab:
     apk: glab
     brew: glab
@@ -64,6 +88,10 @@ software_package:
     scoop: glab
     snap: glab
     yay: gitlab-glab-bin
+  gitify:
+    brew: gitify
+    github: github.com/manosim/gitify
+    yay: gitify-bin
   gitleaks:
     brew: gitleaks
     github: github.com/zricethezav/gitleaks
@@ -116,11 +144,17 @@ software_package:
     github: github.com/kdash-rs/kdash
   linuxkit:
     github: github.com/linuxkit/linuxkit
+  manta:
+    brew: manta
+    github: github.com/hql287/Manta
   mark-text:
     brew: mark-text
     choco: marktext
     github: github.com/marktext/marktext
     yay: marktext
+  masscode:
+    brew: masscode
+    github: github.com/antonreshetov/massCode
   mc:
     brew: minio/stable/mc
     binary: https://dl.min.io/client/mc/release/linux-amd64/mc
@@ -128,19 +162,35 @@ software_package:
     go: github.com/minio/mc
   mjml-app:
     github: github.com/mjmlio/mjml-app
+  mkcert:
+    brew: mkcert
+    choco: mkcert
+    github: github.com/FiloSottile/mkcert
+  mockoon:
+    brew: mockoon
+    choco: mockoon
+    github: github.com/mockoon/mockoon
+    snap: mockoon
+    yay: mockoon-bin
   motrix:
     brew: motrix
     choco: motrix
     github: github.com/agalwood/Motrix
     scoop: motrix
     yay: motrix-bin
-  mkcert:
-    brew: mkcert
-    choco: mkcert
-    github: github.com/FiloSottile/mkcert
+  mullvad-vpn:
+    brew: mullvadvpn
+    github: github.com/mullvad/mullvadvpn-app
+    yay: mullvad-vpn
   nomino:
     cargo: nomino
     github: github.com/yaa110/nomino
+  nuclear:
+    brew: nuclear
+    choco: nuclear
+    github: github.com/nukeop/nuclear
+    snap: nuclear
+    yay: nuclear-player-bin
   osquery:
     github: github.com/osquery/osquery
   ots:
@@ -174,6 +224,15 @@ software_package:
     cargo: rm-improved
     github: github.com/nivekuil/rip
     yay: rm-improved
+  scrcpy:
+    apt: scrcpy
+    brew: scrcpy
+    choco: scrcpy
+    dnf: scrcpy
+    github: github.com/Tomotoes/scrcpy-gui
+    pkg: scrcpy
+    snap: scrcpy
+    yay: scrcpy
   sd:
     apk: sd # Include information about apk releases for possible future Alpine support
     brew: sd # Brew package name
@@ -186,8 +245,14 @@ software_package:
   skm:
     go: github.com/TimothyYe/skm/cmd/skm
     github: github.com/TimothyYe/skm
+  sqlectron:
+    brew: sqlectron
+    github: github.com/sqlectron/sqlectron-gui
+    yay: sqlectron-gui
   ssl-proxy:
     github: github.com/suyashkumar/ssl-proxy
+  switchhosts:
+    github: github.com/oldj/SwitchHosts
   sysbench:
     apk: sysbench
     apt: sysbench
@@ -195,6 +260,10 @@ software_package:
     dnf: sysbench
     pacman: sysbench
     pkg: sysbench
+  tabby:
+    brew: tabby
+    choco: tabby
+    github: github.com/Eugeny/tabby
   task:
     brew: go-task/tap/go-task
     go: github.com/go-task/task/v3/cmd/task@latest
@@ -209,6 +278,13 @@ software_package:
   trivy:
     github: github.com/aquasecurity/trivy
     yay: trivy-bin
+  udemy-downloader-gui:
+    github: github.com/FaisalUmair/udemy-downloader-gui
+  webtorrent:
+    brew: webtorrent
+    choco: webtorrent-desktop
+    github: github.com/webtorrent/webtorrent-desktop
+    yay: webtorrent-desktop
   xurls:
     go: mvdan.cc/xurls/v2/cmd/xurls
     github: github.com/mvdan/xurls

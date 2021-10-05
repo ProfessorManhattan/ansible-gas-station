@@ -3,9 +3,12 @@
 add_known_hosts: true
 
 software:
+  - altair
   - askgit
   - betwixt
+  - bitwarden
   - boilr
+  - cerebro
   - consul-cli
   - croc
   - ctop
@@ -17,7 +20,11 @@ software:
   - docker-slim
   - dockle
   - envconsul
+  - felony
+  - g-assist
+  - ganache
   - glab
+  - gitify
   - gitleaks
   - glow
   - go-chromecast
@@ -29,10 +36,15 @@ software:
   - jq
   - kdash # TODO - replace with k9s
   - linuxkit
+  - manta
   - mark-text
+  - masscode
   - mc
   - mkcert
+  - mockoon
   - motrix
+  - mullvad-vpn
+  - nuclear
   - nomino
   - osquery
   - ots
@@ -42,12 +54,18 @@ software:
   - psu
   - q
   - rip
+  - scrcpy
   - sd
   - skm
+  - sqlectron
   - ssl-proxy
+  - switchhosts
   - sysbench
+  - tabby
   - task
   - trivy
+  - udemy-downloader-gui
+  - webtorrent
   - xurls
   - yq
 
