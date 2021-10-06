@@ -26,6 +26,9 @@ software_package:
     choco: cerebro
     github: github.com/cerebroapp/cerebro
     yay: cerebro
+  clair:
+    brew: clair
+    github: github.com/quay/clair
   consul-cli:
     github: github.com/mantl/consul-cli
   croc:
@@ -40,10 +43,14 @@ software_package:
     aur: ctop
     brew: ctop
     github: github.com/bcicen/ctop
+  cumulus:
+    brew: cumulus
+    github: github.com/gillesdemey/Cumulus
   dat:
     github: github.com/datproject/dat
     npm: dat@next
   dat-desktop:
+    brew: dat
     github: github.com/datproject/dat-desktop
   delta:
     brew: git-delta
@@ -63,6 +70,8 @@ software_package:
     dnf: desed # dnf package for Fedora
     github: github.com/SoptikHa2/desed # GitHub link - populate if the repository has releases
     pkg: desed # FreeBSD pkg name for future FreeBSD support
+  deta:
+    github: github.com/deta/deta-cli
   docker-slim:
     brew: docker-slim
     dnf: golang-github-docker-slim
@@ -72,10 +81,33 @@ software_package:
     brew: goodwithtech/r/dockle
     github: github.com/goodwithtech/dockle
     yay: dockle-bin
+  doctl:
+    brwe: doctl
+    github: github.com/digitalocean/doctl
+    pacman: doctl
+    pkg: doctl
+    snap: doctl
+  dog:
+    brew: dog
+    github: github.com/ogham/dog
+    pacman: dog
+    pkg: dog
+  dust:
+    apk: dust
+    github: github.com/bootandy/dust
+    pacman: dust
   envconsul:
     github: github.com/hashicorp/envconsul
   felony:
     github: github.com/henryboldi/felony
+  fselect:
+    brew: fselect
+    choco: fselect
+    cargo: fselect
+    github: github.com/jhspetersson/fselect
+    yay: fselect
+  fuego:
+    github: github.com/sgarciac/fuego
   g-assist:
     github: github.com/Melvin-Abraham/Google-Assistant-Unofficial-Desktop-Client
   ganache:
@@ -116,6 +148,9 @@ software_package:
   go-chromecast:
     github: github.com/vishen/go-chromecast
     go: github.com/vishen/go-chromecast
+  hclq:
+    github: github.com/mattolenik/hclq
+    go: github.com/mattolenik/hclq
   hostctl:
     brew: guumaster/tap/hostctl
     github: github.com/guumaster/hostctl
@@ -123,6 +158,21 @@ software_package:
   htmlq:
     cargo: htmlq
     github: github.com/mgdm/htmlq
+  hyperfine:
+    apk: hyperfine
+    brew: hyperfine
+    cargo: hyperfine
+    choco: hyperfine
+    dnf: hyperfine
+    github: github.com/sharkdp/hyperfine
+    pacman: hyperfine
+    pkg: hyperfine
+  jitsi-meet-electron:
+    brew: jisti-meet
+    choco: jitsi-meet-electron
+    github: github.com/jitsi/jitsi-meet-electron
+    pkg: jisti-meet
+    yay: jitsi-meet-desktop-bin
   jo:
     brew: jo
     apt: jo
@@ -142,6 +192,10 @@ software_package:
     cargo: kdash
     choco: kdash
     github: github.com/kdash-rs/kdash
+  kubenav:
+    brew: kubenav
+    github: github.com/kubenav/kubenav
+    yay: kubenav-bin
   linuxkit:
     github: github.com/linuxkit/linuxkit
   manta:
@@ -178,10 +232,27 @@ software_package:
     github: github.com/agalwood/Motrix
     scoop: motrix
     yay: motrix-bin
+  mqttx:
+    brew: mqttx
+    github: github.com/emqx/MQTTX
+    snap: mqttx
+    yay: mqttx-bin
+  muffet:
+    brew: muffet
+    github: github.com/raviqqe/muffet
+    go: github.com/raviqqe/muffet/v2
+    yay: muffet-bin
   mullvad-vpn:
     brew: mullvadvpn
     github: github.com/mullvad/mullvadvpn-app
     yay: mullvad-vpn
+  nnn:
+    apk: nnn
+    apt: nnn
+    brew: nnn
+    github: github.com/jarun/nnn
+    pacman: nnn
+    pkg: nnn
   nomino:
     cargo: nomino
     github: github.com/yaa110/nomino
@@ -205,6 +276,8 @@ software_package:
   pony:
     github: github.com/jessfraz/pony
     go: github.com/jessfraz/pony
+  pretzel:
+    github: github.com/amiechen/pretzel
   procs:
     snap: procs
     brew: procs
@@ -219,11 +292,21 @@ software_package:
   q:
     brew: q
     github: github.com/harelba/q
+  responsively:
+    brew: responsively
+    choco: responsively
+    github: github.com/responsively-org/responsively-app
   rip:
     brew: rm-improved
     cargo: rm-improved
     github: github.com/nivekuil/rip
     yay: rm-improved
+  runjs:
+    brew: runjs
+    choco: runjs
+    github: github.com/lukehaas/RunJS
+    snap: runjs
+    yay: runjs-bin
   scrcpy:
     apt: scrcpy
     brew: scrcpy
@@ -275,6 +358,17 @@ software_package:
     brew: teleport
     pkg: teleport
     yay: teleport-bin
+  temps:
+    github: github.com/jackd248/temps
+  tokei:
+    apk: tokei
+    brew: tokei
+    cargo: tokei
+    choco: tokei
+    dnf: tokei
+    github: github.com/XAMPPRocky/tokei
+    pacman: tokei
+    pkg: tokei
   trivy:
     github: github.com/aquasecurity/trivy
     yay: trivy-bin

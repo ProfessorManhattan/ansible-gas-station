@@ -12,15 +12,22 @@ software:
   - consul-cli
   - croc
   - ctop
+  - cumulus
   - dat
   - dat-desktop
   - delta
   - desed
+  - deta
   - dive
   - docker-slim
   - dockle
+  - doctl
+  - dog
+  - dust
   - envconsul
   - felony
+  - fselect
+  - fuego
   - g-assist
   - ganache
   - glab
@@ -30,11 +37,15 @@ software:
   - go-chromecast
   - grex
   - gron
+  - hclq
   - hostctl
   - htmlq
+  - hyperfine
+  - jitsi-meet-electron
   - jo
   - jq
   - kdash # TODO - replace with k9s
+  - kubenav
   - linuxkit
   - manta
   - mark-text
@@ -43,17 +54,23 @@ software:
   - mkcert
   - mockoon
   - motrix
+  - mqttx
+  - muffet
   - mullvad-vpn
-  - nuclear
+  - nnn
   - nomino
+  - nuclear
   - osquery
   - ots
   - pastel
   - pony
+  - pretzel
   - procs
   - psu
   - q
+  - responsively
   - rip
+  - runjs
   - scrcpy
   - sd
   - skm
@@ -63,6 +80,9 @@ software:
   - sysbench
   - tabby
   - task
+  - teleport
+  - temps
+  - tokei
   - trivy
   - udemy-downloader-gui
   - webtorrent
