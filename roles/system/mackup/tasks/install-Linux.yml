@@ -1,0 +1,13 @@
+---
+- name: "Ensure {{ app_name }} is installed"
+  pip:
+    name: mackup
+    extra_args: "--system"
+  when: ansible_system == 'Linux'
+
+- name: Run generic tasks
+  include_tasks: config-Linux.yml
+  loop: "{{ user_configs }}"
+  loop_control:
+    label: "{{ user.username }}"
+    loop_var: user

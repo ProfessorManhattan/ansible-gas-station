@@ -1,0 +1,12 @@
+---
+# @var software: []
+# List of software installed by the master Playbook. The configuration for
+# mackup depends on the software included in this list
+software: []
+# @end
+
+# @var storage_engine: ""
+# The storage engine that mackup should be configured with. Valid values are:
+# dropbox, google_drive, icloud, copy and file_system (default)
+storage_engine: file_system
+# @end

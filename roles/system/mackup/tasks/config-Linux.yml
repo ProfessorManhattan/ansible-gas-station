@@ -1,0 +1,12 @@
+---
+- name: Find supported applications # noqa 301
+  command: mackup list
+  register: mackup_list
+
+- name: Ensure ~/.mackup.cfg is configured
+  become_user: "{{ user.username }}"
+  template:
+    src: mackup.cfg.j2
+    dest: ~/.mackup.cfg
+    mode: 0700
+    backup: true

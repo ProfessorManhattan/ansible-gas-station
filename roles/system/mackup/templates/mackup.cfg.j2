@@ -1,0 +1,8 @@
+[storage]
+engine = {{ storage_engine }}
+directory = .config/mackup
+
+[applications_to_sync]
+{% for sf in software %}
+{% if sf in mackup_list.stdout_lines %}{{ sf }}{% endif %}
+{% endfor %}
