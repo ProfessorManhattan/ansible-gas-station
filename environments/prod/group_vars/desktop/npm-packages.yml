@@ -6,188 +6,188 @@ nodejs_npm_global_packages:
   - name: "@angular/cli"
 
   # @action NPM Packages # [@cloudflare/wrangler](https://npmjs.com/package/@cloudflare/wrangler)
-  # DESCRIPTION_HERE
+  # A CLI tool designed for people who are interested in using Cloudflare Workers capable of generating
   - name: "@cloudflare/wrangler"
 
   # @action NPM Packages # [@ionic/cli](https://npmjs.com/package/@ionic/cli)
-  # DESCRIPTION_HERE
+  # A CLI tool for developing [Ionic](https://ionicframework.com/) apps
   - name: "@ionic/cli"
 
   # @action NPM Packages # [@nestjs/cli](https://npmjs.com/package/@nestjs/cli)
-  #
+  # A command-line interface tool that helps you to initialize, develop, and maintain your Nest applications.  It assists in multiple ways, including scaffolding the project, serving it in development mode, and building and bundling the application for production distribution. It embodies best-practice architectural patterns to encourage well-structured apps
   - name: "@nestjs/cli"
 
   # @action NPM Packages # [@prettier/plugin-php](https://npmjs.com/package/@prettier/plugin-php)
-  #
+  # Prettier is an opinionated code formatter. It enforces a consistent style by parsing your code and re-printing it with its own rules that take the maximum line length into account, wrapping code when necessary. This plugin adds support for the PHP language to Prettier. The plugin is stable when pure PHP files are formatted
   - name: "@prettier/plugin-php"
 
   # @action NPM Packages # [@prettier/plugin-ruby](https://npmjs.com/package/@prettier/plugin-ruby)
-  #
+  # A Prettier plugin for the Ruby programming language and its ecosystem. This plugin supports multiple languages and integrates with most editors
   - name: "@prettier/plugin-ruby"
 
   # @action NPM Packages # [@prettier/plugin-xml](https://npmjs.com/package/@prettier/plugin-xml)
-  #
+  # A prettier plugin for XML
   - name: "@prettier/plugin-xml"
 
   # @action NPM Packages # [@sentry/cli](https://npmjs.com/package/@sentry/cli)
-  #
+  # A Sentry command-line client for some generic tasks. It is primarily used to upload debug symbols to Sentry if you are not using the fastlane tools
   - name: "@sentry/cli"
 
   # @action NPM Packages # [@vercel/ncc](https://npmjs.com/package/@vercel/ncc)
-  #
+  # A simple CLI for compiling a Node.js module into a single file, together with all its dependencies, gcc-style.
   - name: "@vercel/ncc"
 
   # @action NPM Packages # [add-gitignore](https://npmjs.com/package/add-gitignore)
-  #
+  # A CLI script that generates a .gitignore file for your projects.
   - name: add-gitignore
 
   # @action NPM Packages # [auto-install](https://npmjs.com/package/auto-install)
-  #
+  # Automatically install dependencies in node.js
   - name: auto-install
 
   # @action NPM Packages # [bitly-cli-client](https://npmjs.com/package/bitly-cli-client)
-  #
+  # Shorten links with Bitly in your terminal
   - name: bitly-cli-client
 
   # @action NPM Packages # [caniuse-cmd](https://npmjs.com/package/caniuse-cmd)
-  #
+  # An official caniuse command-line tool. All the power of caniuse.com with none of the nice UI or interactivity
   - name: caniuse-cmd
 
   # @action NPM Packages # [carbon-now-cli](https://npmjs.com/package/carbon-now-cli)
-  #
+  # A wonderful tool that lets you generate beautiful images of your source code through an intuitive UI, while letting you customize aspects like fonts, themes, window controls
   - name: carbon-now-cli
 
   # @action NPM Packages # [commitizen](https://npmjs.com/package/commitizen)
-  #
+  # When you commit with Commitizen, you'll be prompted to fill out any required commit fields at commit time. No more waiting until later for a git commit hook to run and reject your commit (though that can still be helpful). No more digging through CONTRIBUTING.md to find what the preferred format is
   - name: commitizen
 
   # @action NPM Packages # [composerize](https://npmjs.com/package/composerize)
-  #
+  # A tool that turns docker run commands into docker-compose files
   - name: composerize
 
   # @action NPM Packages # [cordova](https://npmjs.com/package/cordova)
-  #
+  # The command-line tool to build, deploy, and manage Cordoca-based applications. This tool helps with management of multi-platform Cordova applications as well as Cordova plugin integration
   - name: cordova
 
   # @action NPM Packages # [deviceframe](https://npmjs.com/package/deviceframe)
-  #
+  # Put device frames around your mobile/web/progressive app screenshots. deviceframe will prompt us for the frames want to be used
   - name: deviceframe
 
   # @action NPM Packages # [editly](https://npmjs.com/package/editly)
-  #
+  # A tool and framework for declarative NLE(non-linear video editing) using Node.js and ffmpeg
   - name: editly
 
   # @action NPM Packages # [electron](https://npmjs.com/package/electron)
-  #
+  # The electron framework lets you write cross-platform desktop applications using JavaScript, HTML, and CSS
   - name: electron
 
   # @action NPM Packages # [emma-cli](https://npmjs.com/package/emma-cli)
-  #
+  # A command-line assistant which helps to search and install packages more efficiently from your CLI
   - name: emma-cli
 
   # @action NPM Packages # [emoj](https://npmjs.com/package/emoj)
-  #
+  # Tool for finding relevant emoji from text on command-line
   - name: emoj
 
   # @action NPM Packages # [empty-trash-cli](https://npmjs.com/package/empty-trash-cli)
-  #
+  # Command-line tool for emptying the trash, works on macOS, Linux, and Windows
   - name: empty-trash-cli
 
   # @action NPM Packages # [eslint](https://npmjs.com/package/eslint)
-  #
+  # Tool for identifying and reporting on patterns found in ECMAScript/JavaScript code. This tool uses Espree for JS parsing, AST to evaluate patterns in code, and is completely pluggable, every single rule is a plugin and you can add more at runtime
   - name: eslint
 
   # @action NPM Packages # [fastify-cli](https://npmjs.com/package/fastify-cli)
-  #
+  # Command-line tools for Fastify. Generate, write, and run an application with one single command
   - name: fastify-cli
 
   # @action NPM Packages # [firebase-tools](https://npmjs.com/package/firebase-tools)
-  #
+  # Command-line tools for Firebase, can be used to test, manage, and deploy Firebase project from the command-line
   - name: firebase-tools
 
   # @action NPM Packages # [firetable](https://npmjs.com/package/firetable)
-  #
+  # The Firetable CLI automates the steps required to set up the Firetable app and other operations on computer
   - name: firetable
 
   # @action NPM Packages # [fkill-cli](https://npmjs.com/package/fkill-cli)
-  #
+  # Tool to kill processes. It is cross-platform, works on macOS, Linux, and Windows
   - name: fkill-cli
 
   # @action NPM Packages # [fx](https://npmjs.com/package/fx)
-  #
+  # A command-line JSON processing tool or viewer
   - name: fx
 
   # @action NPM Packages # [gistup](https://npmjs.com/package/gistup)
-  #
+  # A tool for creating a gist from the command-line, and using git to update it
   - name: gistup
 
   # @action NPM Packages # [git-open](https://npmjs.com/package/git-open)
-  #
+  # Type git-open to open the repo website(GitHub, GitLab, Bitbucket) in the browser
   - name: git-open
 
   # @action NPM Packages # [git-standup](https://npmjs.com/package/git-standup)
-  #
+  # Run it in the project directory and it will give the output from the last working day
   - name: git-standup
 
   # @action NPM Packages # [google-font-installer](https://npmjs.com/package/google-font-installer)
-  #
+  # Google Font Installer is a NodeJS module/CLI that lets you Search, Download and Install fonts offered by Google Web Fonts
   - name: google-font-installer
 
   # @action NPM Packages # [gtop](https://npmjs.com/package/gtop)
-  #
+  # System monitoring dashboard for terminal. Works on Linux, OSX, and Windows (partial support)
   - name: gtop
 
   # @action NPM Packages # [gulp](https://npmjs.com/package/gulp)
-  #
+  # A toolkit that helps to automate painful or time-consuming tasks in development workflow
   - name: gulp
 
   # @action NPM Packages # [imgur-uploader-cli](https://npmjs.com/package/imgur-uploader-cli)
-  #
+  # A command-line tool to upload images to imgur
   - name: imgur-uploader-cli
 
   # @action NPM Packages # [ios-deploy](https://npmjs.com/package/ios-deploy)
-  #
+  # A command-line tool to install and debug iOS apps, designed to work on un-jailbroken devices
   - name: ios-deploy
     when: "{{ ansible_os_family == 'Darwin' }}"
 
   # @action NPM Packages # [ipfs-deploy](https://npmjs.com/package/ipfs-deploy)
-  #
+  # A tool to make it as easy as possible to deploy a static website to IPFS
   - name: ipfs-deploy
 
   # @action NPM Packages # [is-up-cli](https://npmjs.com/package/is-up-cli)
-  #
+  # Check whether a website is up or down using the isitup.org API
   - name: is-up-cli
 
   # @action NPM Packages # [jp-cli](https://npmjs.com/package/jp-cli)
-  #
+  # A command-line tool to simply parse JSON from any input source
   - name: jp-cli
 
   # @action NPM Packages # [jsfmt](https://npmjs.com/package/jsfmt)
-  #
+  # A tool for formatting, searching, and rewritting javascript
   - name: jsfmt
 
   # @action NPM Packages # [localtunnel](https://npmjs.com/package/localtunnel)
-  #
+  # Localtunnel exposes your localhost to the world for easy testing and sharing. Great for working with browser testing tools like browserling or external api callback services like twilio which require a public url for callbacks
   - name: localtunnel
 
   # @action NPM Packages # [mjml](https://npmjs.com/package/mjml)
-  #
+  # A markup language to reduce the pain of coding a responsive email. Its semantic syntax makes it easy and straightforward while its rich standard components library fastens your development time and lightens your email codebase. MJML’s open-source engine takes care of translating the MJML you wrote into responsive HTML.
   - name: mjml
 
   # @action NPM Packages # [mklicense](https://npmjs.com/package/mklicense)
-  #
+  # CLI tool for generating Licenses easily
   - name: mklicense
 
   # @action NPM Packages # [movie-cli](https://npmjs.com/package/movie-cli)
-  #
+  # A CLI for getting information about a movie and comparing two movies
   - name: movie-cli
 
   # @action NPM Packages # [nativefier](https://npmjs.com/package/nativefier)
-  #
+  # A command-line tool to easily create a desktop app for any web site with minimal configuration. For use on Windows, Linux, and macOS
   - name: nativefier
 
   # @action NPM Packages # [navi](https://npmjs.com/package/navi)
-  #
+  # A JavaScript library for declaratively mapping URLs to asynchronous content
   - name: navi
 
   # @action NPM Packages # [nectarjs](https://npmjs.com/package/nectarjs)
@@ -195,145 +195,145 @@ nodejs_npm_global_packages:
   - name: nectarjs
 
   # @action NPM Packages # [newman](https://npmjs.com/package/newman)
-  #
+  # A command-line collection runner for Postman
   - name: newman
 
   # @action NPM Packages # [np](https://npmjs.com/package/np)
-  #
+  # A better tool to publish a package to the registry so that it can be installed by name, with an interactive UI
   - name: np
 
   # @action NPM Packages # [npm-check](https://npmjs.com/package/npm-check)
-  #
+  # A tool to check for outdated, incorrect, and unused dependencies. It supports ES6-style import from syntax
   - name: npm-check
 
   # @action NPM Packages # [nrm](https://npmjs.com/package/nrm)
-  #
+  # NPM registry manager can help you easy and fast switch between different npm registries, now include: npm, cnpm, taobao, nj(nodejitsu)
   - name: nrm
 
   # @action NPM Packages # [nve](https://npmjs.com/package/nve)
-  #
+  # A tool to run any command on specific Node.js versions
   - name: nve
 
   # @action NPM Packages # [oclif](https://npmjs.com/package/oclif)
-  #
+  # A framework to for building CLIs in Node.js - was built out of the Heroku CLI but generalized to build any custom CLI
   - name: oclif
 
   # @action NPM Packages # [package-size](https://npmjs.com/package/package-size)
-  #
+  # A command-line tool to get real size of an npm package after bundled
   - name: package-size
 
   # @action NPM Packages # [pageres-cli](https://npmjs.com/package/pageres-cli)
-  #
+  # A command-line tool to capture screenshots of websites in various resolutions
   - name: pageres-cli
 
   # @action NPM Packages # [pm2](https://npmjs.com/package/pm2)
-  #
+  # PM2 is a production process manager for Node.js applications with a built-in load balancer
   - name: pm2
 
   # @action NPM Packages # [pxi](https://npmjs.com/package/pxi)
-  #
+  # pxi (pixie) is a small, fast, and magical command-line data processor similar to jq, mlr, and awk
   - name: pxi
 
   # @action NPM Packages # [pkg](https://npmjs.com/package/pkg)
-  #
+  # A command-line interface to package Node.js project into an executable that can be run even on devices without Node.js installed
   - name: pkg
 
   # @action NPM Packages # [prettier](https://npmjs.com/package/prettier)
-  #
+  # Prettier is an opinionated code formatter. It enforces a consistent style by parsing your code and re-printing it with its own rules that take the maximum line length into account, wrapping code when necessary
   - name: prettier
 
   # @action NPM Packages # [prettier-package-json](https://npmjs.com/package/prettier-package-json)
-  #
+  # A JSON formatter inspired by prettier. It removes all original styling and ensures that the outputted package.json conforms to a consistent style
   - name: prettier-package-json
 
   # @action NPM Packages # [prettier-plugin-go-template](https://npmjs.com/package/prettier-plugin-go-template)
-  #
+  # Plugin that fixes formatting for go template files. The only peer dependency is prettier.
   - name: prettier-plugin-go-template
 
   # @action NPM Packages # [prettier-plugin-java](https://npmjs.com/package/prettier-plugin-java)
-  #
+  # This plugin allows support of Java on Prettier
   - name: prettier-plugin-java
 
   # @action NPM Packages # [prettier-plugin-properties](https://npmjs.com/package/prettier-plugin-properties)
-  #
+  # This plugin that adds support to Prettier for .properties files
   - name: prettier-plugin-properties
 
   # @action NPM Packages # [prettier-plugin-sh](https://npmjs.com/package/prettier-plugin-sh)
-  #
+  # This plugin adds support for a lot files through mvdan-sh
   - name: prettier-plugin-sh
 
   # @action NPM Packages # [prettier-plugin-toml](https://npmjs.com/package/prettier-plugin-toml)
-  #
+  # WORK IN PROGRESS. This plugin is in alpha state
   - name: prettier-plugin-toml
 
   # @action NPM Packages # [psi](https://npmjs.com/package/psi)
-  #
+  # PageSpeed Insights with reporting for build process
   - name: psi
 
   # @action NPM Packages # [serve](https://npmjs.com/package/serve)
-  #
+  # A package to serve a static site, single page application or just a static file (no matter if on device or on the local network)
   - name: serve
 
   # @action NPM Packages # [serverless](https://npmjs.com/package/serverless)
-  #
+  # A command-line tool that uses easy and approachable YAML syntax to deploy both code and cloud infrastructure needed to make tons of serverless application use-cases
   - name: serverless
 
   # @action NPM Packages # [share-cli](https://npmjs.com/package/share-cli)
-  #
+  # A command-line tool to quickly share files
   - name: share-cli
 
   # @action NPM Packages # [sharp-cli](https://npmjs.com/package/sharp-cli)
-  #
+  # CLI for sharp, a high performance Node.js image processing module
   - name: sharp-cli
 
   # @action NPM Packages # [speed-test](https://npmjs.com/package/speed-test)
-  #
+  # A command-line to ping and test internet connection speed
   - name: speed-test
 
   # @action NPM Packages # [stegcloak](https://npmjs.com/package/stegcloak)
-  #
+  # A pure JavaScript steganography module designed in functional programming style, to hide secrets inside text by compressing and encrypting the secret before cloaking it with special unicode invisible characters
   - name: stegcloak
 
   # @action NPM Packages # [surge](https://npmjs.com/package/surge)
-  #
+  # This is the CLI client for the surge.sh hosted service. It’s what gets installed when you run npm install -g surge
   - name: surge
 
   # @action NPM Packages # [svgo](https://npmjs.com/package/svgo)
-  #
+  # A Node.js-based tool for optimizing SVG vector graphics files
   - name: svgo
 
   # @action NPM Packages # [taskbook](https://npmjs.com/package/taskbook)
-  #
+  # A tool to effectively manage your tasks and notes across multiple boards from within your terminal
   - name: taskbook
 
   # @action NPM Packages # [terminalizer](https://npmjs.com/package/terminalizer)
-  #
+  # A command-line tool to record terminal and generate animated gif images or share a web player link
   - name: terminalizer
 
   # @action NPM Packages # [tinypng-cli](https://npmjs.com/package/tinypng-cli)
-  #
+  # A command-line tool for shrinking PNG images using the TinyPNG API
   - name: tinypng-cli
 
   # @action NPM Packages # [tldr](https://npmjs.com/package/tldr)
-  #
+  # A Node.js based command-line client for tldr
   - name: tldr
 
   # @action NPM Packages # [typescript](https://npmjs.com/package/typescript)
-  #
+  # TypeScript is a language for application-scale JavaScript
   - name: typescript
 
   # @action NPM Packages # [wallace-cli](https://npmjs.com/package/wallace-cli)
-  #
+  # A tool to provide pretty CSS analytics in the terminal
   - name: wallace-cli
 
   # @action NPM Packages # [wifi-password-cli](https://npmjs.com/package/wifi-password-cli)
-  #
+  # A command-line tool to get current wifi password
   - name: wifi-password-cli
 
   # @action NPM Packages # [wordpressify](https://npmjs.com/package/wordpressify)
-  #
+  # A package to automate the WordPress development workflow
   - name: wordpressify
 
   # @action NPM Packages # [zx](https://npmjs.com/package/zx)
-  #
+  # The zx package provides useful wrappers around child_process, escapes arguments and gives sensible defaults
   - name: zx
