@@ -1,4 +1,5 @@
 {
+  "SPACE": "",
   "alt_badge_style": "flat-square",
   "author": {
     "email": "brian@megabyte.space",
@@ -12,14 +13,28 @@
   "blueprint_requirements": [
     ["Variable Name", "Variable Description"],
     [
+      "`description`",
+      "Short description of the role, worded in such a way that it makes sense by itself and with 'An Ansible role that ' prepended to it"
+    ],
+    ["`group`", "This should always be set to 'ansible' for Ansible roles"],
+    [
       "`name`",
-      "This should be the official name for the product that the role installs/configures. It is used in the title of the README and throughout the documentation to refer to the product."
+      "This should be the official name for the product that the role installs/configures. It is used in the title of the repository and throughout the documentation to refer to the product."
     ],
     [
       "`overview`",
       "This variable should be a description of what the role installs. You can usually find a good description by Googling, \"What is Android Studio,\" for example if you were populating this variable for the [Android Studio role]({{ repository.group.ansible_roles }}/androidstudio). This text is shown at the top of the README, right below the header section and before the table of contents. Whenever possible, key products/terms should be linked to using markdown. You can see an example of us hyperlinking in this variable by checking out the [Android Studio role]({{ repository.group.ansible_roles }}/androidstudio). The idea is to make it as easy as possible for our users to figure out exactly what the role does."
-    ]
+    ],
+    ["`repository.github`", "The HTTPS URL of the GitHub mirror"],
+    ["`repository.gitlab`", "The HTTPS URL of the GitLab repository"],
+    [
+      "`slug`",
+      "This should generally be the ending slug of the GitHub mirror. It is used for things like filling in the package.json name."
+    ],
+    ["`subgroup`", "This should always be set to 'role' for Ansible roles"],
+    ["`title`", "The title of the README.md"]
   ],
+  "commit_help_url": "https://megabyte.space/docs/contributing/commit-guidelines",
   "company": "Megabyte LLC",
   "copyright": "2020-2021",
   "description_emojis": "👨🏻‍💻 🩺",
@@ -34,8 +49,53 @@
   "email": {
     "help": "help@megabyte.space"
   },
+  "emoji_beginnings": ["🚀 ", "🔥👉 ", "👉 ", "😉 ", "🆓 ", "🐴 ", "👀 ", "🎉 ", "", "", "", "", "", "", "", ""],
+  "emoji_endings": [" 🚀", " 🔥🔥🔥", " 👏", " 😉", " 🐙", " 🐴", " 👀", " 🎟", " 🎉🎉", "", "", "", "", "", "", ""],
   "github_prefix": "<i></i>",
+  "gitlab_pipelines": [
+    {
+      "active": true,
+      "cron": "0 5 1 * *",
+      "description": "Monthly Repository Update",
+      "ref": "synchronize",
+      "variable": {
+        "REPOSITORY_UPDATE": true
+      }
+    }
+  ],
   "group": "ansible",
+  "hostapp_var_chart": [
+    ["App", "Description"],
+    ["**[Authelia](https://www.authelia.com/)**", "An authentication portal that supports SSO and 2FA"],
+    [
+      "**[Homer](https://github.com/bastienwirtz/homer)**",
+      "A very simple homepage which is customized by the playbook to automatically include links to the Docker containers you choose to host on the computer"
+    ],
+    ["**[Portainer](https://www.portainer.io/)**", "A Docker management tool"],
+    [
+      "**[Serve](https://github.com/vercel/serve)**",
+      "Simple interface for viewing files located or symlinked to in the `/var/www/` folder of the machine"
+    ]
+  ],
+  "htpc_var_chart": [
+    ["App", "Description"],
+    ["**[WireGuard](https://docs.linuxserver.io/images/docker-wireguard)**", "Dedicated VPN for the HTPC applications"],
+    ["**[Bazarr](https://docs.linuxserver.io/images/docker-bazarr)**", "Manages and automatically downloads subtitles"],
+    ["**[Heimdall](https://docs.linuxserver.io/images/docker-heimdall)**", "Start page for all the HTPC apps"],
+    ["**[Jackett](https://docs.linuxserver.io/images/docker-jackett)**", "Request proxy server for Radarr and Sonarr"],
+    ["**[Kodi Headless](https://hub.docker.com/r/linuxserver/kodi-headless)**", "Backend for Kodi"],
+    [
+      "**[Lidarr](https://docs.linuxserver.io/images/docker-lidarr)**",
+      "Music collection manager that automatically downloads from BitTorrent and Usenet"
+    ],
+    ["**[NZBGet](https://docs.linuxserver.io/images/docker-nzbget)**", "Usenet downloader"],
+    ["**[Ombi](https://docs.linuxserver.io/images/docker-ombi)**", "Plex request and user management system"],
+    ["**[Organizr](https://docs.linuxserver.io/images/docker-htpcmanager)**", "Front end for HTPC web applications"],
+    ["**[Radarr](https://docs.linuxserver.io/images/docker-radarr)**", "Automatic movie downloader"],
+    ["**[Sonarr](https://docs.linuxserver.io/images/docker-sonarr)**", "Automatic TV show downloader"],
+    ["**[Tautulli](https://docs.linuxserver.io/images/docker-tautulli)**", "Metrics and monitoring for Plex"],
+    ["**[Transmission](https://docs.linuxserver.io/images/docker-transmission)**", "BitTorrent client"]
+  ],
   "json_top_keys": "",
   "license": "MIT",
   "link": {
@@ -118,6 +178,89 @@
     "twitter": "MegabyteLabs",
     "vagrant": "https://app.vagrantup.com"
   },
+  "python_role_dependencies": [
+    ["Package", "Description", "Required"],
+    [
+      "<b><a href=\"https://pypi.org/project/ansible/\" title=\"ansible on pypi.org\" target=\"_blank\">ansible</a></b>",
+      "A configuration management system that can remotely configure computers",
+      "<div align=\"center\">✔️</div>"
+    ],
+    [
+      "<b><a href=\"https://pypi.org/project/docker/\" title=\"docker on pypi.org\" target=\"_blank\">docker</a></b>",
+      "Enables the capability of provisioning Docker containers with Ansible",
+      "<div align=\"center\">✔️</div>"
+    ],
+    [
+      "<b><a href=\"https://pypi.org/project/python-vagrant/\" title=\"python-vagrant on pypi.org\" target=\"_blank\">python-vagrant</a></b>",
+      "Required for provisioning Vagrant VMs",
+      "<div align=\"center\">✔️</div>"
+    ],
+    [
+      "<b><a href=\"https://pypi.org/project/pywinrm/\" title=\"pywinrm on pypi.org\" target=\"_blank\">pywinrm</a></b>",
+      "Required for provisioning Windows machines that are using WinRM",
+      "<div align=\"center\">✔️</div>"
+    ],
+    [
+      "<b><a href=\"https://pypi.org/project/ansible-lint/\" title=\"ansible-lint on pypi.org\" target=\"_blank\">ansible-lint</a></b>",
+      "Linting tool for Ansible files",
+      ""
+    ],
+    [
+      "<b><a href=\"https://pypi.org/project/ansibler/\" title=\"ansibler on pypi.org\" target=\"_blank\">ansibler</a></b>",
+      "Custom tool used to generate advanced documentation (e.g. it generates the compatibility chart and some other charts)",
+      ""
+    ],
+    [
+      "<b><a href=\"https://pypi.org/project/black/\" title=\"black on pypi.org\" target=\"_blank\">black</a></b>",
+      "Python file auto-formatter included in case project utilizes Python test scripts",
+      ""
+    ],
+    [
+      "<b><a href=\"https://pypi.org/project/blocklint/\" title=\"blocklint on pypi.org\" target=\"_blank\">blocklint</a></b>",
+      "Linting tool that prevents certain words from entering the code base",
+      ""
+    ],
+    [
+      "<b><a href=\"https://pypi.org/project/flake8/\" title=\"flake8 on pypi.org\" target=\"_blank\">flake8</a></b>",
+      "Python linter that reports Python syntax and style errors",
+      ""
+    ],
+    [
+      "<b><a href=\"https://pypi.org/project/mod-ansible-autodoc/\" title=\"mod-ansible-autodoc on pypi.org\" target=\"_blank\">mod-ansible-autodoc</a></b>",
+      "Custom fork of [ansible-autodoc](https://pypi.org/project/ansible-autodoc/0.5.1.1/) which allows us to auto-generate documentation based on comments in the role's YAML files",
+      ""
+    ],
+    [
+      "<b><a href=\"https://pypi.org/project/molecule/\" title=\"molecule on pypi.org\" target=\"_blank\">molecule</a></b>",
+      "Test framework for Ansible",
+      ""
+    ],
+    [
+      "<b><a href=\"https://pypi.org/project/molecule-docker/\" title=\"molecule-docker on pypi.org\" target=\"_blank\">molecule-docker</a></b>",
+      "Molecule plugin for provisioning Docker containers",
+      ""
+    ],
+    [
+      "<b><a href=\"https://pypi.org/project/molecule-vagrant/\" title=\"molecule-vagrant on pypi.org\" target=\"_blank\">molecule-vagrant</a></b>",
+      "Molecule plugin for provisioning Vagrant VMs",
+      ""
+    ],
+    [
+      "<b><a href=\"https://pypi.org/project/pre-commit-hooks/\" title=\"pre-commit-hooks on pypi.org\" target=\"_blank\">pre-commit-hooks</a></b>",
+      "Suite of tools useful for linting",
+      ""
+    ],
+    [
+      "<b><a href=\"https://pypi.org/project/proselint/\" title=\"proselint on pypi.org\" target=\"_blank\">proselint</a></b>",
+      "Linter used to generate English-language improvements (used to improve documentation)",
+      ""
+    ],
+    [
+      "<b><a href=\"https://pypi.org/project/yamllint/\" title=\"yamllint on pypi.org\" target=\"_blank\">yamllint</a></b>",
+      "Linter for YAML files that ensures proper syntax and styling is used",
+      ""
+    ]
+  ],
   "repository": {
     "github": "",
     "gitlab": "",
@@ -137,8 +280,8 @@
       "cryptocurrency_path": "megabyte-labs/cryptocurrency",
       "docker_compose": "https://gitlab.com/megabyte-labs/docker-compose",
       "docker_compose_path": "megabyte-labs/docker-compose",
-      "dockerfile": "https://gitlab.com/megabyte-labs/dockerfile",
-      "dockerfile_path": "megabyte-labs/dockerfile",
+      "dockerfile": "https://gitlab.com/megabyte-labs/docker",
+      "dockerfile_path": "megabyte-labs/docker",
       "documentation": "https://gitlab.com/megabyte-labs/documentation",
       "documentation_path": "megabyte-labs/documentation",
       "kubernetes": "https://gitlab.com/megabyte-labs/kubernetes",
@@ -148,6 +291,7 @@
       "packer": "https://gitlab.com/megabyte-labs/packer",
       "packer_path": "megabyte-labs/packer",
       "python": "https://gitlab.com/megabyte-labs/python",
+      "python_cli_path": "megabyte-labs/python/cli",
       "python_path": "megabyte-labs/python",
       "software": "https://gitlab.com/megabyte-labs/software",
       "software_path": "megabyte-labs/software",
@@ -194,7 +338,7 @@
     "project": {
       "assets": "https://gitlab.com/megabyte-labs/assets/-/raw/master",
       "autodoc": "https://github.com/AndresBott/ansible-autodoc",
-      "playbooks": "https://gitlab.com/InstallDoc/ansible-playbook-boilerplate",
+      "playbooks": "https://github.com/ProfessorManhattan/Gas-Station",
       "wrangler": "https://gitlab.com/megabyte-labs/wrangler"
     }
   },

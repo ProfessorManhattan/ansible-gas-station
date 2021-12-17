@@ -12,9 +12,6 @@ nodejs_npm_global_packages:
   # @npm [@nestjs/cli](https://npmjs.com/package/@nestjs/cli) - A command-line interface tool that helps you to initialize, develop, and maintain your Nest applications
   - name: "@nestjs/cli"
 
-  # @npm [@prettier/plugin-php](https://npmjs.com/package/@prettier/plugin-php) - An opinionated code formatter
-  - name: "@prettier/plugin-php"
-
   # @npm [@prettier/plugin-ruby](https://npmjs.com/package/@prettier/plugin-ruby) - A prettier plugin for the Ruby programming language and its ecosystem
   - name: "@prettier/plugin-ruby"
 
@@ -35,6 +32,9 @@ nodejs_npm_global_packages:
 
   # @npm [bitly-cli-client](https://npmjs.com/package/bitly-cli-client) - Shorten links with Bitly in the terminal
   - name: bitly-cli-client
+
+  # @npm [browser-sync](https://browsersync.io/) - Time-saving synchronized browser testing - test desktop and mobile versions of a website at the same time
+  - name: browser-sync
 
   # @npm [caniuse-cmd](https://npmjs.com/package/caniuse-cmd) - Caniuse command line tool
   - name: caniuse-cmd
@@ -228,9 +228,6 @@ nodejs_npm_global_packages:
 
   # @npm [svgo](https://npmjs.com/package/svgo) - SVG Optimizer is a Node.js-based tool for optimizing SVG vector graphics files
   - name: svgo
-
-  # @npm [taskbook](https://npmjs.com/package/taskbook) - Tasks, boards & notes for the command-line habitat
-  - name: taskbook
 
   # @npm [terminalizer](https://npmjs.com/package/terminalizer) - Record your terminal and generate animated gif images or share a web player link terminalizer.com
   - name: terminalizer
