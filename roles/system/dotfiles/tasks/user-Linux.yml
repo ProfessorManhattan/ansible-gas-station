@@ -72,3 +72,26 @@
     - file: .zshrc
       exe: zsh
   when: starship.rc == 1
+
+- name: Ensure Git configurations are added to profiles
+  template:
+    src: gitconfig_mail.j2
+    dest: "~/.gitconfig_{{ email_config.name }}"
+    mode: 0700
+  loop: "{{ user.git_email_configs }}"
+  loop_control:
+    loop_var: email_config
+  when: user.git_email_configs is defined
+
+- name: Add Git Profiles to ~/.gitconfig
+  blockinfile:
+    path: ~/.gitconfig
+    block: |
+      [include]
+        path = "~/.gitconfig_{{ email_config.name }}"
+    marker: "# {mark} ANSIBLE MANAGED BLOCK {{ email_config.name }}"
+    backup: true
+  loop: "{{ user.git_email_configs }}"
+  loop_control:
+    loop_var: email_config
+  when: user.git_email_configs is defined

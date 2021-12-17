@@ -1,6 +1,6 @@
 ---
 - name: Add static dotfiles
-  win_copy:
+  ansible.windows.win_copy:
     src: "{{ item }}"
     dest: "{{ user_profile }}\\{{ item }}"
   loop:
@@ -8,14 +8,14 @@
     - .zshrc
 
 - name: Ensure VAGRANT_CLOUD_TOKEN is included in .localrc, if set
-  win_lineinfile:
+  community.windows.win_lineinfile:
     path: "{{ user_profile }}\\.localrc"
     regex: "export VAGRANT_CLOUD_TOKEN"
     line: "export VAGRANT_CLOUD_TOKEN={{ user.vagrant_cloud_token }}"
   when: user.vagrant_cloud_token is defined
 
 - name: Add dynamic dotfiles
-  win_template:
+  ansible.windows.win_template:
     src: "{{ item }}.j2"
     dest: "{{ user_profile }}\\{{ item }}"
   loop:
@@ -24,19 +24,52 @@
     - .npmrc
 
 - name: Determine whether the user's .bashrc file is present in the home directory
-  win_stat:
+  ansible.windows.win_stat:
     path: ~/.bashrc
   register: bashrc
 
 - name: Ensure .bashrc exists in user's home directory
-  win_file:
+  ansible.windows.win_file:
     path: "{{ user_profile }}\\.bashrc"
     state: touch
   ignore_errors: true
   when: not bashrc.stat.exists
 
 - name: Ensure .localrc is sourced in .bashrc
-  win_lineinfile:
+  community.windows.win_lineinfile:
     path: "{{ user_profile }}\\.bashrc"
     regex: "^source ~\/.localrc$"
     line: source ~/.localrc
+
+- name: Ensure Git configurations are added to profiles
+  ansible.windows.win_template:
+    src: gitconfig_mail.j2
+    dest: '%USERPROFILE%\.gitconfig_{{ email_config.name }}'
+  loop: "{{ user.git_email_configs }}"
+  loop_control:
+    loop_var: email_config
+
+- name: "Check if '%USERPROFILE%/.gitconfig' file exists"
+  ansible.windows.win_stat:
+    path: '%USERPROFILE%\.gitconfig'
+  register: gitconfig_stat
+
+- name: "Read the content of '%USERPROFILE%/.gitconfig'"
+  slurp:
+    src: '%USERPROFILE%\.gitconfig'
+  register: existing_conf
+  when: gitconfig_stat.stat.exists
+
+- name: "Add Git Profiles to '%USERPROFILE%/.gitconfig'"
+  ansible.windows.win_copy:
+    content: |
+      {% if gitconfig_stat.stat.exists %}
+      {{ existing_conf.content | b64decode }}
+      {% endif %}
+
+      {% for email_config in user.git_email_configs %}
+      [include]
+        path = "C:/Users/{{ user.username }}/.gitconfig_{{ email_config.name }}"
+      {% endfor %}
+    dest: '%USERPROFILE%\.gitconfig'
+    backup: true

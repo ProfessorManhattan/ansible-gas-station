@@ -1,0 +1,6 @@
+[sendemail]
+  smtpserver = smtp.gmail.com
+  smtpuser = {{ email_config.smtp_user | default("") }}
+  smtpencryption = tls
+  smtpserverport = 587
+  smtpPass = {{ email_config.app_password | default("") }}

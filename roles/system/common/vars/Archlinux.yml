@@ -1,8 +1,3 @@
 ---
 grub_path: /etc/default/grub
 plymouth_themes_dir: /usr/share/plymouth/themes
-
-git_send_email_packages:
-  - git
-  - perl-authen-sasl
-  - perl-io-socket-ssl
