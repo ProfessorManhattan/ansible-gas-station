@@ -471,7 +471,7 @@ software_package:
   # @binary [page-fetch](https://github.com/detectify/page-fetch) - Fetch web pages using headless Chrome, storing all fetched resources including JavaScript files
   page-fetch:
     go: github.com/detectify/page-fetch
-  # @binary [pass](https://git.zx2c4.com/password-store/) - Password manager
+  # @binary [pass](https://www.passwordstore.org/) - Password manager
   pass:
     apt: pass
     brew: pass
