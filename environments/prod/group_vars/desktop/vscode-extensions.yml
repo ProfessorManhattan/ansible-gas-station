@@ -185,9 +185,6 @@ vscode_extensions:
   # @vscode [salbert.comment-ts](https://marketplace.visualstudio.com/items?itemName=salbert.comment-ts) - Adds automatic templating of TypeScript-flavored JSDoc comments
   - name: salbert.comment-ts
 
-  # @vscode [Shan.code-settings-sync](https://marketplace.visualstudio.com/items?itemName=Shan.code-settings-sync) - This extension enables to share VS Code configurations such as settings, keybindings, and installed extensions across the machine
-  - name: Shan.code-settings-sync
-
   # @vscode [shd101wyy.markdown-preview-enhanced](https://marketplace.visualstudio.com/items?itemName=shd101wyy.markdown-preview-enhanced) - An extension that provides with many useful functionalities such as automatic scroll sync, math typesetting, mermaid, PlantUML, pandoc, PDF export, code chunk, presentation writer, etc
   - name: shd101wyy.markdown-preview-enhanced
 
@@ -199,9 +196,6 @@ vscode_extensions:
 
   # @vscode [steoates.autoimport](https://marketplace.visualstudio.com/items?itemName=steoates.autoimport) - An extension that automatically finds, parses and provides code actions and code completion for all available imports
   - name: steoates.autoimport
-
-  # @vscode [streetsidesoftware.code-spell-checker](https://marketplace.visualstudio.com/items?itemName=streetsidesoftware.code-spell-checker) - A basic spell checker that works well with camelCase code
-  - name: streetsidesoftware.code-spell-checker
 
   # @vscode [stylelint.vscode-stylelint](https://marketplace.visualstudio.com/items?itemName=stylelint.vscode-stylelint) - A mighty, modern CSS linter that helps to enforce consistent conventions and avoid errors in stylesheets
   - name: stylelint.vscode-stylelint
@@ -250,5 +244,4 @@ vscode_extensions:
 
   # @vscode [yatki.vscode-surround](https://marketplace.visualstudio.com/items?itemName=yatki.vscode-surround) - Easily add code that surrounds other code like try/catches
   - name: yatki.vscode-surround
-
 # Internal note: RegEx replace code:  \n  # @action Ruby Gems # [$1](https://rubygems.org/gems/$1)\n  # \n  - name: $1
