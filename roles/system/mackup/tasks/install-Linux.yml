@@ -2,7 +2,6 @@
 - name: "Ensure {{ app_name }} is installed"
   pip:
     name: mackup
-    extra_args: "--system"
   when: ansible_system == 'Linux'
 
 - name: Run generic tasks
@@ -11,3 +10,4 @@
   loop_control:
     label: "{{ user.username }}"
     loop_var: user
+  when: (user.system is not defined) or ((user.system is defined) and (not user.system))
