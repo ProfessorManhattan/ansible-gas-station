@@ -7,7 +7,7 @@
 - name: "Ensure {{ app_name }}'s global directory is created"
   file:
     path: "{{ npm_config_prefix }}"
-    owner: "{{ nodejs_install_npm_user }}"
+    owner: "{{ ansible_user }}"
     state: directory
     mode: 0755
   when: ansible_system == 'Linux'
@@ -31,10 +31,8 @@
     version: "{{ item.version | default('latest') }}"
     global: true
     state: present
-  environment:
-    NPM_CONFIG_PREFIX: "{{ npm_config_prefix }}"
-    NODE_PATH: "{{ npm_config_prefix }}/lib/node_modules"
-    NPM_CONFIG_UNSAFE_PERM: "{{ npm_config_unsafe_perm }}"
-    PATH: /usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin:{{ ansible_env.PATH }}
+  ignore_errors: true
   loop: "{{ nodejs_npm_global_packages }}"
-  when: item.when | default(true)
+  when:
+    - install_npm_global_packages | default(true)
+    - item.when | default(true)

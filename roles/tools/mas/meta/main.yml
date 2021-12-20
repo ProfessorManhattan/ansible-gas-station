@@ -21,7 +21,6 @@ galaxy_info:
     - app
     - store
     - macos
+  namespace: professormanhattan
 dependencies:
   - homebrew
-  - role: professormanhattan.homebrew
-    when: ansible_os_family == "Darwin"
