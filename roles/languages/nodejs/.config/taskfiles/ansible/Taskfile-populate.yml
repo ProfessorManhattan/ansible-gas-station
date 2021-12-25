@@ -15,12 +15,25 @@ tasks:
         REFERENCES="$(grep -Ril '{{.KEY}}' ./tasks || true)"
         if [[ ! "$COLLECTIONS" =~ '{{.KEY}}' ]] && [ "$REFERENCES" ]; then
           yq eval -i -P '.collections = .collections + {{.VAL}}' '{{.REQUIREMENTS_PATH}}'
+          .config/log success 'Automatically added `{{.VAL}}` to {{.REQUIREMENTS_PATH}}'
         fi
       - task: :fix:yaml:dashes
         vars:
           CLI_ARGS: '{{.REQUIREMENTS_PATH}}'
-    status:
-      - '[[ "$COLLECTIONS" =~ "{{.KEY}}" ]] || [ ! "$REFERENCES" ]'
+
+  collection:force:
+    deps:
+      - :install:software:yq
+    cmds:
+      - |
+        COLLECTIONS="$(yq eval '.collections' '{{.REQUIREMENTS_PATH}}')"
+        if [[ ! "$COLLECTIONS" =~ '{{.KEY}}' ]]; then
+          yq eval -i -P '.collections = .collections + {{.VAL}}' '{{.REQUIREMENTS_PATH}}'
+          .config/log success 'Automatically added `{{.VAL}}` to {{.REQUIREMENTS_PATH}}'
+        fi
+      - task: :fix:yaml:dashes
+        vars:
+          CLI_ARGS: '{{.REQUIREMENTS_PATH}}'
 
   dependencies:
     # @desc_when [ansible/Taskfile-populate.yml] ansible/role
@@ -51,9 +64,19 @@ tasks:
             {"name": "chocolatey.chocolatey", "source": "https://galaxy.ansible.com"}
       - task: collection
         vars:
+          KEY: community.crypto
+          VAL: >-
+            {"name": "community.crypto", "source": "https://galaxy.ansible.com"}
+      - task: collection
+        vars:
           KEY: community.general
           VAL: >-
             {"name": "community.general", "source": "https://galaxy.ansible.com"}
+      - task: collection:force
+        vars:
+          KEY: google.cloud
+          VAL: >-
+            {"name": "google.cloud", "source": "https://galaxy.ansible.com"}
       - task: dependency
         vars:
           KEY: community.general.homebrew
@@ -94,6 +117,7 @@ tasks:
         if [[ ! "$DEPENDENCIES" =~ '{{.ROLE}}' ]] && [ "$REFERENCES" ]; then
           if [[ '{{.GALAXY_NAMESPACE}}.{{.GALAXY_ROLE_NAME}}' != '{{.ROLE}}' ]]; then
             yq eval -i -P '.dependencies = .dependencies + {{.VAL}}' '{{.META_PATH}}'
+            .config/log success 'Automatically added `{{.VAL}}` to {{.META_PATH}}'
           fi
         fi
       - task: :fix:yaml:dashes

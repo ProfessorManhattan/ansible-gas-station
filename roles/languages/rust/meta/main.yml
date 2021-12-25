@@ -1,6 +1,7 @@
 ---
 galaxy_info:
   role_name: rust
+  namespace: professormanhattan
   author: ProfessorManhattan
   description: Installs Rust on nearly any platform
   company: Megabyte Labs
@@ -20,19 +21,33 @@ galaxy_info:
     - name: Fedora
       versions:
         - all
-    - name: Mac OS X
+    - name: Mac
       versions:
         - all
     - name: Windows
       versions:
-        - 10
+        - all
   galaxy_tags:
-    - rust
-    - programming
+    - ansible
+    - doctor
+    - fedora
+    - install
+    - installdoc
+    - installdoctor
     - language
-    - packages
+    - macos
+    - mblabs
+    - megabytelabs
     - modern
-  namespace: professormanhattan
+    - molecule
+    - packages
+    - professormanhattan
+    - programming
+    - role
+    - rust
+    - ubuntu
+    - washingtondc
+    - windows
 dependencies:
   - role: professormanhattan.snapd
     when: ansible_system == 'Linux'

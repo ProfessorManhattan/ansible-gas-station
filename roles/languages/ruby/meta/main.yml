@@ -12,11 +12,26 @@ galaxy_info:
       versions:
         - focal
   galaxy_tags:
-    - ruby
+    - ansible
+    - doctor
+    - fedora
     - gems
-    - programming
+    - install
+    - installdoc
+    - installdoctor
     - language
+    - macos
+    - mblabs
+    - megabytelabs
+    - molecule
+    - professormanhattan
+    - programming
     - rake
+    - role
+    - ruby
+    - ubuntu
+    - washingtondc
+    - windows
   namespace: professormanhattan
 dependencies:
   - role: professormanhattan.snapd

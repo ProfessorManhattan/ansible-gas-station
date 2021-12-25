@@ -1,5 +1,7 @@
 ---
-- name: "Ensure {{ app_name }} is installed"
+# @action Ensures Rust is installed
+# Installs Rust via `brew` on macOS sudolessly
+- name: 'Ensure {{ app_name }} is installed'
   become: false
   community.general.homebrew:
     name:
@@ -9,8 +11,8 @@
 
 - name: Run generic Linux tasks
   include_tasks: install-Linux.yml
-  loop: "{{ user_configs }}"
+  loop: '{{ user_configs }}'
   loop_control:
-    label: "{{ user.username }}"
+    label: '{{ user.username }}'
     loop_var: user
   when: (user.system is not defined) or ((user.system is defined) and (not user.system))
