@@ -20,36 +20,3 @@
     content: "{{ user.tinypngkey }}"
     dest: '%USERPROFILE%\.tinypng'
   when: user.tinypngkey is defined and user.tinypngkey | length > 0
-
-- name: Ensure Git configurations are added to profiles
-  ansible.windows.win_template:
-    src: gitconfig.j2
-    dest: '%USERPROFILE%\.gitconfig_{{ email_config.name }}'
-  loop: "{{ user.git_email_configs }}"
-  loop_control:
-    loop_var: email_config
-
-- name: "Check if '%USERPROFILE%/.gitconfig' file exists"
-  ansible.windows.win_stat:
-    path: '%USERPROFILE%\.gitconfig'
-  register: gitconfig_stat
-
-- name: "Read the content of '%USERPROFILE%/.gitconfig'"
-  slurp:
-    src: '%USERPROFILE%\.gitconfig'
-  register: existing_conf
-  when: gitconfig_stat.stat.exists
-
-- name: "Add Git Profiles to '%USERPROFILE%/.gitconfig'"
-  ansible.windows.win_copy:
-    content: |
-      {% if gitconfig_stat.stat.exists %}
-      {{ existing_conf.content | b64decode }}
-      {% endif %}
-
-      {% for email_config in user.git_email_configs %}
-      [include]
-        path = "C:/Users/{{ user.username }}/.gitconfig_{{ email_config.name }}"
-      {% endfor %}
-    dest: '%USERPROFILE%\.gitconfig'
-    backup: true

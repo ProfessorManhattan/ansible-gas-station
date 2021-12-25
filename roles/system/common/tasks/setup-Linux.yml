@@ -26,10 +26,6 @@
     owner: root
     mode: 0644
 # TODO: Convert the above commands to Mac OS X and add to setup-Darwin.yml
-- name: Ensure git packages are installed
-  package:
-    name: "{{ git_send_email_packages }}"
-    state: present
 
 - name: Customize GRUB
   include_tasks: linux/grub.yml

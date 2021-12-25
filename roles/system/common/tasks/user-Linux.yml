@@ -45,23 +45,3 @@
     dest: ~/.tinypng
     mode: 0700
   when: user.tinypngkey is defined and user.tinypngkey | length > 0
-
-- name: Ensure Git configurations are added to profiles
-  template:
-    src: gitconfig.j2
-    dest: "~/.gitconfig_{{ email_config.name }}"
-    mode: 0700
-  loop: "{{ user.git_email_configs }}"
-  loop_control:
-    loop_var: email_config
-
-- name: Add Git Profiles to ~/.gitconfig
-  blockinfile:
-    path: ~/.gitconfig
-    block: |
-      [include]
-        path = "~/.gitconfig_{{ email_config.name }}"
-    backup: true
-  loop: "{{ user.git_email_configs }}"
-  loop_control:
-    loop_var: email_config
