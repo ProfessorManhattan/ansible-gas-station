@@ -32,6 +32,7 @@ vim_plugins:
   - source: https://github.com/junegunn/fzf.git
   - source: https://github.com/junegunn/fzf.vim.git
   - source: https://github.com/neoclide/coc.nvim.git
+    plug_setting: ", {'branch': 'release'}" # Inlcude the comma at the front
     settings: |
       autocmd FileType json syntax match Comment +\/\/.\+$+
     command: echo '' | vim +'CocInstall -sync coc-json coc-html coc-tsserver coc-pyright' +qa
@@ -49,3 +50,4 @@ vim_plugins:
       set encoding=UTF-8
   - source: https://github.com/nanotee/zoxide.vim.git
   - source: https://github.com/fatih/vim-go.git
+  - source: https://github.com/ycm-core/YouCompleteMe.git

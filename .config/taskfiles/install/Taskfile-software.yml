@@ -117,6 +117,14 @@ tasks:
     cmds:
       - task: common:windows
 
+  codeclimate:
+    cmds:
+      - task: brew:formulae
+        vars:
+          FORMULAE: codeclimate/formulae/codeclimate
+    status:
+      - type codeclimate > /dev/null
+
   common:
     run: once
     cmds:
@@ -286,6 +294,8 @@ tasks:
       - task: brew:formulae
         vars:
           FORMULAE: goodwithtech/r/dockle
+    status:
+      - type dockle > /dev/null
 
   exiftool:
     run: once
@@ -293,6 +303,29 @@ tasks:
       - task: brew:formulae
         vars:
           FORMULAE: exiftool
+
+  gcloud:
+    run: once
+    cmds:
+      - task: gcloud:{{OS}}
+    status:
+      - type gcloud > /dev/null
+
+  gcloud:darwin:
+    cmds:
+      - task: brew:cask
+        vars:
+          CASK: google-cloud-sdk
+
+  gcloud:linux:
+    cmds:
+      - task: :install:install-doctor
+        vars:
+          SOFTWARE: googlecloudsdk
+
+  gcloud:windows:
+    cmds:
+      - task: common:windows
 
   gh:
     run: once
@@ -333,6 +366,8 @@ tasks:
       - task: brew:formulae
         vars:
           FORMULAE: anchore/grype/grype
+    status:
+      - type grype > /dev/null
 
   jq:
     run: once
@@ -405,6 +440,8 @@ tasks:
       - task: brew:formulae
         vars:
           FORMULAE: hudochenkov/sshpass/sshpass
+    status:
+      - type sshpass > /dev/null
 
   tokei:
     run: once
@@ -419,6 +456,8 @@ tasks:
       - task: brew:formulae
         vars:
           FORMULAE: aquasecurity/trivy/trivy
+    status:
+      - type trivy > /dev/null
 
   vagrant:
     cmds:
