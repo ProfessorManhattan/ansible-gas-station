@@ -1,0 +1,33 @@
+---
+- name: Ensure setting to disable root redirector exists
+  copy:
+    path: /etc/keybase/config.json
+    content: |
+      {
+        "disable-root-redirector": true
+      }
+    mode: 0644
+
+- name: Gather the package facts
+  package_facts:
+    manager: auto
+
+- name: "Ensure {{ app_name }} is installed"
+  dnf:
+    name: https://prerelease.keybase.io/keybase_amd64.rpm
+    state: "{{ app_state | default('present') }}"
+    disable_gpg_check: false
+  when: "'keybase' not in ansible_facts.packages"
+
+- name: "Ensure {{ app_name }} is installed"
+  dnf:
+    name: keybase
+    state: "{{ app_state | default('latest') }}"
+    update_cache: true
+  when: "'keybase' in ansible_facts.packages"
+
+- name: "Ensure keybase-redirector permissions are updated"
+  file:
+    path: /usr/bin/keybase-redirector
+    mode: a-s
+    state: file
