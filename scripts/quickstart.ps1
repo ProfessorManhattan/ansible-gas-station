@@ -2,8 +2,7 @@
 # machine. The Ansible controller is the computer where you will provision other machines from. This
 # file should only be used if your main computer that provisions other machines is a Windows machine.
 
-Write-Host "Enabling the Microsoft Windows Subsystem Linux feature" -ForegroundColor Black -BackgroundColor Cyan
-Enable-WindowsOptionalFeature -Online -FeatureName "Microsoft-Windows-Subsystem-Linux" -All
+Write-Host "Installing Ubuntu in WSL" -ForegroundColor Black -BackgroundColor Cyan
 wsl --install -d Ubuntu
 
 Write-Host "Downloading the script used to enable Ansible management" -ForegroundColor Black -BackgroundColor Cyan
@@ -19,7 +18,7 @@ powershell.exe -ExecutionPolicy ByPass -File $file -Verbose -EnableCredSSP -Disa
 
 # $cert = New-SelfSignedCertificate -Subject "CN=$env:computerName" -TextExtension '2.5.29.37={text}1.3.6.1.5.5.7.3.1'
 
-# winrm set winrm/config/service/auth '@{Basic="true";Kerberos="false";Negotiate="true";Certificate="false";CredSSP="false"}'
+# winrm set winrm/config/service/auth @{Basic="true";Kerberos="false";Negotiate="true";Certificate="false";CredSSP="false"}
 # New-WSManInstance -ResourceURI winrm/config/Listener -SelectorSet @{address="*";transport="https"} -ValueSet @{Hostname=$env:computerName;CertificateThumbprint=$cert.thumbprint}
 
 # New-NetFirewallRule -DisplayName "WSL (HTTPS-In)" -Direction Inbound  -InterfaceAlias "vEthernet (WSL)"  -Action Allow -LocalPort 5986 -Protocol TCP
@@ -42,14 +41,19 @@ Write-Host "3. Reboot and this script will automatically continue" -ForegroundCo
 @"
 # Wait till WSL is running before kicking off the playbook
 `$res` = wsl -l -v | Out-String
-while (`$res` -notlike "*R*u*n*n*i*n*g*"){
+while (`$res` -notmatch '.*r.u.n.n.i.n.g.*'){
   Write-Output "Waiting for WSL to start running..."
   Start-sleep 2
   `$res` = wsl -l -v | Out-String
 }
 
+Stop-Process -Name 'ubuntu' -ea SilentlyContinue
+
+# TODO: Revisit this section to add the logic which will download and execute the script
+# quickstart.sh, which clones/downloads the repository and executes the `task` ansible:quickstart
+
 # Execute the quickstart script once WSL is running
-wsl cd ~/Playbooks; ./scripts/quickstart.sh
+# wsl cd ~/Playbooks; ./scripts/quickstart.sh
 
 # Remove this script at the end of execution
 Remove-Item (`$script:MyInvocation`).MyCommand.Path -Force
