@@ -24,5 +24,19 @@
     dest: ~/.config/autostart/ansible-installer.desktop
     mode: 0700
 
+- name: Copy the script that will be run upon reboot
+  become_user: "{{ ansible_user }}"
+  copy:
+    dest: ~/.config/ansible-continue.sh
+    content: |
+      function cleanup {
+        rm -f ~/.config/ansible-continue.sh
+        # rm -rf "$HOME/gas-station"
+      }
+      trap cleanup EXIT
+      cd "$HOME/gas-station"
+      ansible-playbook --ask-sudo-pass -i inventories/ main.yml
+    mode: 0700
+
 - name: Reboot # noqa 301
   command: reboot
