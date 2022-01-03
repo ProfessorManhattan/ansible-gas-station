@@ -1,15 +1,13 @@
 ---
 - name: "Ensure {{ hostsfile_dest_dir }} exists"
-  file:
-    mode: 0755
+  ansible.windows.win_file:
     path: "{{ hostsfile_dest_dir }}"
     state: directory
 
 - name: Ensure hosts files are downloaded
-  get_url:
+  ansible.windows.win_get_url:
     url: "{{ item.url }}"
     dest: "{{ hostsfile_dest_dir }}/{{ item.filename }}"
-    mode: 0644
   loop:
     - url: https://raw.githubusercontent.com/StevenBlack/hosts/master/hosts
       filename: base
@@ -26,10 +24,9 @@
   register: download_result
 
 - name: Ensure a copy of hosts files are created
-  copy:
+  ansible.windows.win_copy:
     src: "{{ hostsfile_dest_dir }}/{{ item }}"
     dest: "{{ hostsfile_dest_dir }}/{{ item }}-clean"
-    mode: preserve
     remote_src: true
   loop:
     - base
@@ -41,11 +38,10 @@
   when: "download_result.results | map(attribute='changed') | join(',') | regex_search('True')"
 
 - name: Ensure the hosts file are sanitized
-  lineinfile:
+  community.windows.win_lineinfile:
     path: "{{ hostsfile_dest_dir }}/{{ item }}-clean"
     regex: '(^ *#.*$)|^$'
     state: absent
-    mode: 0644
   loop:
     - base
     - fakenews
@@ -55,8 +51,8 @@
     - all
   when: "download_result.results | map(attribute='changed') | join(',') | regex_search('True')"
 
-- name: Backup the default hosts file # noqa 301
-  command: hostctl backup --path "{{ hostsfile_dest_dir }}/"
+- name: Backup the default hosts file
+  ansible.windows.win_command: hostctl backup --path "{{ hostsfile_dest_dir }}/"
 
 # @action `hostctl` versions after v1.0.15 check for unique domains in a profile which makes
 # it extremely slow to process large hosts files. Revisit after a future version provides a
@@ -71,24 +67,3 @@
     #- social
     #- all
 
-- name: Set systemd-resolved DNS
-  lineinfile:
-    path: "{{ systemd_resolved_conf_path }}"
-    regex: "(^#DNS=|^DNS=)"
-    line: "DNS={{ dns_provider }}"
-  notify: restart systemd-resolved
-
-- name: Set systemd-resolved FallbackDNS
-  lineinfile:
-    path: "{{ systemd_resolved_conf_path }}"
-    regex: "(^#FallbackDNS=|^FallbackDNS=)"
-    line: "FallbackDNS={{ dns_fallback_provider }}"
-  when: dns_fallback_provider is defined
-  notify: restart systemd-resolved
-
-- name: Set systemd-resolved DNSOverTLS
-  lineinfile:
-    path: "{{ systemd_resolved_conf_path }}"
-    regex: "(^#DNSOverTLS=|^DNSOverTLS=)"
-    line: "DNSOverTLS={{ dns_over_tls }}"
-  notify: restart systemd-resolved
