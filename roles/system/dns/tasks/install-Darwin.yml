@@ -33,3 +33,6 @@
 
 - name: Update DNS setting # noqa 301
   command: /usr/local/opt/stubby/sbin/stubby-setdns-macos.sh
+
+- name: Run generic Configuration tasks
+  include_tasks: config-Linux.yml

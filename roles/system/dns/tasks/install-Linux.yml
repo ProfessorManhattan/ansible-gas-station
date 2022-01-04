@@ -59,7 +59,7 @@
   unarchive:
     src: "{{ hostctl_src_dir }}/hostctl_{{ hostctl_latest_release_tag.json.tag_name | replace('v','') }}_linux_64-bit.tar.gz"
     dest: /usr/local/bin
-    remote_src: yes
+    remote_src: true
     exclude:
       - LICENSE
       - README.md
